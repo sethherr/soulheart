@@ -1,7 +1,10 @@
-{"id":1,"term":"Dodger Stadium","score":84,"data":{"url":"\/dodger-stadium-tickets\/","subtitle":"Los Angeles, CA"},"aliases":["Chavez Ravine"]}
-{"id":28,"term":"Angel Stadium","score":90,"data":{"url":"\/angel-stadium-tickets\/","subtitle":"Anaheim, CA"},"aliases":["Edison International Field of Anaheim"]}
-{"id":30,"term":"Chase Field ","score":80,"data":{"url":"\/chase-field-tickets\/","subtitle":"Phoenix, AZ"},"aliases":["Bank One Ballpark", "Bank One Stadium"]}
-{"id":29,"term":"Sun Life Stadium","score":75,"data":{"url":"\/sun-life-stadium-tickets\/","subtitle":"Miami, FL"},"aliases":["Dolphins Stadium","Land Shark Stadium"]}
-{"id":2,"term":"Turner Field","score":50,"data":{"url":"\/turner-field-tickets\/","subtitle":"Atlanta, GA"}}
-{"id":3,"term":"Citi Field","score":92,"data":{"url":"\/citi-field-tickets\/","subtitle":"Atlanta, GA"},"aliases":["Shea Stadium"]}
-{"id":8,"term":"中国佛山 李小龙","score":94,"data":{"url":"\/Bruce Lee\/","subtitle":"Chinese Foshan"},"aliases":["Li XiaoLong"]}
+{"term":"Brompton Bicycle","priority":50,"category":"Frame Manufacturer","data":{"id":8,"url":"http://www.brompton.com"}}
+{"term":"Jamis","priority":75,"category":"Frame Manufacturer","data":{"id":2222,"url":"http://jamisbikes.com"}}
+{"term":"Jamis","priority":50,"category":"Manufacturer","data":{"id":8,"url":"http://sram.com"}}
+{"term":"Dodger Stadium","priority":84,"data":{"id":1,"url":"\/dodger-stadium-tickets\/","subtitle":"Los Angeles, CA"},"aliases":["Chavez Ravine"]}
+{"term":"Angel Stadium","priority":90,"data":{"id":28,"url":"\/angel-stadium-tickets\/","subtitle":"Anaheim, CA"},"aliases":["Edison International Field of Anaheim"]}
+{"term":"Chase Field ","priority":80,"data":{"id":30,"url":"\/chase-field-tickets\/","subtitle":"Phoenix, AZ"},"aliases":["Bank One Ballpark", "Bank One Stadium"]}
+{"term":"Sun Life Stadium","priority":75,"data":{"id":29,"url":"\/sun-life-stadium-tickets\/","subtitle":"Miami, FL"},"aliases":["Dolphins Stadium","Land Shark Stadium"]}
+{"term":"Turner Field","priority":50,"data":{"id":2,"url":"\/turner-field-tickets\/","subtitle":"Atlanta, GA"}}
+{"term":"Citi Field","priority":92,"data":{"id":3,"url":"\/citi-field-tickets\/","subtitle":"Atlanta, GA"},"aliases":["Shea Stadium"]}
+{"term":"中国佛山 李小龙","priority":94,"data":{"id":8,"url":"\/Bruce Lee\/","subtitle":"Chinese Foshan"},"aliases":["Li XiaoLong"]}
