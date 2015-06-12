@@ -1,5 +1,14 @@
-Soulmate
+Soulheart
 ========
+
+This is an updated fork of [Seatgeek/Soulmate](https://github.com/seatgeek/soulmate) to address a few issues - namely [CORS support](../../issues/2), [ZRANGEBYLEX](https://github.com/seatgeek/soulmate/issues/41), [minimum entry length](../../issues/3) and [playing better with Selectivize & Select2](../../issues/4).
+
+Since [Seatgeek no longer uses Soulmate](https://news.ycombinator.com/item?id=9317891), and there are some underlying rebuilds going on, this is a new project and gem.
+
+Soulmate's README follows ([issue](../../issues/1))
+
+
+---
 
 Soulmate is a tool to help solve the common problem of developing a fast autocomplete feature. It uses Redis's sorted sets to build an index of partially completed words and the corresponding top matching items, and provides a simple sinatra app to query them. Soulmate finishes your sentences.
 
@@ -22,8 +31,6 @@ An item is a simple JSON object that looks like:
     }
 
 Where `id` is a unique identifier (within the specific type), `term` is the phrase you wish to provide completions for, `score` is a user-specified ranking metric (redis will order things lexicographically for items with the same score), and `data` is an optional container for metadata you'd like to return when this item is matched (at SeatGeek we're including a url for the item as well as a subtitle for when we present it in an autocomplete dropdown).
-
-See Soulmate in action at <a href="http://seatgeek.com/">SeatGeek</a>.
 
 Getting Started
 ---------------
