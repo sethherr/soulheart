@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+- 2.1.0
+bundler_args: "--without=guard"
+notifications:
+  disabled: true
+script:
+- bundle exec rake spec
+# - bundle exec rubocop
+addons:
+  code_climate:
+    repo_token: e72d8fa152922cef05c311cd49d3db9016b82486b712399a8e7c7da2af5e071e
