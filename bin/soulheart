@@ -7,23 +7,23 @@ rescue LoadError
   require 'rubygems'
   require 'redis'
 end
-require 'soulmate'
+require 'soulheart'
 require 'optparse'
 require 'tempfile'
 
 parser = OptionParser.new do |opts|
-  opts.banner = "Usage: soulmate [options] COMMAND"
+  opts.banner = "Usage: soulheart [options] COMMAND"
 
   opts.separator ""
   opts.separator "Options:"
 
   opts.on("-r", "--redis [HOST:PORT]", "Redis connection string") do |host|
-    Soulmate.redis = host
+    Soulheart.redis = host
   end
 
   opts.on("-s", "--stop-words [FILE]", "Path to file containing a list of stop words") do |fn|
     File.open(fn) do |file|
-      Soulmate.stop_words = file.readlines.map{ |l| l.strip }.reject{ |w| w.empty? }
+      Soulheart.stop_words = file.readlines.map{ |l| l.strip }.reject{ |w| w.empty? }
     end
   end
 
@@ -45,21 +45,21 @@ parser = OptionParser.new do |opts|
 end
 
 def generate(type, file)
-  include Soulmate::Helpers
+  include Soulheart::Helpers
 
   begin
-    temp = Tempfile.new("soulmate")
+    temp = Tempfile.new("soulheart")
 
     if File.exists?(file)
       start_time = Time.now.to_i
-      base = "soulmate-index:#{type}"
-      database = "soulmate-data:#{type}"
+      base = "soulheart-index:#{type}"
+      database = "soulheart-data:#{type}"
       # hset = "*4\r\n$4\r\nHSET\r\n$#{database.length}\r\n#{database}\r\n$"
       # del = "*2\r\n$3\r\nDEL\r\n$"
       begin
         f = File.open(file)
         # cleanup
-        phrases = Soulmate.redis.smembers(base)
+        phrases = Soulheart.redis.smembers(base)
         phrases.each do |phrase|
           temp << gen_redis_proto("DEL", phrase)
           # temp << del + phrase.length.to_s + "\r\n" + phrase + "\r\n"
@@ -95,15 +95,12 @@ def generate(type, file)
   end
 end
 
-def load(type, file)
+def load(file)
   if File.exists?(file)
     start_time = Time.now.to_i
+    loader = Soulheart::Loader.new
 
-    puts "Purging existing items of type #{type} ..."
-    loader = Soulmate::Loader.new(type)
-    loader.cleanup
-
-    puts "Loading items of type #{type} in batches of #{BATCH_SIZE} ..."
+    puts "Loading items in batches of #{BATCH_SIZE} ..."
     count = 0
     begin
       f = File.open(file)
@@ -128,7 +125,7 @@ end
 
 def add(type)
   puts "Adding items of type #{type}..."
-  loader = Soulmate::Loader.new(type)
+  loader = Soulheart::Loader.new(type)
   items = $stdin.read.split("\n").map { |l| MultiJson.decode(l) }
   items.each do |item|
     loader.add(item)
@@ -138,7 +135,7 @@ end
 
 def remove(type)
   puts "Removing items of type #{type}..."
-  loader = Soulmate::Loader.new(type)
+  loader = Soulheart::Loader.new(type)
   items = $stdin.read.split("\n").map { |l| MultiJson.decode(l) }
   items.each do |item|
     loader.remove(item)
@@ -148,7 +145,7 @@ end
 
 def query(type, query)
   puts "> Querying '#{type}' for '#{query}'"
-  matcher = Soulmate::Matcher.new(type)
+  matcher = Soulheart::Matcher.new(type)
   results = matcher.matches_for_term(query, :limit => 0)
   results.each do |item|
     puts MultiJson.encode(item)
@@ -172,7 +169,7 @@ case ARGV[0]
 when 'generate'
   generate ARGV[1], ARGV[2]
 when 'load'
-  load ARGV[1], ARGV[2]
+  load ARGV[1]
 when 'add'
   add ARGV[1]
 when 'remove'

@@ -1,14 +1,71 @@
-Soulheart
+Soulheart [![Build Status](https://travis-ci.org/sethherr/soulheart.svg)](https://travis-ci.org/sethherr/soulheart) [![Code Climate](https://codeclimate.com/github/sethherr/soulheart/badges/gpa.svg)](https://codeclimate.com/github/sethherr/soulheart) [![Test Coverage](https://codeclimate.com/github/sethherr/soulheart/badges/coverage.svg)](https://codeclimate.com/github/sethherr/soulheart/coverage)
 ========
 
-This is an updated fork of [Seatgeek/Soulmate](https://github.com/seatgeek/soulmate) to address a few issues - namely [CORS support](../../issues/2), [ZRANGEBYLEX](https://github.com/seatgeek/soulmate/issues/41), [minimum entry length](../../issues/3) and [playing better with Selectivize & Select2](../../issues/4).
+This is an updated fork of [Seatgeek/Soulmate](https://github.com/seatgeek/soulmate) to address a few issues - namely [CORS support](../../issues/2), [minimum entry length](../../issues/3) and [playing better with Selectize & Select2](../../issues/4) - also the future.
 
-Since [Seatgeek no longer uses Soulmate](https://news.ycombinator.com/item?id=9317891), and there are some underlying rebuilds going on, this is a new project and gem.
+Since [Seatgeek no longer uses Soulmate](https://news.ycombinator.com/item?id=9317891), and this is a pretty large rewrite that doesn't emphasize backward compatibility, it's a new project and gem.
 
-Soulmate's README follows ([issue](../../issues/1))
+========
+
+**Every item has to have a unique name**
+
+Loading data: 
+
+Pushing new options via rake task. Use a gist url! Do it with .csvs!
+
+Structuring data
+
+The only required attribute is term, which is the search term to go by. So this would be a valid thing:
+
+```javascript
+[
+  { "term": "Something sweet" },
+  { "term": "The color blue" }
+]
+```
+
+Here are all the possible (non-required) values:
 
 
----
+| Key         | Type     | Default    |
+| ----------- | -----    | ---------- |
+| `priority`  | integer  | 100        |
+| `types`     | string   | 'default'  |
+| `data`      | hash     | {}         |
+
+e.g.
+
+```javascript
+[
+  {
+    "term": "Something sweet",
+    "priority": 99,
+    "types": "niceness", // A set type for searching by type
+    "data": { // Any key value pair you want, this is the return value
+      "id": 99,
+      "url": "http://example.com",
+      "whatever": "The color purple"
+    }
+  },
+  { "term": "The color blue" }
+]
+```
+
+*If you set `term` in `data`, it will respond with that rather than the term it searches by. I haven't figured out a use case for this yet, but I'm sure one exists.*
+
+======
+
+I'm testing with:
+
+  - ruby >= 2.1
+  - redis >= 3
+
+To test, run `bundle exec guard`. It will live reload the files you change. 
+
+
+======
+
+:x::o::x::o::x::o: *Soulmate's README follows ([issue for making new documentation](../../issues/1))*
 
 Soulmate is a tool to help solve the common problem of developing a fast autocomplete feature. It uses Redis's sorted sets to build an index of partially completed words and the corresponding top matching items, and provides a simple sinatra app to query them. Soulmate finishes your sentences.
 
