@@ -60,6 +60,7 @@ module Soulheart
       raise ArgumentError, "Items must have text" unless item["text"]
       default_items_hash(item.delete('text'), item.delete('category')).
         tap{ |i| i['data'].merge!(item.delete('data')) if item['data'] }.
+        tap{ |i| i['priority'] = item.delete('priority').to_f if item['priority'] }.
         merge item
     end
 

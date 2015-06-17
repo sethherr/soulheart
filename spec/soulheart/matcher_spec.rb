@@ -72,6 +72,33 @@ describe Soulheart::Matcher do
       expect(matches.count).to eq(2)
       expect(matches[0]['text']).to eq('Jannd')
     end
+
+    it "Gets pages and uses them" do
+      # Pagination wrecked my mind, hence the multitude of tests
+      items = [
+        {"text" => 'First item', 'priority' => '11000' },
+        {"text" => 'Second item', 'priority' => '1999' },
+        {"text" => 'Third item', 'priority' => 1900 },
+        {"text" => 'Fourth item', 'priority' => 1800 },
+        {"text" => 'Fifth item', 'priority' => 1750 },
+        {"text" => 'Sixth item', 'priority' => 1700 },
+        {"text" => 'Seventh item', 'priority' => 1699 }
+      ]
+      loader = Soulheart::Loader.new
+      loader.delete_categories
+      loader.load(items)
+
+      page1 = Soulheart::Matcher.new({'per_page' => 1, 'cache' => false}).matches
+      expect(page1[0]['text']).to eq('First item')
+      
+      page2 = Soulheart::Matcher.new({'per_page' => 1, 'page' => 2, 'cache' => false}).matches
+      expect(page2.count).to eq(1)
+      expect(page2[0]['text']).to eq('Second item')
+
+      page3 = Soulheart::Matcher.new({'per_page' => 2, 'page' => 3, 'cache' => false}).matches
+      expect(page3[0]['text']).to eq('Fifth item')
+      expect(page3[1]['text']).to eq('Sixth item')
+    end
   end
 
 end

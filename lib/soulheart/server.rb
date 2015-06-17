@@ -17,7 +17,7 @@ module Soulheart
         
     get '/' do
       matches = Matcher.new(params).matches
-      MultiJson.encode({ results:  matches })
+      MultiJson.encode({ matches:  matches })
     end
 
     get '/status' do 
