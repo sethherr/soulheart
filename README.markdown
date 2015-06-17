@@ -1,11 +1,5 @@
-Soulheart [![Build Status](https://travis-ci.org/sethherr/soulheart.svg)](https://travis-ci.org/sethherr/soulheart) [![Code Climate](https://codeclimate.com/github/sethherr/soulheart/badges/gpa.svg)](https://codeclimate.com/github/sethherr/soulheart) [![Test Coverage](https://codeclimate.com/github/sethherr/soulheart/badges/coverage.svg)](https://codeclimate.com/github/sethherr/soulheart/coverage)
-========
+## <img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200"> Soulheart [![Build Status](https://travis-ci.org/sethherr/soulheart.svg)](https://travis-ci.org/sethherr/soulheart) [![Code Climate](https://codeclimate.com/github/sethherr/soulheart/badges/gpa.svg)](https://codeclimate.com/github/sethherr/soulheart) [![Test Coverage](https://codeclimate.com/github/sethherr/soulheart/badges/coverage.svg)](https://codeclimate.com/github/sethherr/soulheart/coverage)
 
-This is an updated fork of [Seatgeek/Soulmate](https://github.com/seatgeek/soulmate) to address a few issues - namely [CORS support](../../issues/2), [minimum entry length](../../issues/3) and [playing better with Selectize & Select2](../../issues/4) - also the future.
-
-Since [Seatgeek no longer uses Soulmate](https://news.ycombinator.com/item?id=9317891), and this is a pretty large rewrite that doesn't emphasize backward compatibility, it's a new project and gem.
-
-========
 
 **Every item has to have a unique name**
 
@@ -64,6 +58,10 @@ To test, run `bundle exec guard`. It will live reload the files you change.
 
 
 ======
+
+This is an updated fork of [Seatgeek/Soulmate](https://github.com/seatgeek/soulmate) to address a few issues - namely [CORS support](../../issues/2), [minimum entry length](../../issues/3) and [playing better with Selectize & Select2](../../issues/4) - also the future.
+
+Since [Seatgeek no longer uses Soulmate](https://news.ycombinator.com/item?id=9317891), and this isn't backward compatible it's a new project and gem.
 
 :x::o::x::o::x::o: *Soulmate's README follows ([issue for making new documentation](../../issues/1))*
 
