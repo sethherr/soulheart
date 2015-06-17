@@ -48,7 +48,7 @@ module Soulheart
     end
 
     def cache_id(type='all')
-      "#{base_id}:cache:#{type}:"
+      "#{base_id}cache:#{type}:"
     end
   end
 end
