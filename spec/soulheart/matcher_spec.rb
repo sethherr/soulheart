@@ -8,6 +8,12 @@ describe Soulheart::Matcher do
       keys = Soulheart::Matcher.default_params_hash.keys
       expect((target_keys - keys).count).to eq(0)
     end
+
+    it "makes category empty if it's all the categories" do 
+      Soulheart::Loader.new.reset_categories(['cool', 'test'])
+      cleaned = Soulheart::Matcher.new('categories' => 'cool, test')
+      expect(cleaned.opts['categories']).to eq([])
+    end
     
     it "obeys stop words"
   end

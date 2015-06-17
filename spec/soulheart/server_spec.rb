@@ -9,6 +9,16 @@ describe Soulheart::Server do
       expect(last_response.headers['Access-Control-Request-Method']).to eq('*')
       expect(last_response.headers['Content-Type']).to match('json')
       expect(last_response.status).to eq(200)
+      expect(JSON.parse(last_response.body).keys).to eq(['matches'])
+    end
+  end
+
+  describe :not_found do 
+    it "Renders not found" do 
+      get '/not-here'
+      expect(last_response.headers['Content-Type']).to match('json')
+      expect(last_response.status).to eq(404)
+      expect(JSON.parse(last_response.body).keys).to eq(['error'])
     end
   end
 
