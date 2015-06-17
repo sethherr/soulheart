@@ -1,9 +1,9 @@
 Soulheart [![Build Status](https://travis-ci.org/sethherr/soulheart.svg)](https://travis-ci.org/sethherr/soulheart) [![Code Climate](https://codeclimate.com/github/sethherr/soulheart/badges/gpa.svg)](https://codeclimate.com/github/sethherr/soulheart) [![Test Coverage](https://codeclimate.com/github/sethherr/soulheart/badges/coverage.svg)](https://codeclimate.com/github/sethherr/soulheart/coverage)
 ========
 
-This is an updated fork of [Seatgeek/Soulmate](https://github.com/seatgeek/soulmate) to address a few issues - namely [CORS support](../../issues/2), [ZRANGEBYLEX](https://github.com/seatgeek/soulmate/issues/41), [minimum entry length](../../issues/3) and [playing better with Selectize & Select2](../../issues/4) - also the future.
+This is an updated fork of [Seatgeek/Soulmate](https://github.com/seatgeek/soulmate) to address a few issues - namely [CORS support](../../issues/2), [minimum entry length](../../issues/3) and [playing better with Selectize & Select2](../../issues/4) - also the future.
 
-Since [Seatgeek no longer uses Soulmate](https://news.ycombinator.com/item?id=9317891), and this is basically a wholesale rewrite, this is a new project and gem.
+Since [Seatgeek no longer uses Soulmate](https://news.ycombinator.com/item?id=9317891), and this is a pretty large rewrite that doesn't emphasize backward compatibility, it's a new project and gem.
 
 ========
 

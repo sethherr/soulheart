@@ -53,10 +53,9 @@ module Soulheart
         redis.zinterstore(cachekey, interkeys)
         redis.expire(cachekey, cache_length) # cache_length is set in base.rb
       end
-
-      offset = (@opts['page']*@opts['per_page'])
-      limit = @opts['per_page'] - 1
-      ids = redis.zrevrange(cachekey, offset, limit) # Using 'ids', even though keys are now terms - because clarity?
+      page = @opts['page'].to_i
+      per_page = @opts['per_page'].to_i
+      ids = redis.zrevrange(cachekey, page*per_page, per_page-1) # Using 'ids', even though keys are now terms - because clarity?
       if ids.size > 0
         results = redis.hmget(results_hashes_id, *ids)
         results = results.reject{ |r| r.nil? } # handle cached results for ids which have since been deleted
