@@ -6,6 +6,8 @@ module Soulheart
       clean_opts
     end
 
+    attr_accessor :opts
+
     def self.default_params_hash
       {
         'page' => 1,
@@ -22,7 +24,7 @@ module Soulheart
         @opts['categories'] = @opts['categories'].map{ |s| normalize(s) }.uniq.sort
         @opts['categories'] = [] if @opts['categories'].length == redis.scard(categories_id)
       end
-      @opts['query'] = normalize(@opts['query']).split(' ')
+      @opts['query'] = normalize(@opts['query']).split(' ') unless @opts['query'].kind_of?(Array)
       # .reject{ |i| i && i.length > 0 } .split(' ').reject{  Soulmate.stop_words.include?(w) }
       @opts
     end
@@ -55,7 +57,7 @@ module Soulheart
       end
       offset = (@opts['page'].to_i - 1) * @opts['per_page'].to_i
       limit = @opts['per_page'].to_i + offset - 1
-      
+
       limit = 0 if limit < 0
       ids = redis.zrevrange(cachekey, offset, limit) # Using 'ids', even though keys are now terms
       if ids.size > 0

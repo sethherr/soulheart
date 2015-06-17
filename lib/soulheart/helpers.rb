@@ -2,10 +2,6 @@
 
 module Soulheart
   module Helpers
-    def blank?
-      respond_to?(:empty?) ? !!empty? : !self
-    end
-
     def normalize(str)
       # Letter, Mark, Number, Connector_Punctuation (Chinese, Japanese, etc.)
       str.downcase.gsub(/[^\p{Word}\ ]/i, '').strip
