@@ -8,7 +8,7 @@ module Soulheart
 
     def self.default_params_hash
       {
-        'page' => 0,
+        'page' => 1,
         'per_page' => 5,
         'categories' => [],
         'query' => '',
@@ -36,7 +36,7 @@ module Soulheart
     end
 
     def cache_id_from_opts
-      "#{cache_id(categories_string)}#{@opts['query'].join(':')}:"
+      "#{cache_id(categories_string)}#{@opts['query'].join(':')}"
     end
 
     def interkeys_from_opts(cid)
@@ -53,9 +53,11 @@ module Soulheart
         redis.zinterstore(cachekey, interkeys)
         redis.expire(cachekey, cache_length) # cache_length is set in base.rb
       end
-      page = @opts['page'].to_i
-      per_page = @opts['per_page'].to_i
-      ids = redis.zrevrange(cachekey, page*per_page, per_page-1) # Using 'ids', even though keys are now terms - because clarity?
+      offset = (@opts['page'].to_i - 1) * @opts['per_page'].to_i
+      limit = @opts['per_page'].to_i + offset - 1
+      
+      limit = 0 if limit < 0
+      ids = redis.zrevrange(cachekey, offset, limit) # Using 'ids', even though keys are now terms
       if ids.size > 0
         results = redis.hmget(results_hashes_id, *ids)
         results = results.reject{ |r| r.nil? } # handle cached results for ids which have since been deleted

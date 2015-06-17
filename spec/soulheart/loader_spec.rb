@@ -15,7 +15,7 @@ describe Soulheart::Loader do
     it "doesn't overwrite the submitted params" do 
       item = {
         'text' => 'Cool ',
-        'priority' => 50,
+        'priority' => '50',
         'category' => 'Gooble',
         'data' => {
           'id' => 199
