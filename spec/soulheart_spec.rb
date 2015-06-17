@@ -10,7 +10,11 @@ describe Soulheart do
     expect(Soulheart::Base.new.base_id).to eq('soulheart_test:')
   end
 
-  it "collates (? probably not the word I'm looking for) all the things" do 
+  it "has a cache expiration time" do 
+    expect(Soulheart::Base.new.cache_length).to eq(600)
+  end
+
+  it "combinates all the things" do 
     base = Soulheart::Base.new 
     base.redis.expire base.categories_id, 0
     base.redis.sadd base.categories_id, ['George', 'category one', 'other thing ']
@@ -24,6 +28,7 @@ describe Soulheart do
     expect(result.include?("georgecategory one")).to be_false
     expect(result.include?("all")).to be_true
     expect(result.include?("category onegeorgeother thing")).to be_false
+    expect(base.redis.smembers(base.category_combos_id) - result).to eq([])
   end
 
 end

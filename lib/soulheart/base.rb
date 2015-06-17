@@ -16,7 +16,7 @@ module Soulheart
     
     def base_id
       ENV['RACK_ENV'] != 'test' ? "soulheart:" : "soulheart_test:"
-    end
+    end 
 
     def set_category_combos_array
       redis.expire category_combos_id, 0
@@ -29,6 +29,10 @@ module Soulheart
 
     def category_combos_id
       "#{base_id}category_combos:"
+    end
+
+    def category_combos
+      redis.smembers(category_combos_id)
     end
 
     def categories_id
