@@ -1,66 +1,68 @@
 # <img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200"> Soulheart [![Build Status](https://travis-ci.org/sethherr/soulheart.svg)](https://travis-ci.org/sethherr/soulheart) [![Code Climate](https://codeclimate.com/github/sethherr/soulheart/badges/gpa.svg)](https://codeclimate.com/github/sethherr/soulheart) [![Test Coverage](https://codeclimate.com/github/sethherr/soulheart/badges/coverage.svg)](https://codeclimate.com/github/sethherr/soulheart/coverage)
 
 
-Now with heroku button! [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+**Soulheart is a ready to use remote data source for autocomplete**. It supports:
 
-**Every item has to have a unique name**
+- pagination
+- categories
+- sorting by priority (not just alphabetically)
+- arbitrary returns
+- loading data via gists 
+- mounting standalone or inside of a rails app
 
-Loading data: 
+... and is [instantly deployable to heroku](https://heroku.com/deploy) (for free).
 
-Pushing new options via rake task. Use a gist url! Do it with .csvs!
-
-Structuring data
-
-The only required attribute is term, which is the search term to go by. So this would be a valid thing:
-
-```javascript
-[
-  { "term": "Something sweet" },
-  { "term": "The color blue" }
-]
-```
-
-Here are all the possible (non-required) values:
+To get started, check out examples and documentation at [sethherr.github.io/soulheart](https://sethherr.github.io/soulheart).
 
 
-| Key         | Type     | Default    |
-| ----------- | -----    | ---------- |
-| `priority`  | integer  | 100        |
-| `types`     | string   | 'default'  |
-| `data`      | hash     | {}         |
+---
 
-e.g.
+### Adding data
 
-```javascript
-[
-  {
-    "term": "Something sweet",
-    "priority": 99,
-    "types": "niceness", // A set type for searching by type
-    "data": { // Any key value pair you want, this is the return value
-      "id": 99,
-      "url": "http://example.com",
-      "whatever": "The color purple"
-    }
-  },
-  { "term": "The color blue" }
-]
-```
+You can add data from json, CSV and TSV files. 
 
-*If you set `term` in `data`, it will respond with that rather than the term it searches by. I haven't figured out a use case for this yet, but I'm sure one exists.*
+Adding data is very simple - all you need is a `text` value.
+
+Soulheart uses [line delineated JSON streams](https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON), so it doesn't have to load the whole file into memory. Which just means - put each object onto a seperate line.
+
+For the simplest case, with just text values in JSON:
+
+    { "text": "Jamis" }
+    { "text": "Specialized" }
+    { "text": "Trek" }
+
+It accepts local files:
+
+    soulheart load my_json_file.json
+
+or remote files:
+  
+    soulheart load https://gist.githubusercontent.com/sethherr/96dbc011e508330ceec4/raw/95122b1fc9de85f241cd048f32b94568f54134e0/manufacturers.tsv
+
+
+In addition to term, there are a few optional values - 
+
+| Key          | Default     | What it does |
+| ------------ | ----------- | ------------ |
+| `priority`   | `100`       | Higher numbers come first |
+| `category`   | `'default'` | Sets the category |
+| `data`       | `{}`        | Returned object from search - the text and category will be added to this if you don't specify them. |
+
+Here is an example of what a possible hash you could pass is
+
+    { "text": "Jamis", "category": "Bike Manufacturer" }
+    { "text": "Specialized" }
+    { "text": "Trek" }
+
+*If you set `text` in `data`, it will respond with that rather than the term it searches by. I haven't figured out a use case for this yet, but I'm sure one exists.*
 
 ======
 
-
-
-I'm testing with:
-
-  - ruby >= 2.1
-  - redis >= 3
+I'm testing with: `ruby >= 2.1` and `redis >= 3`. 
 
 Run `bundle exec guard` to run the specs while you work, it will just test the files you change.
 
-This repo includes a `config.ru` and a `Gemfile.lock` so that we can use a deploy to heroku button.
+This repo includes a `config.ru` and a `Gemfile.lock` so it (and any forks of it) can be deployed to heroku. They shouldn't be in the Gem itself.
 
 
 ======

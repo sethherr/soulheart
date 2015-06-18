@@ -18,7 +18,8 @@ describe Soulheart::Loader do
         'priority' => '50',
         'category' => 'Gooble',
         'data' => {
-          'id' => 199
+          'id' => 199,
+          'category' => 'Stuff'
         }
       }
       result = Soulheart::Loader.new.clean(item)
@@ -27,7 +28,7 @@ describe Soulheart::Loader do
       expect(result['data']['text']).to eq('Cool ')
       expect(result['data']['id']).to eq(199)
       expect(result['category']).to eq('gooble')
-      expect(result['data']['category']).to eq('Gooble')
+      expect(result['data']['category']).to eq('Stuff')
     end
 
     it "raises argument error if text is passed" do 
