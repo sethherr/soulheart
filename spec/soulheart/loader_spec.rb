@@ -55,8 +55,7 @@ describe Soulheart::Loader do
       target = "{\"text\":\"Brompton Bicycle\",\"category\":\"Gooble\",\"id\":199}"
       result = redis.hget(loader.results_hashes_id, 'brompton bicycle')
       expect(result).to eq(target)
-      prefixed = redis.zrevrange "#{loader.category_id('gooble')}:brom", 0, -1
-      pp prefixed
+      prefixed = redis.zrevrange "#{loader.category_id('gooble')}brom", 0, -1
       expect(prefixed[0]).to eq('brompton bicycle')
       expect(redis.smembers(loader.categories_id).include?('gooble')).to be_true
     end
@@ -72,11 +71,11 @@ describe Soulheart::Loader do
       loader.delete_categories
       loader.load(items)
       
-      cat_prefixed = redis.zrevrange "#{loader.category_id('frame manufacturermanufacturer')}:brom", 0, -1
+      cat_prefixed = redis.zrevrange "#{loader.category_id('frame manufacturermanufacturer')}brom", 0, -1
       expect(cat_prefixed.count).to eq(1)
       expect(redis.smembers(loader.categories_id).count).to be > 3
 
-      prefixed = redis.zrevrange "#{loader.category_id('all')}:bro", 0, -1
+      prefixed = redis.zrevrange "#{loader.category_id('all')}bro", 0, -1
       expect(prefixed.count).to eq(2)
       expect(prefixed[0]).to eq('brompton bicycle')
     end
