@@ -15,7 +15,8 @@ test/db/*.rdb
 dump.rdb
 tmp/
 
-Gemfile.lock
-
 .rvmrc
 .ruby-*
+
+_site
+.sass-cache
