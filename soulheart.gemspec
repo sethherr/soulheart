@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = "https://github.com/sethherr/soulheart"
   gem.license       = "MIT"
   gem.executables   = ["soulheart", "soulheart-web"]
-  gem.files         = `git ls-files | grep -Ev '^(test)'`.split("\n")
+  gem.files         = `git ls-files README.md Rakefile LICENSE.md lib bin`.split("\n")
   gem.name          = "soulheart"
   gem.require_paths = ["lib"]
   gem.add_dependency                  'hiredis', '~> 0.4.5'
@@ -17,7 +17,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency                  'vegas', '>= 0.1.0'
   gem.add_dependency                  'json'
   gem.add_dependency                  'sinatra'
-  gem.add_development_dependency      'rack-contrib'
   gem.add_development_dependency      'rake'
   gem.add_development_dependency      'rspec'
   gem.add_development_dependency      'rubocop'

@@ -80,7 +80,7 @@ describe Soulheart::Matcher do
     end
 
     it "Gets pages and uses them" do
-      # Pagination wrecked my mind, hence the multitude of tests
+      # Pagination wrecked my mind, hence the multitude of expectations
       items = [
         {"text" => 'First item', 'priority' => '11000' },
         {"text" => 'Second item', 'priority' => '1999' },

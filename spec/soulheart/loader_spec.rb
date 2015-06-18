@@ -56,6 +56,7 @@ describe Soulheart::Loader do
       result = redis.hget(loader.results_hashes_id, 'brompton bicycle')
       expect(result).to eq(target)
       prefixed = redis.zrevrange "#{loader.category_id('gooble')}:brom", 0, -1
+      pp prefixed
       expect(prefixed[0]).to eq('brompton bicycle')
       expect(redis.smembers(loader.categories_id).include?('gooble')).to be_true
     end

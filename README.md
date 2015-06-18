@@ -1,5 +1,7 @@
-## <img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200"> Soulheart [![Build Status](https://travis-ci.org/sethherr/soulheart.svg)](https://travis-ci.org/sethherr/soulheart) [![Code Climate](https://codeclimate.com/github/sethherr/soulheart/badges/gpa.svg)](https://codeclimate.com/github/sethherr/soulheart) [![Test Coverage](https://codeclimate.com/github/sethherr/soulheart/badges/coverage.svg)](https://codeclimate.com/github/sethherr/soulheart/coverage)
+# <img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200"> Soulheart [![Build Status](https://travis-ci.org/sethherr/soulheart.svg)](https://travis-ci.org/sethherr/soulheart) [![Code Climate](https://codeclimate.com/github/sethherr/soulheart/badges/gpa.svg)](https://codeclimate.com/github/sethherr/soulheart) [![Test Coverage](https://codeclimate.com/github/sethherr/soulheart/badges/coverage.svg)](https://codeclimate.com/github/sethherr/soulheart/coverage)
 
+
+Now with heroku button! [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 **Every item has to have a unique name**
 
@@ -49,12 +51,16 @@ e.g.
 
 ======
 
+
+
 I'm testing with:
 
   - ruby >= 2.1
   - redis >= 3
 
-To test, run `bundle exec guard`. It will live reload the files you change. 
+Run `bundle exec guard` to run the specs while you work, it will just test the files you change.
+
+This repo includes a `config.ru` and a `Gemfile.lock` so that we can use a deploy to heroku button.
 
 
 ======
