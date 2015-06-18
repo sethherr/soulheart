@@ -1,0 +1,15 @@
+{
+  "name": "Soulheart",
+  "description": "Autocomplete engine of future past",
+  "repository": "https://github.com/sethherr/soulheart",
+  "logo": "https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png",
+  "keywords": [
+    "ruby",
+    "autocomplete",
+    "redis",
+    "heart"
+  ],
+  "addons": [
+    "heroku-redis:test"
+  ]
+}

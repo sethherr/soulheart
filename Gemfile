@@ -5,7 +5,6 @@ group :development do
   gem 'bundler'
   gem 'guard'
   gem 'guard-rspec', '~> 4.2.8'
-  gem 'rack-contrib'
   gem 'rubocop'
 end
 

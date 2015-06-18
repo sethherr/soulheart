@@ -1,6 +1,5 @@
 require 'sinatra/base'
 require 'soulheart'
-require 'rack/contrib'
 
 module Soulheart
 
