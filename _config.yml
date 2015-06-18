@@ -1,0 +1,10 @@
+# Site settings
+title: Soulheart
+description: > 
+  Soulheart is the autocorrection/typeahead engine of the future
+  from two years ago, or maybe last week
+baseurl: "" # the subpath of your site, e.g. /blog/
+github_username:  sethherr
+
+# Build settings
+markdown: kramdown

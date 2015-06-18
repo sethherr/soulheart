@@ -1,0 +1,22 @@
+# rdoc generated
+rdoc
+
+# yard generated
+doc
+.yardoc
+
+# bundler
+.bundle
+
+gem 
+
+test/db/*.rdb
+
+dump.rdb
+tmp/
+
+.rvmrc
+.ruby-*
+
+_site
+.sass-cache
