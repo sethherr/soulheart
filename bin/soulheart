@@ -50,7 +50,7 @@ def generate(type, file)
   begin
     temp = Tempfile.new("soulheart")
 
-    if File.exists?(file)
+    if File.exist?(file)
       start_time = Time.now.to_i
       base = "soulheart-index:#{type}"
       database = "soulheart-data:#{type}"
@@ -100,7 +100,7 @@ def load(file)
   if file =~ URI::regexp
     require 'open-uri'
     f = open(file)
-  elsif File.exists?(file)
+  elsif File.exist?(file)
     f = File.open(file)
   else
     puts "Couldn't open file: #{file}"

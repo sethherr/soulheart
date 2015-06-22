@@ -10,12 +10,7 @@ end
 require 'soulheart/server'
 
 
-Vegas::Runner.new(Soulheart::Server, 'soulheart-web', {
-  :before_run => lambda {|v|
-    # path = (ENV['RESQUECONFIG'] || v.args.first)
-    # load path.to_s.strip if path
-  }
-}) do |runner, opts, app|
+Vegas::Runner.new(Soulheart::Server, 'soulheart-web') do |runner, opts|
   opts.on("-r", "--redis [HOST:PORT]", "Redis connection string") do |host|
     runner.logger.info "Using Redis connection string '#{host}'"
     Soulheart.redis = host

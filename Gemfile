@@ -10,7 +10,7 @@ end
 
 group :test do 
   gem 'rack-test'
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 gem 'rake'
