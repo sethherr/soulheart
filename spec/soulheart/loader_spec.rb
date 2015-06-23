@@ -59,6 +59,24 @@ describe Soulheart::Loader do
       expect(prefixed[0]).to eq('brompton bicycle')
       expect(redis.smembers(loader.categories_id).include?('gooble')).to be_true
     end
+
+    it 'deals with csv format, with data- prefixed items' do
+      item = {
+        'text' => 'Brompton Bicycle',
+        'priority' => 50,
+        'category' => 'Gooble',
+        'data-id' => 199,
+        'data-url' => 'http://something.com',
+      }
+      loader = Soulheart::Loader.new
+      redis = loader.redis
+      redis.expire loader.results_hashes_id, 0
+      loader.add_item(item)
+      redis = loader.redis
+      target = "{\"text\":\"Brompton Bicycle\",\"category\":\"Gooble\",\"id\":199,\"url\":\"http://something.com\"}"
+      result = redis.hget(loader.results_hashes_id, 'brompton bicycle')
+      expect(result).to eq(target)
+    end
   end
 
   describe :store_terms do

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Soulheart::Matcher do
   describe :clean_opts do
     it 'Has the keys we need' do
-      target_keys = %w(categories query page per_page)
+      target_keys = %w(categories q page per_page)
       keys = Soulheart::Matcher.default_params_hash.keys
       expect((target_keys - keys).count).to eq(0)
     end
@@ -63,7 +63,7 @@ describe Soulheart::Matcher do
 
     it 'Gets the matches matching query and priority for one item in query, all categories' do
       store_terms_fixture
-      opts = { 'per_page' => 100, 'query' => 'j', 'cache' => false }
+      opts = { 'per_page' => 100, 'q' => 'j', 'cache' => false }
       matches = Soulheart::Matcher.new(opts).matches
       expect(matches.count).to eq(3)
       expect(matches[0]['text']).to eq('Jamis')
@@ -71,7 +71,7 @@ describe Soulheart::Matcher do
 
     it 'Gets the matches matching query and priority for one item in query, one category' do
       store_terms_fixture
-      opts = { 'per_page' => 100, 'query' => 'j', 'cache' => false, 'categories' => 'manufacturer' }
+      opts = { 'per_page' => 100, 'q' => 'j', 'cache' => false, 'categories' => 'manufacturer' }
       matches = Soulheart::Matcher.new(opts).matches
       expect(matches.count).to eq(2)
       expect(matches[0]['text']).to eq('Jannd')

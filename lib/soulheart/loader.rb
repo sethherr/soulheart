@@ -66,6 +66,11 @@ module Soulheart
       unless cleaned
         item = clean(item)
         category_base_id ||= category_id(item['category'])
+        item.keys.select{ |k| k[/data-/i] }.each do |key|
+          item['data'].merge!({
+              "#{key.gsub(/data-/i,'')}" => item.delete(key)
+            })
+        end
         unless redis.smembers(categories_id).include?(item['category'])
           redis.sadd categories_id, item['category']
         end

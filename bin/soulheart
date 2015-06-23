@@ -44,56 +44,6 @@ parser = OptionParser.new do |opts|
   opts.separator '  query  TYPE QUERY Queries for items from collection specified by TYPE.'
 end
 
-def generate(type, file)
-  include Soulheart::Helpers
-
-  begin
-    temp = Tempfile.new('soulheart')
-
-    if File.exist?(file)
-      start_time = Time.now.to_i
-      base = "soulheart-index:#{type}"
-      database = "soulheart-data:#{type}"
-      # hset = "*4\r\n$4\r\nHSET\r\n$#{database.length}\r\n#{database}\r\n$"
-      # del = "*2\r\n$3\r\nDEL\r\n$"
-      begin
-        f = File.open(file)
-        # cleanup
-        phrases = Soulheart.redis.smembers(base)
-        phrases.each do |phrase|
-          temp << gen_redis_proto('DEL', phrase)
-          # temp << del + phrase.length.to_s + "\r\n" + phrase + "\r\n"
-        end
-        temp << gen_redis_proto('DEL', base)
-        # temp << del + base.length.to_s + "\r\n" + base + "\r\n"
-        until f.eof?
-          line = f.gets.chomp
-          line =~ /"id":(\d+)/
-          id = Regexp.last_match(1)
-          line =~ /"score":(\d+)/
-          score = Regexp.last_match(1)
-          json = MultiJson.decode(line)
-          temp << gen_redis_proto('HSET', database, id, line)
-          # temp << hset + $1.length.to_s + "\r\n" + $1 + "\r\n$" + line.length.to_s + "\r\n" + line + "\r\n"
-          phrase = json.key?('aliases') ? json['term'] + ' ' + json['aliases'] : json['term']
-          prefixes_for_phrase(phrase).each do |p|
-            temp << gen_redis_proto('SADD', base, p)
-            temp << gen_redis_proto('ZADD', base + ':' + p, score, id)
-          end
-        end
-      ensure
-        f.close
-      end
-      puts "Converted in #{Time.now.to_i - start_time} second(s)"
-      puts 'Importing into redis ...'
-      `time redis-cli --pipe < #{temp.path}`
-    else
-      puts "Couldn't open file: #{file}"
-    end
-  ensure
-    temp.close
-  end
-end
 
 def load(file)
   require 'uri'

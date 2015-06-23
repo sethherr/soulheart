@@ -12,7 +12,7 @@ module Soulheart
         'page' => 1,
         'per_page' => 5,
         'categories' => [],
-        'query' => '',
+        'q' => '', # Query
         'cache' => true
       }
     end
@@ -23,7 +23,7 @@ module Soulheart
         @opts['categories'] = @opts['categories'].map { |s| normalize(s) }.uniq.sort
         @opts['categories'] = [] if @opts['categories'].length == redis.scard(categories_id)
       end
-      @opts['query'] = normalize(@opts['query']).split(' ') unless @opts['query'].is_a?(Array)
+      @opts['q'] = normalize(@opts['q']).split(' ') unless @opts['q'].is_a?(Array)
       # .reject{ |i| i && i.length > 0 } .split(' ').reject{  Soulmate.stop_words.include?(w) }
       @opts
     end
@@ -37,12 +37,12 @@ module Soulheart
     end
 
     def cache_id_from_opts
-      "#{cache_id(categories_string)}#{@opts['query'].join(':')}"
+      "#{cache_id(categories_string)}#{@opts['q'].join(':')}"
     end
 
     def interkeys_from_opts(cid)
       # If there isn't a query, we use a special key in redis
-      @opts['query'].empty? ? [no_query_id(cid)] : @opts['query'].map { |w| "#{cid}#{w}" }
+      @opts['q'].empty? ? [no_query_id(cid)] : @opts['q'].map { |w| "#{cid}#{w}" }
     end
 
     def matches
