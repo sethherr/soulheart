@@ -1,0 +1,84 @@
+---
+layout: default
+---
+<script type="text/javascript" src="/javascripts/select2_page.js"></script>
+
+<div class="page-header">
+  <h1>
+    <img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200" />
+    Hello. This is soulheart.
+  </h1>
+</div>
+
+<h2><small>Haven’t you wished there was a super easy way to set up a remote data source for autocomplete?</small></h2>
+
+<p>Soulheart makes it possible to set up a remote data source with zero backend programming. You can deploy to Heroku with the click of a button, upload a tsv with a <code>text</code> column and start using it.</a>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="form-group">
+      <label>Bicycle Manufacturers</label>
+      <select class="form-control" id="sh-example-simple-select"></select>
+    </div>
+  </div>
+</div>
+
+<p>Here is how to deploy the above select, step by step:</p>
+
+<ol class="step-by-step-basic">
+  <li>
+    Deploy to Heroku by clicking <a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fsethherr%2Fsoulheart"><img src="https://www.herokucdn.com/deploy/button.png" alt="deploy" /></a>
+  </li>
+  <li>
+    <a href="https://devcenter.heroku.com/articles/heroku-command">Install the Heroku CLI</a> and open up a terminal window.
+  </li>
+  <li>
+    Run this command in the command prompt <em>replace "sh-example-simple" with the name of your app on Heroku</em>:
+    <pre>heroku run -a sh-example-simple soulheart load <a href="https://raw.githubusercontent.com/sethherr/soulheart/gh-pages/example_sources/manufacturers.tsv">https://raw.githubusercontent.com/sethherr/soulheart/gh-pages/example_sources/manufacturers.tsv</a></pre>
+  </li>
+  <li>
+    Add a select box to your page, <code>&lt;select id="basic-example-select"&gt;&lt;/select&gt;</code>, then use this javascript to hook up the select box with select2 <em>Once again, replace "sh-example-simple" with the name of your app on Heroku</em>:
+
+    <pre>
+$('#sh-example-simple-select').select2({
+  allowClear: true,
+  placeholder: "Choose a manufacturer",
+  ajax: {
+    url: 'http://sh-example-simple.herokuapp.com',
+    dataType: 'json',
+    delay: 250,
+    data: function(params) {
+      return {
+        q: params.term,
+        page: params.page,
+        per_page: 10
+      };
+    },
+    processResults: function(data, page) {
+      return {
+        // Select2 requires an id, so we need to map the results and add an ID
+        // You could instead include an id in the tsv you add to soulheart ;)
+        results: data.matches.map(function(item) {
+          return {
+            id: item.text,
+            text: item.text
+          };
+        }),
+
+        pagination: {
+          // If there are 10 matches, there's at least another page
+          more: data.matches.length === 10
+        }
+      };
+    },
+    cache: true
+  }
+});
+    </pre>
+  </li>
+</ol>
+
+
+<div class="page-header">
+  <h2>... more examples and information to come</h2>
+</div>
