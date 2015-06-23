@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-<script type="text/javascript" src="/javascripts/select2_page.js"></script>
 
 <div class="page-header">
   <h1>
@@ -14,10 +13,10 @@ layout: default
 
 <p>Soulheart makes it possible to set up a remote data source with zero backend programming. You can deploy to Heroku with the click of a button, upload a tsv with a <code>text</code> column and start using it.</a>
 
-<div class="panel panel-default">
+<div class="panel panel-default" id="sh-example-simple-select-panel">
   <div class="panel-body">
     <div class="form-group">
-      <label>Bicycle Manufacturers</label>
+      <label>Bicycle Manufacturers <small>from <a href="https://bikeindex.org/manufacturers">Bike Index</a></small></label>
       <select class="form-control" id="sh-example-simple-select"></select>
     </div>
   </div>
@@ -80,5 +79,161 @@ $('#sh-example-simple-select').select2({
 
 
 <div class="page-header">
-  <h2>... more examples and information to come</h2>
+  <h2>Sorting by priority <small>in addition to alphanumerically</small></h2>
 </div>
+
+<p>So, for example, let’s say you want to have bike manufacturers using select2 like <a class="scroll-to-ref" href="#sh-example-simple-select-panel">the above example</a>.</p>
+
+<p>Some bike manufacturers are more popular than others - and since we expect people to be searching for more popular ones more frequently, it's important to make them show up first &mdash; for example, if you input a "t", the first manufacturer to select should be "Trek", not "Tacx".</p>
+
+<p>Items with equal scores are ordered alphanumerically. So in the manufacturers example above, manufacturers are grouped in broad levels of popularity - 10, 100, 250 & 500 - higher numbers show up first.</p>
+
+<p>Set a <code>priority</code> to organize the way items are ordered.</p>
+
+<div class="page-header">
+  <h2 id="using-categories">Categories</h2>
+</div>
+
+<p>Search for items in only one category by adding a `categories` parameter:</p>
+
+<pre>
+<a href="http://sh-example-simple.herokuapp.com?categories=manufacturer">http://sh-example-simple.herokuapp.com?categories=manufacturer</a>
+</pre>
+
+<p>Search for items in any of the included categories by seperating the categories with commas:</p>
+
+<pre>
+<a href="http://sh-example-simple.herokuapp.com/?categories=manufacturer,frame%20manufacturer">http://sh-example-simple.herokuapp.com/?categories=manufacturer,frame%20manufacturer</a>
+</pre>
+
+
+
+<div class="page-header">
+  <h2 id="using-data">Arbitrary return data</h2>
+</div>
+
+<p>Anything in the data hash will be in the return value.</p>
+
+<p>For TSVs and CSVs, any column prefixed with 'data' will be put in the data hash.</p>
+
+
+<div class="page-header">
+  <h2 id="formatting">Formatting data</h2>
+</div>
+
+<p>You can add data from JSON, CSV and TSV files.</p>
+
+<p>Items can be very simple - all that is required is a <code>text</code> value.</p>
+
+<p>A <code>text</code> column or key is required.</p>
+
+<p>So the simplest thing to load is a csv that looks like this:</p>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Apple</td>
+    </tr>
+    <tr>
+      <td>Orange</td>
+    </tr>
+    <tr>
+      <td>Pear</td>
+    </tr>
+    <tr>
+      <td>Banana</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h4>Optional attributes: <small>if you have a <a class="scroll-to-ref" href="#using-priority">priority</a>, <a class="scroll-to-ref" href="#using-categories">category</a>, or a <a class="scroll-to-ref" href="#using-data">data hash</a>, it will use them as explained above.</small></h4>
+
+
+<p>Here is an excerpt of <a href="https://github.com/sethherr/soulheart/blob/gh-pages/example_sources/manufacturers.tsv">the tsv that was loaded in for the first example</a>:</p>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>text</th>
+      <th>category</th>
+      <th>priority</th>
+      <th>data-website</th>
+      <th>data-logo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>All City</td>
+      <td>Frame manufacturer</td>
+      <td>100</td>
+      <td>http://allcitycycles.com</td>
+      <td>https://files.bikeindex.org/uploads/Ma/371/all-city.png</td>
+    </tr>
+    <tr>
+      <td>Salsa</td>
+      <td>Frame manufacturer</td>
+      <td>250</td>
+      <td>http://salsacycles.com/</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sunday</td>
+      <td>Frame manufacturer</td>
+      <td>10</td>
+      <td>http://www.sundaybikes.com</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SRAM</td>
+      <td>Manufacturer</td>
+      <td>250</td>
+      <td>http://www.sram.com</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Surly</td>
+      <td>Frame manufacturer</td>
+      <td>500</td>
+      <td>http://surlybikes.com</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Results from <a href="http://sh-example-simple.herokuapp.com/">sh-example-simple.herokuapp.com</a> (the place where the above data is loaded) look like:</p>
+
+<pre>
+{
+  "text": "Surly",
+  "category":"Frame manufacturer",
+  "website":"http://surlybikes.com",
+  "logo":null
+}
+</pre>
+
+
+<h4 id="for-json">For JSON</h4>
+
+<p>Soulheart uses <a href="https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON">line delineated JSON streams</a>, so it doesn’t have to load the whole file into memory. Which just means - put each object onto a seperate line.</p>
+
+<p>For the simplest case, with just text values in JSON:</p>
+
+<pre><code>{ "text": "Jamis" }
+{ "text": "Specialized" }
+{ "text": "Trek" }
+</code></pre>
+
+<p>Here is an example of what a possible hash you could pass is</p>
+
+<pre><code>{ "text": "Jamis", "category": "Bike Manufacturer" }
+{ "text": "Specialized" }
+{ "text": "Trek" }
+</code></pre>
+
+<p><em>If you set <code>text</code> in <code>data</code>, it will respond with that rather than the term it searches by. I haven’t figured out a use case for this yet, but I’m sure one exists.</em></p>

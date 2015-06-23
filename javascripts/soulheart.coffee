@@ -1,8 +1,21 @@
 ---
 ---
 
+# Ping the heroku apps this page uses to get them out of hibernation
+urls = ['http://sh-example-simple.herokuapp.com']
+for url in urls
+  request = new XMLHttpRequest
+  request.open 'GET', url, true
+  request.send()
+
+
 $(document).ready ->
-  formatResult = (match) ->
+  $('.scroll-to-ref').click (e) ->
+    event.preventDefault()
+    target = $(event.target).attr('href')
+    $('body').animate( 
+      scrollTop: ($(target).offset().top - 20), 'fast' 
+    )
 
   $('#sh-example-simple-select').select2
     allowClear: true
