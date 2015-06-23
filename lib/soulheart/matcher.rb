@@ -1,7 +1,6 @@
 module Soulheart
-
   class Matcher < Base
-    def initialize(params={})
+    def initialize(params = {})
       @opts = self.class.default_params_hash.merge params
       clean_opts
     end
@@ -20,11 +19,11 @@ module Soulheart
 
     def clean_opts
       unless @opts['categories'] == '' || @opts['categories'] == []
-        @opts['categories'] = @opts['categories'].split(/,|\+/) unless @opts['categories'].kind_of?(Array)
-        @opts['categories'] = @opts['categories'].map{ |s| normalize(s) }.uniq.sort
+        @opts['categories'] = @opts['categories'].split(/,|\+/) unless @opts['categories'].is_a?(Array)
+        @opts['categories'] = @opts['categories'].map { |s| normalize(s) }.uniq.sort
         @opts['categories'] = [] if @opts['categories'].length == redis.scard(categories_id)
       end
-      @opts['query'] = normalize(@opts['query']).split(' ') unless @opts['query'].kind_of?(Array)
+      @opts['query'] = normalize(@opts['query']).split(' ') unless @opts['query'].is_a?(Array)
       # .reject{ |i| i && i.length > 0 } .split(' ').reject{  Soulmate.stop_words.include?(w) }
       @opts
     end
@@ -62,12 +61,11 @@ module Soulheart
       ids = redis.zrevrange(cachekey, offset, limit) # Using 'ids', even though keys are now terms
       if ids.size > 0
         results = redis.hmget(results_hashes_id, *ids)
-        results = results.reject{ |r| r.nil? } # handle cached results for ids which have since been deleted
+        results = results.reject(&:nil?) # handle cached results for ids which have since been deleted
         results.map { |r| MultiJson.decode(r) }
       else
         []
-      end      
+      end
     end
-
   end
 end

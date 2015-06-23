@@ -1,6 +1,6 @@
 #!/usr/bin/env rake
 
-require "bundler/gem_helper"
+require 'bundler/gem_helper'
 
 begin
   Bundler.setup(:default, :development)
@@ -17,7 +17,7 @@ REDIS_PID = File.join(REDIS_DIR, 'db', 'redis.pid')
 REDIS_LOCATION = ENV['REDIS_LOCATION']
 
 desc 'Run rcov and manage server start/stop'
-task :rcoverage => [:start, :rcov, :stop]
+task rcoverage: [:start, :rcov, :stop]
 
 desc 'Start the Redis server'
 task :start do
@@ -43,7 +43,6 @@ task :stop do
     FileUtils.rm REDIS_PID
   end
 end
-
 
 require 'rspec/core/rake_task'
 

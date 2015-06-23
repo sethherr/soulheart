@@ -3,7 +3,7 @@ require 'redis'
 
 module Soulheart
   module Config
-    DEFAULT_STOP_WORDS = ["vs", "at", "the"]
+    DEFAULT_STOP_WORDS = %w(vs at the)
 
     # Accepts:
     #   1. A Redis URL String 'redis://host:port/db'
@@ -23,14 +23,12 @@ module Soulheart
     # create a new one.
     def redis
       @redis ||= (
-        url = URI(@redis_url || ENV["REDIS_URL"] || "redis://127.0.0.1:6379/0")
-        ::Redis.new({
-          # driver: :hiredis,
+        url = URI(@redis_url || ENV['REDIS_URL'] || 'redis://127.0.0.1:6379/0')
+        ::Redis.new(          # driver: :hiredis,
           host: url.host,
           port: url.port,
           db: url.path[1..-1],
-          password: url.password
-        })
+          password: url.password)
       )
     end
 

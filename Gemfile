@@ -8,7 +8,7 @@ group :development do
   gem 'rubocop'
 end
 
-group :test do 
+group :test do
   gem 'rack-test'
   gem 'codeclimate-test-reporter', require: nil
 end

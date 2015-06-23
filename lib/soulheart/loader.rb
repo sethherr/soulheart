@@ -1,7 +1,5 @@
 module Soulheart
-
   class Loader < Base
-
     def default_items_hash(text, category)
       category ||= 'default'
       {
@@ -12,7 +10,7 @@ module Soulheart
         'data' => {
           'text' => text,
           'category' => category
-        },
+        }
       }
     end
 
@@ -57,14 +55,14 @@ module Soulheart
     end
 
     def clean(item)
-      raise ArgumentError, "Items must have text" unless item["text"]
-      default_items_hash(item.delete('text'), item.delete('category')).
-        tap{ |i| i['data'].merge!(item.delete('data')) if item['data'] }.
-        tap{ |i| i['priority'] = item.delete('priority').to_f if item['priority'] }.
-        merge item
+      fail ArgumentError, 'Items must have text' unless item['text']
+      default_items_hash(item.delete('text'), item.delete('category'))
+        .tap { |i| i['data'].merge!(item.delete('data')) if item['data'] }
+        .tap { |i| i['priority'] = item.delete('priority').to_f if item['priority'] }
+        .merge item
     end
 
-    def add_item(item, category_base_id=nil, cleaned: false)
+    def add_item(item, category_base_id = nil, cleaned: false)
       unless cleaned
         item = clean(item)
         category_base_id ||= category_id(item['category'])
@@ -73,15 +71,15 @@ module Soulheart
         end
       end
       redis.pipelined do
-        redis.zadd(no_query_id(category_base_id), item["priority"], item["term"]) # Add to master set for queryless searches
+        redis.zadd(no_query_id(category_base_id), item['priority'], item['term']) # Add to master set for queryless searches
         # store the raw data in a separate key to reduce memory usage, if it's cleaned it's done
         redis.hset(results_hashes_id, item['term'], MultiJson.encode(item['data'])) unless cleaned
-        phrase = ([item["term"]] + (item["aliases"] || [])).join(' ')
+        phrase = ([item['term']] + (item['aliases'] || [])).join(' ')
         # Store all the prefixes
         prefixes_for_phrase(phrase).each do |p|
           redis.sadd(base_id, p) unless cleaned # remember prefix in a master set
           # store the normalized term in the index for each of the categories
-          redis.zadd("#{category_base_id}#{p}", item["priority"], item["term"])
+          redis.zadd("#{category_base_id}#{p}", item['priority'], item['term'])
         end
       end
       item
@@ -89,16 +87,16 @@ module Soulheart
 
     # remove only cares about an item's id, but for consistency takes an object
     def remove(item)
-      prev_item = Soulheart.redis.hget(base_id, item["term"])
+      prev_item = Soulheart.redis.hget(base_id, item['term'])
       if prev_item
         prev_item = MultiJson.decode(prev_item)
         # undo the operations done in add
         Soulheart.redis.pipelined do
-          Soulheart.redis.hdel(base_id, prev_item["term"])
-          phrase = ([prev_item["term"]] + (prev_item["aliases"] || [])).join(' ')
+          Soulheart.redis.hdel(base_id, prev_item['term'])
+          phrase = ([prev_item['term']] + (prev_item['aliases'] || [])).join(' ')
           prefixes_for_phrase(phrase).each do |p|
             Soulheart.redis.srem(base_id, p)
-            Soulheart.redis.zrem("#{base_id}:#{p}", prev_item["term"])
+            Soulheart.redis.zrem("#{base_id}:#{p}", prev_item['term'])
           end
         end
       end

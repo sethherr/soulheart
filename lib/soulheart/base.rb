@@ -1,9 +1,7 @@
 module Soulheart
-  
   class Base
-    
     include Helpers
-    
+
     attr_accessor :type
 
     def redis
@@ -13,15 +11,15 @@ module Soulheart
     def cache_length
       10 * 60 # Setting to 10 minutes, but making it possible to edit down the line
     end
-    
+
     def base_id
-      ENV['RACK_ENV'] != 'test' ? "soulheart:" : "soulheart_test:"
-    end 
+      ENV['RACK_ENV'] != 'test' ? 'soulheart:' : 'soulheart_test:'
+    end
 
     def set_category_combos_array
       redis.expire category_combos_id, 0
-      ar = redis.smembers(categories_id).map{ |c| normalize(c) }.uniq.sort
-      ar = 1.upto(ar.size).flat_map {|n| ar.combination(n).map{|el| el.join('')}}
+      ar = redis.smembers(categories_id).map { |c| normalize(c) }.uniq.sort
+      ar = 1.upto(ar.size).flat_map { |n| ar.combination(n).map { |el| el.join('') } }
       ar.last.replace('all')
       redis.sadd category_combos_id, ar
       ar
@@ -39,11 +37,11 @@ module Soulheart
       "#{base_id}categories:"
     end
 
-    def category_id(name='all')
+    def category_id(name = 'all')
       "#{categories_id}#{name}:"
     end
 
-    def no_query_id(category=category_id)
+    def no_query_id(category = category_id)
       "all:#{category}"
     end
 
@@ -51,7 +49,7 @@ module Soulheart
       "#{base_id}database:"
     end
 
-    def cache_id(type='all')
+    def cache_id(type = 'all')
       "#{base_id}cache:#{type}:"
     end
   end

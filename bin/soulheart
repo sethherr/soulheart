@@ -12,43 +12,43 @@ require 'optparse'
 require 'tempfile'
 
 parser = OptionParser.new do |opts|
-  opts.banner = "Usage: soulheart [options] COMMAND"
+  opts.banner = 'Usage: soulheart [options] COMMAND'
 
-  opts.separator ""
-  opts.separator "Options:"
+  opts.separator ''
+  opts.separator 'Options:'
 
-  opts.on("-r", "--redis [HOST:PORT]", "Redis connection string") do |host|
+  opts.on('-r', '--redis [HOST:PORT]', 'Redis connection string') do |host|
     Soulheart.redis = host
   end
 
-  opts.on("-s", "--stop-words [FILE]", "Path to file containing a list of stop words") do |fn|
+  opts.on('-s', '--stop-words [FILE]', 'Path to file containing a list of stop words') do |fn|
     File.open(fn) do |file|
-      Soulheart.stop_words = file.readlines.map{ |l| l.strip }.reject{ |w| w.empty? }
+      Soulheart.stop_words = file.readlines.map(&:strip).reject(&:empty?)
     end
   end
 
-  opts.on("-h", "--help", "Show this message") do
+  opts.on('-h', '--help', 'Show this message') do
     puts opts
     exit
   end
 
-  opts.on("-b", "--batch-size", "Number of lines to read at a time") do |size|
+  opts.on('-b', '--batch-size', 'Number of lines to read at a time') do |size|
     BATCH_SIZE = size
   end
 
-  opts.separator ""
-  opts.separator "Commands:"
-  opts.separator "  load   TYPE FILE  Replaces collection specified by TYPE with items read from FILE in the JSON lines format."
-  opts.separator "  add    TYPE       Adds items to collection specified by TYPE read from stdin in the JSON lines format."
+  opts.separator ''
+  opts.separator 'Commands:'
+  opts.separator '  load   TYPE FILE  Replaces collection specified by TYPE with items read from FILE in the JSON lines format.'
+  opts.separator '  add    TYPE       Adds items to collection specified by TYPE read from stdin in the JSON lines format.'
   opts.separator "  remove TYPE       Removes items from collection specified by TYPE read from stdin in the JSON lines format. Items only require an 'id', all other fields are ignored."
-  opts.separator "  query  TYPE QUERY Queries for items from collection specified by TYPE."
+  opts.separator '  query  TYPE QUERY Queries for items from collection specified by TYPE.'
 end
 
 def generate(type, file)
   include Soulheart::Helpers
 
   begin
-    temp = Tempfile.new("soulheart")
+    temp = Tempfile.new('soulheart')
 
     if File.exist?(file)
       start_time = Time.now.to_i
@@ -61,31 +61,31 @@ def generate(type, file)
         # cleanup
         phrases = Soulheart.redis.smembers(base)
         phrases.each do |phrase|
-          temp << gen_redis_proto("DEL", phrase)
+          temp << gen_redis_proto('DEL', phrase)
           # temp << del + phrase.length.to_s + "\r\n" + phrase + "\r\n"
         end
-        temp << gen_redis_proto("DEL", base)
+        temp << gen_redis_proto('DEL', base)
         # temp << del + base.length.to_s + "\r\n" + base + "\r\n"
-        while !f.eof?
+        until f.eof?
           line = f.gets.chomp
           line =~ /"id":(\d+)/
-          id = $1
+          id = Regexp.last_match(1)
           line =~ /"score":(\d+)/
-          score = $1
+          score = Regexp.last_match(1)
           json = MultiJson.decode(line)
-          temp << gen_redis_proto("HSET", database, id, line)
+          temp << gen_redis_proto('HSET', database, id, line)
           # temp << hset + $1.length.to_s + "\r\n" + $1 + "\r\n$" + line.length.to_s + "\r\n" + line + "\r\n"
-          phrase = json.key?("aliases") ? json["term"] + " " + json["aliases"] : json["term"]
+          phrase = json.key?('aliases') ? json['term'] + ' ' + json['aliases'] : json['term']
           prefixes_for_phrase(phrase).each do |p|
-            temp << gen_redis_proto("SADD", base, p)
-            temp << gen_redis_proto("ZADD", base + ":" + p, score, id)
+            temp << gen_redis_proto('SADD', base, p)
+            temp << gen_redis_proto('ZADD', base + ':' + p, score, id)
           end
         end
       ensure
         f.close
       end
       puts "Converted in #{Time.now.to_i - start_time} second(s)"
-      puts "Importing into redis ..."
+      puts 'Importing into redis ...'
       `time redis-cli --pipe < #{temp.path}`
     else
       puts "Couldn't open file: #{file}"
@@ -97,7 +97,7 @@ end
 
 def load(file)
   require 'uri'
-  if file =~ URI::regexp
+  if file =~ URI.regexp
     require 'open-uri'
     f = open(file)
   elsif File.exist?(file)
@@ -113,17 +113,17 @@ def load(file)
   lines = []
   begin
     if file.match(/(c|t)sv\z/i)
-      puts "Reading a CSV"
+      puts 'Reading a CSV'
       require 'csv'
-      sep = file.match(/tsv\z/i) ? "\t" : ","
+      sep = file.match(/tsv\z/i) ? "\t" : ','
       CSV.foreach(f, headers: true, col_sep: sep) do |row|
         lines << row.to_hash
         count += 1
       end
     elsif file.match(/json\z/i)
-      puts "Reading JSON"
+      puts 'Reading JSON'
       puts "Loading items in batches of #{BATCH_SIZE} ..."
-      while !f.eof?
+      until f.eof?
         lines = []
         BATCH_SIZE.times do
           break if f.eof?
@@ -132,7 +132,7 @@ def load(file)
         end
       end
     else
-      puts "unknown File type"
+      puts 'unknown File type'
     end
   ensure
     f.close
@@ -164,7 +164,7 @@ end
 def query(type, query)
   puts "> Querying '#{type}' for '#{query}'"
   matcher = Soulheart::Matcher.new(type)
-  results = matcher.matches_for_term(query, :limit => 0)
+  results = matcher.matches_for_term(query, limit: 0)
   results.each do |item|
     puts MultiJson.encode(item)
   end
@@ -172,10 +172,10 @@ def query(type, query)
 end
 
 def gen_redis_proto(*cmd)
-  proto = "*"+cmd.length.to_s+"\r\n"
+  proto = '*' + cmd.length.to_s + "\r\n"
   cmd.each{|arg|
-    proto << "$"+arg.bytesize.to_s+"\r\n"
-    proto << arg+"\r\n"
+    proto << '$' + arg.bytesize.to_s + "\r\n"
+    proto << arg + "\r\n"
   }
   proto
 end

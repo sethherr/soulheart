@@ -1,5 +1,5 @@
 if ENV['CODECLIMATE_REPO_TOKEN']
-  require "codeclimate-test-reporter"
+  require 'codeclimate-test-reporter'
   CodeClimate::TestReporter.start
 end
 require 'rack/test'
@@ -13,7 +13,9 @@ ENV['RACK_ENV'] = 'test'
 
 module RSpecMixin
   include Rack::Test::Methods
-  def app() Soulheart::Server end
+  def app
+    Soulheart::Server
+  end
 end
 
 RSpec.configure do |config|

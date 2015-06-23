@@ -6,18 +6,17 @@ begin
 rescue LoadError
   require 'rubygems'
   require 'vegas'
-end  
+end
 require 'soulheart/server'
 
-
 Vegas::Runner.new(Soulheart::Server, 'soulheart-web') do |runner, opts|
-  opts.on("-r", "--redis [HOST:PORT]", "Redis connection string") do |host|
+  opts.on('-r', '--redis [HOST:PORT]', 'Redis connection string') do |host|
     runner.logger.info "Using Redis connection string '#{host}'"
     Soulheart.redis = host
   end
-  opts.on("-s", "--stop-words [FILE]", "Path to file containing a list of stop words") do |fn|
+  opts.on('-s', '--stop-words [FILE]', 'Path to file containing a list of stop words') do |fn|
     File.open(fn) do |file|
-      Soulheart.stop_words = file.readlines.map{ |l| l.strip }.reject{ |w| w.empty? }
+      Soulheart.stop_words = file.readlines.map(&:strip).reject(&:empty?)
     end
   end
 end
