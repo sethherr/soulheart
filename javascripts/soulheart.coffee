@@ -2,7 +2,7 @@
 ---
 
 # Ping the heroku apps this page uses to get them out of hibernation
-urls = ['http://sh-example-simple.herokuapp.com']
+urls = ['https://sh-example-simple.herokuapp.com']
 for url in urls
   request = new XMLHttpRequest
   request.open 'GET', url, true
@@ -21,7 +21,7 @@ $(document).ready ->
     allowClear: true
     placeholder: "Choose a manufacturer"
     ajax:
-      url: 'http://sh-example-simple.herokuapp.com'
+      url: 'https://sh-example-simple.herokuapp.com'
       dataType: 'json'
       delay: 250
       data: (params) ->
