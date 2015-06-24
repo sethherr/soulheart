@@ -65,8 +65,8 @@ describe Soulheart::Loader do
         'text' => 'Brompton Bicycle',
         'priority' => 50,
         'category' => 'Gooble',
-        'data-id' => 199,
-        'data-url' => 'http://something.com',
+        'id' => 199,
+        'url' => 'http://something.com',
       }
       loader = Soulheart::Loader.new
       redis = loader.redis

@@ -1,5 +1,9 @@
 # <img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200"> Soulheart [![Build Status](https://travis-ci.org/sethherr/soulheart.svg)](https://travis-ci.org/sethherr/soulheart) [![Code Climate](https://codeclimate.com/github/sethherr/soulheart/badges/gpa.svg)](https://codeclimate.com/github/sethherr/soulheart) [![Test Coverage](https://codeclimate.com/github/sethherr/soulheart/badges/coverage.svg)](https://codeclimate.com/github/sethherr/soulheart/coverage)
 
+To get started, check out examples and documentation at [sethherr.github.io/soulheart/](https://sethherr.github.io/soulheart/).
+
+====
+
 **Soulheart is a ready-to-use remote data source for autocomplete**. It supports:
 
 - pagination
@@ -11,14 +15,8 @@
 
 ... and is [instantly deployable to heroku](https://heroku.com/deploy) (for free).
 
-To get started, check out examples and documentation at [sethherr.github.io/soulheart/](https://sethherr.github.io/soulheart/).
 
-
-## SOULHEART IS IN BETA. 
-
-It's probably appropriate to use in production... but maybe wait?
-
----
+This project is in Beta. It's probably appropriate to use in production... but maybe wait? There are a few more changes coming, and some documentation improvements to be made.
 
 ### Adding data
 
