@@ -2,16 +2,13 @@
 layout: default
 ---
 
-<div class="page-header">
-  <h1>
-    <img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200" />
-    Hello. This is soulheart.
-  </h1>
-</div>
+<div class="page-header"><h1><img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200" />
+  Hello. This is soulheart.
+</h1></div>
 
-<h2><small>Haven’t you wished there was a super easy way to set up a remote data source for autocomplete?</small></h2>
+<h3>Set up a remote data source with zero backend programming. <br><small>Haven’t you wished there was a super easy way to set up a remote data source for autocomplete?</small></h3>
 
-<p>Soulheart makes it possible to set up a remote data source with zero backend programming. You can deploy to Heroku with the click of a button, upload a tsv with a <code>text</code> column and start using it.</a>
+Deploy to Heroku with the click of a button. Upload a tsv with a `text` column. Start using it.
 
 <div class="panel panel-default" id="sh-example-simple-select-panel">
   <div class="panel-body">
@@ -22,23 +19,26 @@ layout: default
   </div>
 </div>
 
-<p>Here is how to deploy the above select, step by step:</p>
+<p>Here is how to deploy the above example, step by step:</p>
 
 <ol class="step-by-step-basic">
-  <li>
-    Deploy to Heroku by clicking <a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fsethherr%2Fsoulheart"><img src="https://www.herokucdn.com/deploy/button.png" alt="deploy" /></a>
-  </li>
-  <li>
-    <a href="https://devcenter.heroku.com/articles/heroku-command">Install the Heroku CLI</a> and open up a terminal window.
-  </li>
-  <li>
-    Run this command in the command prompt <em>replace "sh-example-simple" with the name of your app on Heroku</em>:
-    <pre>heroku run -a sh-example-simple soulheart load <a href="https://raw.githubusercontent.com/sethherr/soulheart/gh-pages/example_sources/manufacturers.tsv">https://raw.githubusercontent.com/sethherr/soulheart/gh-pages/example_sources/manufacturers.tsv</a></pre>
-  </li>
-  <li>
-    Add a select box to your page, <code>&lt;select id="basic-example-select"&gt;&lt;/select&gt;</code>, then use this javascript to hook up the select box with select2 <em>Once again, replace "sh-example-simple" with the name of your app on Heroku</em>:
+<li>
+Deploy to Heroku by clicking <a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fsethherr%2Fsoulheart"><img src="https://www.herokucdn.com/deploy/button.png" alt="deploy" /></a>
+</li>
 
-    <pre>
+<li>
+<a href="https://devcenter.heroku.com/articles/heroku-command">Install the Heroku CLI</a> and open up a terminal window.
+</li>
+
+<li>Run this command in the command prompt <em>replace "sh-example-simple" with the name of your app on Heroku</em>:
+<pre>heroku run -a sh-example-simple soulheart load <a href="https://raw.githubusercontent.com/sethherr/soulheart/gh-pages/example_sources/manufacturers.tsv">https://raw.githubusercontent.com/sethherr/soulheart/gh-pages/example_sources/manufacturers.tsv</a></pre>
+</li>
+
+<li>Add a select box to your page, <code>&lt;select id="basic-example-select"&gt;&lt;/select&gt;</code>, then use this javascript to hook up the select box with select2:
+
+<em>Once again, replace "sh-example-simple" with the name of your app on Heroku</em>:
+
+<pre>
 $('#sh-example-simple-select').select2({
   allowClear: true,
   placeholder: "Choose a manufacturer",
@@ -79,22 +79,22 @@ $('#sh-example-simple-select').select2({
 
 
 <div class="page-header">
-  <h2>Sorting by priority <small>in addition to alphanumerically</small></h2>
+<h2>Sorting by priority <small>in addition to alphanumerically</small></h2>
 </div>
 
-<p>So, for example, let’s say you want to have bike manufacturers using select2 like <a class="scroll-to-ref" href="#sh-example-simple-select-panel">the above example</a>.</p>
+So, for example, let’s say you want to have bike manufacturers using select2 like <a class="scroll-to-ref" href="#sh-example-simple-select-panel">the above example</a>.
 
-<p>Some bike manufacturers are more popular than others - and since we expect people to be searching for more popular ones more frequently, it's important to make them show up first &mdash; for example, if you input a "t", the first manufacturer to select should be "Trek", not "Tacx".</p>
+Some bike manufacturers are more popular than others - and since we expect people to be searching for more popular ones more frequently, it's important to make them show up first &mdash; for example, if you input a "t", the first manufacturer to select should be "Trek", not "Tacx".
 
-<p>Items with equal scores are ordered alphanumerically. So in the manufacturers example above, manufacturers are grouped in broad levels of popularity - 10, 100, 250 & 500 - higher numbers show up first.</p>
+Items with equal scores are ordered alphanumerically. So in the manufacturers example above, manufacturers are grouped in broad levels of popularity - 10, 100, 250 & 500 - higher numbers show up first.
 
-<p>Set a <code>priority</code> to organize the way items are ordered.</p>
+Set a `priority` to organize the way items are ordered.
 
 <div class="page-header">
-  <h2 id="using-categories">Categories</h2>
+<h2 id="using-categories">Categories</h2>
 </div>
 
-<p>Search for items in only one category by adding a `categories` parameter:</p>
+Search for items in only one category by adding a `categories` parameter:
 
 <pre>
 <a href="http://sh-example-simple.herokuapp.com?categories=manufacturer">http://sh-example-simple.herokuapp.com?categories=manufacturer</a>
@@ -112,9 +112,7 @@ $('#sh-example-simple-select').select2({
   <h2 id="using-data">Arbitrary return data</h2>
 </div>
 
-<p>Anything in the data hash will be in the return value.</p>
-
-<p>For TSVs and CSVs, any column prefixed with 'data' will be put in the data hash.</p>
+<p>Any column that isn't <code>categroy</code>, <code>text</code> or <code>priority</code> will be returned as well.</p>
 
 
 <div class="page-header">
@@ -163,8 +161,8 @@ $('#sh-example-simple-select').select2({
       <th>text</th>
       <th>category</th>
       <th>priority</th>
-      <th>data-website</th>
-      <th>data-logo</th>
+      <th>website</th>
+      <th>logo</th>
     </tr>
   </thead>
   <tbody>
@@ -206,34 +204,28 @@ $('#sh-example-simple-select').select2({
   </tbody>
 </table>
 
-<p>Results from <a href="http://sh-example-simple.herokuapp.com/">sh-example-simple.herokuapp.com</a> (the place where the above data is loaded) look like:</p>
 
-<pre>
-{
-  "text": "Surly",
-  "category":"Frame manufacturer",
-  "website":"http://surlybikes.com",
-  "logo":null
-}
-</pre>
+A result from <a href="http://sh-example-simple.herokuapp.com/">sh-example-simple.herokuapp.com</a>, the place where the above data is loaded, looks like:
+
+    {
+      "text": "Surly",
+      "category":"Frame manufacturer",
+      "website":"http://surlybikes.com",
+      "logo":null
+    }
+
 
 
 <h4 id="for-json">For JSON</h4>
 
-<p>Soulheart uses <a href="https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON">line delineated JSON streams</a>, so it doesn’t have to load the whole file into memory. Which just means - put each object onto a seperate line.</p>
+Soulheart uses [line delineated JSON streams](https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON), so it doesn’t have to load the whole file into memory. Which just means - put each object onto a seperate line.
 
-<p>For the simplest case, with just text values in JSON:</p>
+Here is the above example as a json stream:
 
-<pre><code>{ "text": "Jamis" }
-{ "text": "Specialized" }
-{ "text": "Trek" }
-</code></pre>
 
-<p>Here is an example of what a possible hash you could pass is</p>
+    {"text": "All City", "category": "Frame manufacturer", "priority": 100, "website": "http://allcitycycles.com", "logo": "https://files.bikeindex.org/uploads/Ma/371/all-city.png"}
+    {"text": "Salsa", "category": "Frame manufacturer", "priority": 250, "website": "http://salsacycles.com/"} 
+    {"text": "Sunday", "category": "Frame manufacturer", "priority": 10, "website": "http://www.sundaybikes.com"}
+    {"text": "SRAM", "category": "Manufacturer", "priority": 250, "website": "http://www.sram.com" }
+    {"text": "Surly", "category": "Frame manufacturer", "priority": 500, "website": "http://surlybikes.com"}
 
-<pre><code>{ "text": "Jamis", "category": "Bike Manufacturer" }
-{ "text": "Specialized" }
-{ "text": "Trek" }
-</code></pre>
-
-<p><em>If you set <code>text</code> in <code>data</code>, it will respond with that rather than the term it searches by. I haven’t figured out a use case for this yet, but I’m sure one exists.</em></p>
