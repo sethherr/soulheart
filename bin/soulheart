@@ -38,10 +38,8 @@ parser = OptionParser.new do |opts|
 
   opts.separator ''
   opts.separator 'Commands:'
-  opts.separator '  load   TYPE FILE  Replaces collection specified by TYPE with items read from FILE in the JSON lines format.'
-  opts.separator '  add    TYPE       Adds items to collection specified by TYPE read from stdin in the JSON lines format.'
-  opts.separator "  remove TYPE       Removes items from collection specified by TYPE read from stdin in the JSON lines format. Items only require an 'id', all other fields are ignored."
-  opts.separator '  query  TYPE QUERY Queries for items from collection specified by TYPE.'
+  opts.separator '  load   FILE  Loads data from a FILE - can be a local file or a url. Accepted formats are .json, .tsv and .csv'
+  opts.separator "  reset  FILE  Removes all existing data, then runs load on the FILE."
 end
 
 
@@ -91,59 +89,19 @@ def load(file)
   puts "Loaded a total of #{count} items in #{Time.now.to_i - start_time} second(s)"
 end
 
-def add(type)
-  puts "Adding items of type #{type}..."
-  loader = Soulheart::Loader.new(type)
-  items = $stdin.read.split("\n").map { |l| MultiJson.decode(l) }
-  items.each do |item|
-    loader.add(item)
-  end
-  puts "Loaded a total of #{items.size} items"
-end
-
-def remove(type)
-  puts "Removing items of type #{type}..."
-  loader = Soulheart::Loader.new(type)
-  items = $stdin.read.split("\n").map { |l| MultiJson.decode(l) }
-  items.each do |item|
-    loader.remove(item)
-  end
-  puts "Removed a total of #{items.size} items"
-end
-
-def query(type, query)
-  puts "> Querying '#{type}' for '#{query}'"
-  matcher = Soulheart::Matcher.new(type)
-  results = matcher.matches_for_term(query, limit: 0)
-  results.each do |item|
-    puts MultiJson.encode(item)
-  end
-  puts "> Found #{results.size} matches"
-end
-
-def gen_redis_proto(*cmd)
-  proto = '*' + cmd.length.to_s + "\r\n"
-  cmd.each{|arg|
-    proto << '$' + arg.bytesize.to_s + "\r\n"
-    proto << arg + "\r\n"
-  }
-  proto
+def clear
+  Soulheart::Loader.new.clear
 end
 
 parser.parse!
 BATCH_SIZE ||= 1000
 
 case ARGV[0]
-when 'generate'
-  generate ARGV[1], ARGV[2]
 when 'load'
   load ARGV[1]
-when 'add'
-  add ARGV[1]
-when 'remove'
-  remove ARGV[1]
-when 'query'
-  query ARGV[1], ARGV[2]
+when 'reset'
+  clear
+  load ARGV[1]
 else
   puts parser.help
 end

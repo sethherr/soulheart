@@ -2,8 +2,6 @@
 
 To get started, check out examples and documentation at [sethherr.github.io/soulheart/](https://sethherr.github.io/soulheart/).
 
-====
-
 **Soulheart is a ready-to-use remote data source for autocomplete**. It supports:
 
 - pagination
@@ -28,8 +26,9 @@ This repo includes a `config.ru` and a `Gemfile.lock` so it and any forks of it 
 
 ======
 
-This is a fork of [Soulmate](https://github.com/seatgeek/soulmate). It's goal isn't backward compatibility.
+[There is issue for improving documentation](../../issues/1) because the documentation needs to be improved. Also, for serious, check out [sethherr.github.io/soulheart/](https://sethherr.github.io/soulheart/).
 
-*([issue for improving documentation](../../issues/1))*.
+=====
 
-Also, for serious, check out [sethherr.github.io/soulheart/](https://sethherr.github.io/soulheart/).
+
+This is a fork of [Soulmate](https://github.com/seatgeek/soulmate). It isn't backward compatible.

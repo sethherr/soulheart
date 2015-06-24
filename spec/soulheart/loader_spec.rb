@@ -48,8 +48,8 @@ describe Soulheart::Loader do
         }
       }
       loader = Soulheart::Loader.new
+      loader.clear(remove_results: true)
       redis = loader.redis
-      redis.expire loader.results_hashes_id, 0
       loader.add_item(item)
       redis = loader.redis
       target = "{\"text\":\"Brompton Bicycle\",\"category\":\"Gooble\",\"id\":199}"
@@ -69,8 +69,8 @@ describe Soulheart::Loader do
         'url' => 'http://something.com',
       }
       loader = Soulheart::Loader.new
+      loader.clear(remove_results: true)
       redis = loader.redis
-      redis.expire loader.results_hashes_id, 0
       loader.add_item(item)
       redis = loader.redis
       target = "{\"text\":\"Brompton Bicycle\",\"category\":\"Gooble\",\"id\":199,\"url\":\"http://something.com\"}"
@@ -85,6 +85,7 @@ describe Soulheart::Loader do
       file = File.read('spec/fixtures/multiple_categories.json')
       file.each_line { |l| items << MultiJson.decode(l) }
       loader = Soulheart::Loader.new
+      loader.clear(remove_results: true)
       redis = loader.redis
       loader.delete_categories
       loader.load(items)
@@ -104,10 +105,46 @@ describe Soulheart::Loader do
         { 'text' => 'Sweet', 'category' => ' awesome' }
       ]
       loader = Soulheart::Loader.new
+      loader.clear(remove_results: true)
       redis = loader.redis
       loader.delete_categories
       loader.load(items)
       expect(redis.smembers(loader.category_combos_id).count).to eq(1)
     end
   end
+
+  describe :clear do 
+    it "deletes everything, but leaves the cache" do
+      items = [
+        {'text' => 'Brompton Bicycle', 'category' => 'Gooble'},
+        {'text' => 'Surly Bicycle', 'category' => 'Bluster'},
+        {"text" => "Defaulted"}
+      ]
+      search_opts = {'categories' => 'Bluster, Gooble', 'q' => 'brom'}
+
+      loader = Soulheart::Loader.new
+
+      redis = loader.redis
+      loader.load(items)
+      redis = loader.redis
+      expect(redis.hget(loader.results_hashes_id, 'brompton bicycle').length).to be > 0
+      expect((redis.zrevrange "#{loader.category_id('gooble')}brom", 0, -1)[0]).to eq("brompton bicycle")
+      expect((redis.zrevrange "#{loader.category_id('blustergooble')}brom", 0, -1)[0]).to eq("brompton bicycle")
+      
+      matches1 = Soulheart::Matcher.new(search_opts).matches
+      expect(matches1[0]['text']).to eq("Brompton Bicycle")
+      
+      loader.clear
+      expect(redis.hget(loader.results_hashes_id, 'brompton bicycle')).to_not be_nil
+      prefixed = redis.zrevrange "#{loader.category_id('gooble')}brom", 0, -1
+      expect(prefixed).to be_empty
+      expect(redis.zrevrange "#{loader.category_id('blustergooble')}brom", 0, -1).to be_empty
+      expect(redis.smembers(loader.categories_id).include?('gooble')).to be_false
+
+      matches2 = Soulheart::Matcher.new(search_opts).matches
+      expect(matches2[0]['text']).to eq("Brompton Bicycle")
+      expect(Soulheart::Matcher.new(search_opts.merge("cache" => false)).matches).to be_empty
+    end
+  end
+ 
 end

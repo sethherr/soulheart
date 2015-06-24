@@ -15,6 +15,7 @@ module Soulheart
     end
 
     def delete_categories
+      redis.expire category_combos_id, 0
       redis.expire categories_id, 0
     end
 
@@ -23,27 +24,39 @@ module Soulheart
       redis.sadd categories_id, categories
     end
 
-    def delete_data
+    def delete_data(id="#{base_id}:")
       # delete the sorted sets for this type
       phrases = redis.smembers(base_id)
       redis.pipelined do
         phrases.each do |p|
-          redis.del("#{base_id}:#{p}")
+          redis.del("#{id}#{p}")
         end
-        redis.del(base_id)
+        redis.del(id)
       end
 
-      # Redis can continue serving cached requests for this type while the reload is
-      # occuring. Some requests may be cached incorrectly as empty set (for requests
+      # Redis can continue serving cached requests while the reload is
+      # occurring. Some requests may be cached incorrectly as empty set (for requests
       # which come in after the above delete, but before the loading completes). But
       # everything will work itself out as soon as the cache expires again.
+    end
 
-      # delete the data stored for this type
+    def remove_results_hash
+      # delete the data store
+      # We don't do this every time we clear because because it breaks the caching feature. 
+      # The option to clear this is only called in testing right now. 
+      # There should be an option to clear it other times though.
+      redis.expire results_hashes_id, 0
       redis.del(results_hashes_id)
     end
 
-    def load(items)
+    def clear(remove_results: false)
+      category_combos.each {|cat| delete_data(category_id(cat)) }
+      delete_categories
       delete_data
+      remove_results_hash if remove_results
+    end
+
+    def load(items)
       # Replace with item return so we know we have category_id
       items.each { |item| item.replace(add_item(item)) }
       set_category_combos_array.each do |category_combo|
@@ -86,23 +99,6 @@ module Soulheart
         end
       end
       item
-    end
-
-    # remove only cares about an item's id, but for consistency takes an object
-    def remove(item)
-      prev_item = Soulheart.redis.hget(base_id, item['term'])
-      if prev_item
-        prev_item = MultiJson.decode(prev_item)
-        # undo the operations done in add
-        Soulheart.redis.pipelined do
-          Soulheart.redis.hdel(base_id, prev_item['term'])
-          phrase = ([prev_item['term']] + (prev_item['aliases'] || [])).join(' ')
-          prefixes_for_phrase(phrase).each do |p|
-            Soulheart.redis.srem(base_id, p)
-            Soulheart.redis.zrem("#{base_id}:#{p}", prev_item['term'])
-          end
-        end
-      end
     end
   end
 end
