@@ -207,12 +207,14 @@ Search for items in only one category by adding a `categories` parameter:
 
 A result from <a href="http://sh-example-simple.herokuapp.com/">sh-example-simple.herokuapp.com</a>, the place where the above data is loaded, looks like:
 
-    {
-      "text": "Surly",
-      "category":"Frame manufacturer",
-      "website":"http://surlybikes.com",
-      "logo":null
-    }
+```json
+{
+  "text": "Surly",
+  "category":"Frame manufacturer",
+  "website":"http://surlybikes.com",
+  "logo":null
+}
+```
 
 
 
@@ -222,10 +224,10 @@ Soulheart uses [line delineated JSON streams](https://en.wikipedia.org/wiki/JSON
 
 Here is the above example as a json stream:
 
-
-    {"text": "All City", "category": "Frame manufacturer", "priority": 100, "website": "http://allcitycycles.com", "logo": "https://files.bikeindex.org/uploads/Ma/371/all-city.png"}
-    {"text": "Salsa", "category": "Frame manufacturer", "priority": 250, "website": "http://salsacycles.com/"} 
-    {"text": "Sunday", "category": "Frame manufacturer", "priority": 10, "website": "http://www.sundaybikes.com"}
-    {"text": "SRAM", "category": "Manufacturer", "priority": 250, "website": "http://www.sram.com" }
-    {"text": "Surly", "category": "Frame manufacturer", "priority": 500, "website": "http://surlybikes.com"}
-
+```javascript
+{"text": "All City", "category": "Frame manufacturer", "priority": 100, "website": "http://allcitycycles.com", "logo": "https://files.bikeindex.org/uploads/Ma/371/all-city.png"}
+{"text": "Salsa", "category": "Frame manufacturer", "priority": 250, "website": "http://salsacycles.com/"} 
+{"text": "Sunday", "category": "Frame manufacturer", "priority": 10, "website": "http://www.sundaybikes.com"}
+{"text": "SRAM", "category": "Manufacturer", "priority": 250, "website": "http://www.sram.com" }
+{"text": "Surly", "category": "Frame manufacturer", "priority": 500, "website": "http://surlybikes.com"}
+```
