@@ -58,7 +58,7 @@ module Soulheart
       limit = @opts['per_page'].to_i + offset - 1
 
       limit = 0 if limit < 0
-      ids = redis.zrevrange(cachekey, offset, limit) # Using 'ids', even though keys are now terms
+      ids = redis.zrange(cachekey, offset, limit) # Using 'ids', even though keys are now terms
       if ids.size > 0
         results = redis.hmget(results_hashes_id, *ids)
         results = results.reject(&:nil?) # handle cached results for ids which have since been deleted

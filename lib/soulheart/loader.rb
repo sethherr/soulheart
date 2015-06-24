@@ -86,8 +86,9 @@ module Soulheart
           redis.sadd categories_id, item['category']
         end
       end
+      priority = (-item['priority'])
       redis.pipelined do
-        redis.zadd(no_query_id(category_base_id), item['priority'], item['term']) # Add to master set for queryless searches
+        redis.zadd(no_query_id(category_base_id), priority, item['term']) # Add to master set for queryless searches
         # store the raw data in a separate key to reduce memory usage, if it's cleaned it's done
         redis.hset(results_hashes_id, item['term'], MultiJson.encode(item['data'])) unless cleaned
         phrase = ([item['term']] + (item['aliases'] || [])).join(' ')
@@ -95,7 +96,7 @@ module Soulheart
         prefixes_for_phrase(phrase).each do |p|
           redis.sadd(base_id, p) unless cleaned # remember prefix in a master set
           # store the normalized term in the index for each of the categories
-          redis.zadd("#{category_base_id}#{p}", item['priority'], item['term'])
+          redis.zadd("#{category_base_id}#{p}", priority, item['term'])
         end
       end
       item

@@ -50,7 +50,8 @@ describe Soulheart::Matcher do
       opts = { 'per_page' => 100, 'cache' => false }
       matches = Soulheart::Matcher.new(opts).matches
       expect(matches.count).to be > 10
-      expect(matches[0]['text']).to eq('Surly')
+      expect(matches[0]['text']).to eq('Jamis')
+      expect(matches[1]['text']).to eq('Surly')
     end
 
     it 'With no query but with categories, matches categories' do
@@ -58,7 +59,8 @@ describe Soulheart::Matcher do
       opts = { 'per_page' => 100, 'cache' => false, 'categories' => 'manufacturer' }
       matches = Soulheart::Matcher.new(opts).matches
       expect(matches.count).to eq(4)
-      expect(matches[0]['text']).to eq('Sram')
+      expect(matches[0]['text']).to eq('Brooks England LTD.')
+      expect(matches[1]['text']).to eq('Sram')
     end
 
     it 'Gets the matches matching query and priority for one item in query, all categories' do
@@ -78,9 +80,11 @@ describe Soulheart::Matcher do
     end
 
     it 'Gets pages and uses them' do
+      Soulheart::Loader.new.clear(remove_results: true)
       # Pagination wrecked my mind, hence the multitude of expectations
       items = [
         { 'text' => 'First item', 'priority' => '11000' },
+        { 'text' => 'First atom', 'priority' => '11000' },
         { 'text' => 'Second item', 'priority' => '1999' },
         { 'text' => 'Third item', 'priority' => 1900 },
         { 'text' => 'Fourth item', 'priority' => 1800 },
@@ -91,17 +95,19 @@ describe Soulheart::Matcher do
       loader = Soulheart::Loader.new
       loader.delete_categories
       loader.load(items)
-
       page1 = Soulheart::Matcher.new('per_page' => 1, 'cache' => false).matches
-      expect(page1[0]['text']).to eq('First item')
+      expect(page1[0]['text']).to eq('First atom')
 
       page2 = Soulheart::Matcher.new('per_page' => 1, 'page' => 2, 'cache' => false).matches
+      expect(page2[0]['text']).to eq('First item')
+
+      page2 = Soulheart::Matcher.new('per_page' => 1, 'page' => 3, 'cache' => false).matches
       expect(page2.count).to eq(1)
       expect(page2[0]['text']).to eq('Second item')
 
       page3 = Soulheart::Matcher.new('per_page' => 2, 'page' => 3, 'cache' => false).matches
-      expect(page3[0]['text']).to eq('Fifth item')
-      expect(page3[1]['text']).to eq('Sixth item')
+      expect(page3[0]['text']).to eq('Fourth item')
+      expect(page3[1]['text']).to eq('Fifth item')
     end
   end
 end

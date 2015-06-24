@@ -55,7 +55,7 @@ describe Soulheart::Loader do
       target = "{\"text\":\"Brompton Bicycle\",\"category\":\"Gooble\",\"id\":199}"
       result = redis.hget(loader.results_hashes_id, 'brompton bicycle')
       expect(result).to eq(target)
-      prefixed = redis.zrevrange "#{loader.category_id('gooble')}brom", 0, -1
+      prefixed = redis.zrange "#{loader.category_id('gooble')}brom", 0, -1
       expect(prefixed[0]).to eq('brompton bicycle')
       expect(redis.smembers(loader.categories_id).include?('gooble')).to be_true
     end
@@ -79,8 +79,9 @@ describe Soulheart::Loader do
     end
   end
 
-  describe :store_terms do
+  describe :load do
     it 'stores terms by priority and adds categories for each possible category combination' do
+      Soulheart::Loader.new.clear(remove_results: true)
       items = []
       file = File.read('spec/fixtures/multiple_categories.json')
       file.each_line { |l| items << MultiJson.decode(l) }
@@ -90,11 +91,11 @@ describe Soulheart::Loader do
       loader.delete_categories
       loader.load(items)
 
-      cat_prefixed = redis.zrevrange "#{loader.category_id('frame manufacturermanufacturer')}brom", 0, -1
+      cat_prefixed = redis.zrange "#{loader.category_id('frame manufacturermanufacturer')}brom", 0, -1
       expect(cat_prefixed.count).to eq(1)
       expect(redis.smembers(loader.categories_id).count).to be > 3
 
-      prefixed = redis.zrevrange "#{loader.category_id('all')}bro", 0, -1
+      prefixed = redis.zrange "#{loader.category_id('all')}bro", 0, -1
       expect(prefixed.count).to eq(2)
       expect(prefixed[0]).to eq('brompton bicycle')
     end
@@ -128,17 +129,17 @@ describe Soulheart::Loader do
       loader.load(items)
       redis = loader.redis
       expect(redis.hget(loader.results_hashes_id, 'brompton bicycle').length).to be > 0
-      expect((redis.zrevrange "#{loader.category_id('gooble')}brom", 0, -1)[0]).to eq("brompton bicycle")
-      expect((redis.zrevrange "#{loader.category_id('blustergooble')}brom", 0, -1)[0]).to eq("brompton bicycle")
+      expect((redis.zrange "#{loader.category_id('gooble')}brom", 0, -1)[0]).to eq("brompton bicycle")
+      expect((redis.zrange "#{loader.category_id('blustergooble')}brom", 0, -1)[0]).to eq("brompton bicycle")
       
       matches1 = Soulheart::Matcher.new(search_opts).matches
       expect(matches1[0]['text']).to eq("Brompton Bicycle")
       
       loader.clear
       expect(redis.hget(loader.results_hashes_id, 'brompton bicycle')).to_not be_nil
-      prefixed = redis.zrevrange "#{loader.category_id('gooble')}brom", 0, -1
+      prefixed = redis.zrange "#{loader.category_id('gooble')}brom", 0, -1
       expect(prefixed).to be_empty
-      expect(redis.zrevrange "#{loader.category_id('blustergooble')}brom", 0, -1).to be_empty
+      expect(redis.zrange "#{loader.category_id('blustergooble')}brom", 0, -1).to be_empty
       expect(redis.smembers(loader.categories_id).include?('gooble')).to be_false
 
       matches2 = Soulheart::Matcher.new(search_opts).matches

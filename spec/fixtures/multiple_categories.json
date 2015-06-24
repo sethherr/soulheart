@@ -1,7 +1,7 @@
 {"text":"Steel","category":"Frame Materials" }
 {"text":"Brompton Bicycle","priority":51,"category":"Frame Manufacturer","data":{"id":8,"url":"http://www.brompton.com"}}
-{"text":"Jamis","priority":75,"category":"Frame Manufacturer","data":{"id":2222,"url":"http://jamisbikes.com"}}
-{"text":"Surly","priority":102,"category":"Frame Manufacturer"}
+{"text":"Jamis","priority":101,"category":"Frame Manufacturer","data":{"id":2222,"url":"http://jamisbikes.com"}}
+{"text":"Surly","priority":101,"category":"Frame Manufacturer"}
 {"text":"Jagwire","priority":40,"category":"Manufacturer"}
 {"text":"Jannd","priority":41,"category":"Manufacturer"}
 {"text":"Sram","priority":50,"category":"Manufacturer","data":{"id":8,"url":"http://sram.com"}}
