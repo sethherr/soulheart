@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="page-header"><h1><img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200" />
-Hello. This is soulheart.
+Hello, this is soulheart.
 <small>Easy remote data source for autocomplete</small>
 </h1></div>
 
@@ -29,10 +29,24 @@ Deploy to Heroku by clicking <a href="https://dashboard.heroku.com/new?template=
 </li>
 
 <li>Run this command in the command prompt <em>replace "sh-example-simple" with the name of your app on Heroku</em>:
-<pre>heroku run -a sh-example-simple soulheart load <a href="https://raw.githubusercontent.com/sethherr/soulheart/gh-pages/example_sources/manufacturers_simple.tsv">https://raw.githubusercontent.com/sethherr/soulheart/gh-pages/example_sources/manufacturers_simple.tsv</a></pre>
+<pre>heroku run -a sh-example-simple soulheart load <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/example_data_sources/manufacturers_simple.tsv">https://raw.githubusercontent.com/sethherr/soulheart/master/example_data_sources/manufacturers_simple.tsv</a></pre>
 </li>
 
-<li>Add a select box to your page, <code>&lt;select id="basic-example-select"&gt;&lt;/select&gt;</code>, then use this javascript to hook up the select box with select2:
+<li>Add <a href="https://select2.github.io/">Select2</a>
+
+<pre>
+&lt;link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /&gt;
+&lt;script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"&gt;&lt;/script&gt;
+</pre>
+
+and a select box to your html page:
+<pre>
+&lt;select id="basic-example-select"&gt;&lt;/select&gt;
+</pre>
+
+</li>
+
+<li>Use this javascript to hook up the select box with select2:
 
 <em>Once again, replace "sh-example-simple" with the name of your app on Heroku</em>:
 
@@ -85,12 +99,12 @@ So, for example, let’s say you want to select bicycle manufacturers using sele
 Some manufacturers are more popular than others - and since we expect people to be searching for more popular ones more frequently, it's important to make them show up first &mdash; for example, if you input a "t", the first manufacturer to select should be "Trek", not "Tacx".
 
 <div class="panel panel-default" id="sh-example-priority-select-panel"><div class="panel-body"><div class="form-group">
-<label>Bicycle Manufacturers with priority <small>from <a href="https://bikeindex.org/manufacturers">Bike Index</a></small></label>
+<label>Bicycle Manufacturers with priority <small>data from <a href="https://bikeindex.org/manufacturers">Bike Index</a></small></label>
 <select class="form-control" id="sh-example-priority-select"></select>
 </div></div>
 </div>
 
-Items with equal scores are ordered alphanumerically. So in the manufacturers example above, manufacturers are grouped in broad levels of popularity - 10, 100, 250 & 500 - higher numbers show up first. This example uses [manufacturers.tsv](https://github.com/sethherr/soulheart/blob/gh-pages/example_sources/manufacturers.tsv)
+Items with equal scores are ordered alphanumerically. So in the manufacturers example above, manufacturers are grouped in broad levels of popularity - 10, 100, 250 & 500 - higher numbers show up first. This example uses [manufacturers.tsv](https://github.com/sethherr/soulheart/tree/master/example_data_sources/manufacturers.tsv)
 
 Set a `priority` to organize the way items are ordered.
 
@@ -157,7 +171,7 @@ Search for items in only one category by adding a `categories` parameter:
 <h4>Optional attributes: <small>if you have a <a class="scroll-to-ref" href="#using-priority">priority</a>, <a class="scroll-to-ref" href="#using-categories">category</a>, or a <a class="scroll-to-ref" href="#using-data">data hash</a>, it will use them as explained above.</small></h4>
 
 
-<p>Here is an excerpt of <a href="https://github.com/sethherr/soulheart/blob/gh-pages/example_sources/manufacturers.tsv">the tsv that was loaded in for the priority example</a>:</p>
+<p>Here is an excerpt of <a href="https://github.com/sethherr/soulheart/tree/master/example_data_sources/manufacturers.tsv">the tsv that was loaded in for the priority example</a>:</p>
 
 <table class="table table-striped table-bordered">
   <thead>
