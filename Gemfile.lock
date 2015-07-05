@@ -26,7 +26,7 @@ GEM
     guard-rspec (4.2.8)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
-    hiredis (0.4.5)
+    hiredis (0.6.0)
     hitimes (1.2.2)
     hitimes (1.2.2-java)
     json (1.8.3)
@@ -109,7 +109,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   guard
   guard-rspec (~> 4.2.8)
-  hiredis (~> 0.4.5)
+  hiredis
   multi_json (>= 1.11.0)
   rack-test
   rake

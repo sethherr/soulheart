@@ -20,5 +20,5 @@ gem 'sinatra'
 gem 'multi_json', '>= 1.11.0'
 
 platforms :ruby do
-  gem 'hiredis',    '~> 0.4.5'
+  gem 'hiredis', '>= 0.6.0'
 end
