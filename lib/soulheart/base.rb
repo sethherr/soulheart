@@ -8,7 +8,7 @@ module Soulheart
       Soulheart.redis
     end
 
-    def cache_length
+    def cache_duration
       10 * 60 # Setting to 10 minutes, but making it possible to edit down the line
     end
 
@@ -16,13 +16,22 @@ module Soulheart
       ENV['RACK_ENV'] != 'test' ? 'soulheart:' : 'soulheart_test:'
     end
 
+    def sorted_category_array
+      redis.smembers(categories_id).map { |c| normalize(c) }.uniq.sort
+    end
+
+    def combinatored_category_array
+      1.upto(sorted_category_array.size).
+        flat_map { |n| sorted_category_array.combination(n).
+        map { |el| el.join('') } }
+    end
+
     def set_category_combos_array
       redis.expire category_combos_id, 0
-      ar = redis.smembers(categories_id).map { |c| normalize(c) }.uniq.sort
-      ar = 1.upto(ar.size).flat_map { |n| ar.combination(n).map { |el| el.join('') } }
-      ar.last.replace('all')
-      redis.sadd category_combos_id, ar
-      ar
+      array = combinatored_category_array
+      array.last.replace('all')
+      redis.sadd category_combos_id, array
+      array
     end
 
     def category_combos_id

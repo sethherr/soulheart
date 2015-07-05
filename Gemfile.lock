@@ -109,7 +109,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   guard
   guard-rspec (~> 4.2.8)
-  hiredis
+  hiredis (>= 0.6.0)
   multi_json (>= 1.11.0)
   rack-test
   rake

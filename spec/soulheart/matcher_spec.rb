@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe Soulheart::Matcher do
+
+  describe :categories_array do 
+    it "Returns an empty array from a string" do 
+      matcher = Soulheart::Matcher.new('categories' => '')
+      expect(matcher.opts['categories']).to eq([])
+    end
+  end
+
   describe :clean_opts do
     it 'Has the keys we need' do
       target_keys = %w(categories q page per_page)
@@ -8,23 +16,23 @@ describe Soulheart::Matcher do
       expect((target_keys - keys).count).to eq(0)
     end
 
-    it "makes category empty if it's all the categories" do
+    it "Makes category empty if it's all the categories" do
       Soulheart::Loader.new.reset_categories(%w(cool test))
       cleaned = Soulheart::Matcher.new('categories' => 'cool, test')
       expect(cleaned.opts['categories']).to eq([])
     end
 
-    it 'obeys stop words'
+    it 'Obeys stop words'
   end
 
   describe :category_id_from_opts do
-    it 'gets the id for one' do
+    it 'Gets the id for one' do
       Soulheart::Loader.new.reset_categories(%w(cool test))
       matcher = Soulheart::Matcher.new('categories' => ['some_category'])
       expect(matcher.category_id_from_opts).to eq(matcher.category_id('some_category'))
     end
 
-    it 'gets the id for all of them' do
+    it 'Gets the id for all of them' do
       Soulheart::Loader.new.reset_categories(%w(cool test boo))
       matcher = Soulheart::Matcher.new('categories' => 'cool, boo, test')
       expect(matcher.category_id_from_opts).to eq(matcher.category_id('all'))
@@ -32,12 +40,12 @@ describe Soulheart::Matcher do
   end
 
   describe :categories_string do
-    it 'does all if none' do
+    it 'Does all if none' do
       Soulheart::Loader.new.reset_categories(%w(cool test))
       matcher = Soulheart::Matcher.new('categories' => '')
       expect(matcher.categories_string).to eq('all')
     end
-    it 'correctly concats a string of categories' do
+    it 'Correctly concats a string of categories' do
       Soulheart::Loader.new.reset_categories(['cool', 'some_category', 'another cat', 'z9', 'stuff'])
       matcher = Soulheart::Matcher.new('categories' => 'some_category, another cat, z9')
       expect(matcher.categories_string).to eq('another catsome_categoryz9')
@@ -79,9 +87,32 @@ describe Soulheart::Matcher do
       expect(matches[0]['text']).to eq('Jannd')
     end
 
+    it "Matches Chinese" do 
+      store_terms_fixture
+      opts = { 'q' => '中国' }
+      matches = Soulheart::Matcher.new(opts).matches
+      expect(matches.length).to eq(1)
+      expect(matches[0]['text']).to eq('中国佛山 李小龙')
+    end
+
+    it "Finds by aliases" do 
+      store_terms_fixture
+      opts = { 'q' => 'land shark stadium' }
+      matches = Soulheart::Matcher.new(opts).matches
+      expect(matches.length).to eq(1)
+      expect(matches[0]['text']).to eq('Sun Life Stadium')
+    end
+
+    it "Doesn't duplicate when matching both alias and the normal term" do 
+      store_terms_fixture
+      opts = { 'q' => 'stadium' }
+      matches = Soulheart::Matcher.new(opts).matches
+      expect(matches.length).to eq(5)
+    end
+
     it 'Gets pages and uses them' do
-      Soulheart::Loader.new.clear(remove_results: true)
-      # Pagination wrecked my mind, hence the multitude of expectations
+      Soulheart::Loader.new.clear(true)
+      # Pagination wrecked my mind, hence the multitude of tests
       items = [
         { 'text' => 'First item', 'priority' => '11000' },
         { 'text' => 'First atom', 'priority' => '11000' },

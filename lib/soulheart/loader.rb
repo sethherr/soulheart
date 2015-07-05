@@ -67,7 +67,7 @@ module Soulheart
       end
     end
 
-    def clean(item)
+    def clean_hash(item)
       fail ArgumentError, 'Items must have text' unless item['text']
       default_items_hash(item.delete('text'), item.delete('category'))
         .tap { |i| i['data'].merge!(item.delete('data')) if item['data'] }
@@ -75,17 +75,21 @@ module Soulheart
         .merge item
     end
 
-    def add_item(item, category_base_id=nil, cleaned=false)
-      unless cleaned
-        item = clean(item)
-        category_base_id ||= category_id(item['category'])
-        item.keys.select{ |k| !%w(category priority term aliases data).include?(k) }.each do |key|
-          item['data'].merge!({"#{key}" => item.delete(key)})
-        end
-        unless redis.smembers(categories_id).include?(item['category'])
-          redis.sadd categories_id, item['category']
-        end
+    def clean(item)
+      item = clean_hash(item)
+      item.keys.select{ |k| !%w(category priority term aliases data).include?(k) }.each do |key|
+        item['data'].merge!({"#{key}" => item.delete(key)})
       end
+      unless redis.smembers(categories_id).include?(item['category'])
+        redis.sadd categories_id, item['category']
+      end  
+      item
+    end
+
+    def add_item(item, category_base_id=nil, cleaned=false)
+      item = clean(item) unless cleaned
+      category_base_id ||= category_id(item['category'])
+
       priority = (-item['priority'])
       redis.pipelined do
         redis.zadd(no_query_id(category_base_id), priority, item['term']) # Add to master set for queryless searches

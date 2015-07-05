@@ -4,7 +4,7 @@ describe Soulheart::Loader do
   describe :clean_data do
     it 'sets the default category, priority and normalizes term' do
       item = { 'text' => '  FooBar' }
-      result = Soulheart::Loader.new.clean(item)
+      result = Soulheart::Loader.new.clean_hash(item)
       expect(result['priority']).to eq(100)
       expect(result['term']).to eq('foobar')
       expect(result['category']).to eq('default')
@@ -21,7 +21,7 @@ describe Soulheart::Loader do
           'category' => 'Stuff'
         }
       }
-      result = Soulheart::Loader.new.clean(item)
+      result = Soulheart::Loader.new.clean_hash(item)
       expect(result['term']).to eq('cool')
       expect(result['priority']).to eq(50)
       expect(result['data']['text']).to eq('Cool ')
@@ -32,7 +32,7 @@ describe Soulheart::Loader do
 
     it 'raises argument error if text is passed' do
       expect do
-        Soulheart::Loader.new.clean('name' => 'stuff')
+        Soulheart::Loader.new.clean_hash('name' => 'stuff')
       end.to raise_error(/must have/i)
     end
   end
@@ -48,7 +48,7 @@ describe Soulheart::Loader do
         }
       }
       loader = Soulheart::Loader.new
-      loader.clear(remove_results: true)
+      loader.clear(true)
       redis = loader.redis
       loader.add_item(item)
       redis = loader.redis
@@ -69,7 +69,7 @@ describe Soulheart::Loader do
         'url' => 'http://something.com',
       }
       loader = Soulheart::Loader.new
-      loader.clear(remove_results: true)
+      loader.clear(true)
       redis = loader.redis
       loader.add_item(item)
       redis = loader.redis
@@ -81,12 +81,12 @@ describe Soulheart::Loader do
 
   describe :load do
     it 'stores terms by priority and adds categories for each possible category combination' do
-      Soulheart::Loader.new.clear(remove_results: true)
+      Soulheart::Loader.new.clear(true)
       items = []
       file = File.read('spec/fixtures/multiple_categories.json')
       file.each_line { |l| items << MultiJson.decode(l) }
       loader = Soulheart::Loader.new
-      loader.clear(remove_results: true)
+      loader.clear(true)
       redis = loader.redis
       loader.delete_categories
       loader.load(items)
@@ -106,7 +106,7 @@ describe Soulheart::Loader do
         { 'text' => 'Sweet', 'category' => ' awesome' }
       ]
       loader = Soulheart::Loader.new
-      loader.clear(remove_results: true)
+      loader.clear(true)
       redis = loader.redis
       loader.delete_categories
       loader.load(items)

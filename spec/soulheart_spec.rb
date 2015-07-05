@@ -1,19 +1,19 @@
 require 'spec_helper'
 
 describe Soulheart do
-  it 'has a version number' do
+  it 'Has a version number' do
     expect(Soulheart::VERSION).not_to be nil
   end
 
-  it 'has a test base_id' do
+  it 'Has a test base_id' do
     expect(Soulheart::Base.new.base_id).to eq('soulheart_test:')
   end
 
-  it 'has a cache expiration time' do
-    expect(Soulheart::Base.new.cache_length).to eq(600)
+  it 'Has a cache expiration time' do
+    expect(Soulheart::Base.new.cache_duration).to eq(600)
   end
 
-  it 'uses the correct driver for redis' do
+  it 'Uses the correct driver for redis' do
     redis = Soulheart::Base.new.redis
     if RUBY_ENGINE == 'jruby'
       expect(redis.client.options[:driver].to_s).to match /ruby/i
@@ -22,7 +22,7 @@ describe Soulheart do
     end
   end
 
-  it 'combinates all the things' do
+  it 'Combinates all the things' do
     base = Soulheart::Base.new
     base.redis.expire base.categories_id, 0
     base.redis.sadd base.categories_id, ['George', 'category one', 'other thing ']
