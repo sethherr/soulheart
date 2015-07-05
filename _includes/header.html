@@ -7,12 +7,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="{{ site.baseurl }}/" class="navbar-brand">Soulheart</a>
+      <span class="navbar-brand">Soulheart</span>
     </div>
       
 
     <div class="collapse navbar-collapse" id="navbar-pages">
       <ul class="nav navbar-nav">
+        <li{% if page.url == '/index.html' %} class="active"{% endif %}>
+          <a href="{{ '/' | prepend: site.baseurl }}">Demos</a>
+        </li>
         {% for cpage in site.pages %}
           {% if cpage.title %}
             <li{% if page.url == cpage.url %} class="active"{% endif %}>
