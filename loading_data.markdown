@@ -9,7 +9,7 @@ permalink: /loading_data/
 </div>
 
 <div class="page-header">
-  <h2 id="formatting">Formatting data</h2>
+<h2 id="formatting">Formatting data</h2>
 </div>
 
 <p>You can add data from JSON, CSV and TSV files.</p>
@@ -122,3 +122,9 @@ Here is the above example as a json stream:
     {"text": "SRAM", "category": "Manufacturer", "priority": 250, "website": "http://www.sram.com" }
     {"text": "Surly", "category": "Frame manufacturer", "priority": 500, "website": "http://surlybikes.com"}
 
+
+<div class="page-header">
+<h2 id="aliases">Aliases</h2>
+</div>
+
+You can also include aliases in the data you load. Soulheart will match across those aliases.
