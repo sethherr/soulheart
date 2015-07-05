@@ -1,5 +1,4 @@
 # coding: utf-8
-
 module Soulheart
   module Helpers
     def normalize(str)

@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe Soulheart::Matcher do
@@ -89,10 +90,10 @@ describe Soulheart::Matcher do
 
     it "Matches Chinese" do 
       store_terms_fixture
-      opts = { 'q' => '中国' }
+      opts = { 'q' => "中国" }
       matches = Soulheart::Matcher.new(opts).matches
       expect(matches.length).to eq(1)
-      expect(matches[0]['text']).to eq('中国佛山 李小龙')
+      expect(matches[0]['text']).to eq("中国佛山 李小龙")
     end
 
     it "Finds by aliases" do 
@@ -112,7 +113,7 @@ describe Soulheart::Matcher do
 
     it 'Gets pages and uses them' do
       Soulheart::Loader.new.clear(true)
-      # Pagination wrecked my mind, hence the multitude of tests
+      # Pagination wrecked my mind, hence the multitude of tests]
       items = [
         { 'text' => 'First item', 'priority' => '11000' },
         { 'text' => 'First atom', 'priority' => '11000' },

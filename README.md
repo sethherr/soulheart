@@ -21,7 +21,7 @@ Soulheart is a ready-to-use remote data source for autocomplete. The goal is to 
 - **Arbitrary return objects**
   <br>Get whatever you want back. IDs, URLs, image links, even pre-formatted HTML :boom:
 - **Load remote data**
-  <br>Makes loading data via gists (or any url) possible.
+  <br>Loading data via a [gist](https://github.com/sethherr/soulheart/blob/master/example_data_sources/manufacturers.tsv) - or any url.
 - **Runs Standalone or inside a rails app**
 
 ## Getting started
