@@ -9,6 +9,17 @@ script:
 # - bundle exec rubocop
 services:
   - redis
+rvm:
+  - 2.1
+  - 2.0.0
+  - 2.2
+  - jruby
+  - jruby-head
+  - rbx-2
+matrix:
+  allow_failures:
+    - rvm: rbx-2
+    - rvm: jruby-head
 addons:
   code_climate:
     repo_token: e72d8fa152922cef05c311cd49d3db9016b82486b712399a8e7c7da2af5e071e
