@@ -19,12 +19,17 @@ module Soulheart
       redis
     end
 
+    def jruby?
+      RUBY_ENGINE == 'jruby'
+    end
+
     # Returns the current Redis connection. If none has been created, will
     # create a new one.
     def redis
       @redis ||= (
         url = URI(@redis_url || ENV['REDIS_URL'] || 'redis://127.0.0.1:6379/0')
-        ::Redis.new(          # driver: :hiredis,
+        ::Redis.new(          # 
+          driver: (jruby? ? :ruby : :hiredis),
           host: url.host,
           port: url.port,
           db: url.path[1..-1],

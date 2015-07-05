@@ -15,7 +15,10 @@ end
 
 gem 'rake'
 gem 'redis',      '>= 3.0.1'
-gem 'hiredis',    '~> 0.4.5'
 gem 'vegas',      '>= 0.1.0'
 gem 'sinatra'
 gem 'multi_json', '>= 1.11.0'
+
+platforms :ruby do
+  gem 'hiredis',    '~> 0.4.5'
+end

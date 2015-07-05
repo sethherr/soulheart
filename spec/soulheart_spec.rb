@@ -13,6 +13,15 @@ describe Soulheart do
     expect(Soulheart::Base.new.cache_length).to eq(600)
   end
 
+  it 'uses the correct driver for redis' do
+    redis = Soulheart::Base.new.redis
+    if RUBY_ENGINE == 'jruby'
+      expect(redis.client.options[:driver].to_s).to match /ruby/i
+    else
+      expect(redis.client.options[:driver].to_s).to match /hiredis/i
+    end
+  end
+
   it 'combinates all the things' do
     base = Soulheart::Base.new
     base.redis.expire base.categories_id, 0

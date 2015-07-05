@@ -28,6 +28,6 @@ def store_terms_fixture
   file = File.read('spec/fixtures/multiple_categories.json')
   file.each_line { |l| items << MultiJson.decode(l) }
   loader = Soulheart::Loader.new
-  loader.clear(remove_results: true)
+  loader.clear(true)
   loader.load(items)
 end
