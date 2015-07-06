@@ -1,12 +1,12 @@
-text	category	priority	website		logo
+text	category	priority	website	logo
 24seven	Frame manufacturer	10	http://www.leisurelakesbikes.com/bikes/bmx-bikes/b/24seven	
-3G	Frame manufacturer	10	http://www.3gbikes.com/		
+3G	Frame manufacturer	10	http://www.3gbikes.com/	
 3T	Manufacturer	10		
 3rd Eye	Manufacturer	10		
 3rensho	Frame manufacturer	10		
 45North	Manufacturer	10		
 4ZA	Manufacturer	10		
-6KU	Frame manufacturer	10	http://6kubikes.com	
+6KU	Frame manufacturer	10	http://6kubikes.com	https://files.bikeindex.org/uploads/Ma/1274/6kubikescom.png
 9 zero 7	Frame manufacturer	10	https://www.facebook.com/9Zero7Bikes	
 A-Class	Manufacturer	10		
 A-bike	Frame manufacturer	10	http://www.a-bike.co.uk/	
@@ -76,7 +76,7 @@ Aztec	Manufacturer	10
 Azzuri	Frame manufacturer	10	http://www.azzurribikes.com/	
 BCA	Manufacturer	10		
 BH Bikes (Beistegui Hermanos)	Frame manufacturer	10	http://bhbikes-us.com	
-BMC	Frame manufacturer	10	http://www.bmc-racing.com	
+BMC	Frame manufacturer	10	http://www.bmc-racing.com	https://files.bikeindex.org/uploads/Ma/359/wwwbmcracingcom.png
 BOB	Manufacturer	10	http://www.bobgear.com/bike-trailers	
 BONT	Manufacturer	10		
 BOX	Manufacturer	10		
@@ -90,7 +90,7 @@ Bailey	Frame manufacturer	10	http://www.bailey-bikes.com
 Baladeo	Manufacturer	10		
 Bamboo Cycles	Frame manufacturer	10	http://bamboocycles.com/	
 Banjo Brothers	Manufacturer	10		
-Banshee bikes	Frame manufacturer	10	http://www.bansheebikes.com	
+Banshee bikes	Frame manufacturer	10	http://www.bansheebikes.com	https://files.bikeindex.org/uploads/Ma/1066/wwwbansheebikescom.png
 Bantam (Bantam Bicycle works)	Frame manufacturer	10	http://www.bantambicycles.com/	
 Bar Mitts	Manufacturer	10		
 Barracuda	Frame manufacturer	10	http://www.barracudabikes.co.uk/	
@@ -214,8 +214,8 @@ Cilo	Frame manufacturer	10
 Cinelli	Frame manufacturer	10	http://www.cinelli-usa.com/	
 Ciocc	Frame manufacturer	10	http://www.ciocc.it/	
 Citizen Bike	Frame manufacturer	10	http://www.citizenbike.com/	
-City Bicycles Company	Frame manufacturer	10	http://citybicycleco.com	
-Civia	Frame manufacturer	10	http://www.civiacycles.com	
+City Bicycles Company	Frame manufacturer	10	http://citybicycleco.com	https://files.bikeindex.org/uploads/Ma/937/citybicyclecocom.png
+Civia	Frame manufacturer	10	http://www.civiacycles.com	https://files.bikeindex.org/uploads/Ma/372/wwwciviacyclescom.png
 Clark-Kent	Frame manufacturer	10		
 Claud Butler	Frame manufacturer	10	http://claudbutler.co.uk/	
 Clean Bottle	Manufacturer	10		
@@ -235,7 +235,7 @@ Conor	Frame manufacturer	10	http://www.conorbikes.com/
 Continental	Manufacturer	10		
 Contour Sport	Manufacturer	10		
 Cook Bros. Racing	Frame manufacturer	10		
-Cooper Bikes	Frame manufacturer	10	http://www.cooperbikes.com	
+Cooper Bikes	Frame manufacturer	10	http://www.cooperbikes.com	https://files.bikeindex.org/uploads/Ma/936/wwwcooperbikescom.png
 Corima	Frame manufacturer	10	http://www.corima.com/	
 Corratec	Frame manufacturer	10	http://www.corratec.com/	
 Cortina Cycles	Frame manufacturer	10	http://www.cortinacycles.com/	
@@ -245,7 +245,7 @@ Crank Brothers	Manufacturer	10
 Crank2	Frame manufacturer	10	http://www.crank-2.com	
 Crazy Creek	Manufacturer	10		
 Create	Frame manufacturer	10	http://www.createbikes.com/	
-Creme Cycles	Frame manufacturer	10	http://cremecycles.com	
+Creme Cycles	Frame manufacturer	10	http://cremecycles.com	https://files.bikeindex.org/uploads/Ma/1224/cremecyclescom.png
 Crescent Moon	Manufacturer	10		
 Crew	Frame manufacturer	10	http://crewbikeco.com/	
 Critical Cycles	Frame manufacturer	10	http://www.criticalcycles.com/	
@@ -271,7 +271,7 @@ Cyfac	Frame manufacturer	10	http://www.cyfac.fr/index.aspx
 CygoLite	Manufacturer	10		
 Cytosport	Manufacturer	10		
 DAJO	Manufacturer	10		
-DEAN	Frame manufacturer	10	http://www.deanbikes.com	
+DEAN	Frame manufacturer	10	http://www.deanbikes.com	https://files.bikeindex.org/uploads/Ma/1203/wwwdeanbikescom.png
 DHS	Frame manufacturer	10	http://www.dhsbike.hu/	
 DIG BMX	Manufacturer	10		
 DK Bikes	Frame manufacturer	10	http://www.dkbicycles.com/	
@@ -288,7 +288,7 @@ De Rosa	Frame manufacturer	10	http://www.derosanews.com/
 DeBernardi	Frame manufacturer	10	http://www.zarbikes.com/zar/about-debernardi.html	
 DeFeet	Manufacturer	10		
 DeSalvo Cycles	Frame manufacturer	10	http://www.desalvocycles.com/	
-Decathlon	Frame manufacturer	10	http://www.decathlon.fr	
+Decathlon	Frame manufacturer	10	http://www.decathlon.fr	https://files.bikeindex.org/uploads/Ma/1300/wwwdecathlonfr.png
 Deco	Manufacturer	10		
 Deda Elementi	Manufacturer	10		
 Deity	Frame manufacturer	10	http://www.deitycomponents.com/	
@@ -314,7 +314,7 @@ Diamondback	Frame manufacturer	500	http://www.diamondback.com/
 Dicta	Manufacturer	10		
 Dimension	Manufacturer	10		
 Discwing	Manufacturer	10		
-Doberman	Frame manufacturer	10	 https://www.facebook.com/DobermannBikes	
+Doberman	Frame manufacturer	10	http:// https://www.facebook.com/DobermannBikes	
 Dodici Milano	Frame manufacturer	10	http://www.dodicicicli.com/	
 Dolan	Frame manufacturer	10	http://www.dolan-bikes.com/	
 Dorel Industries	Frame manufacturer	10	http://www.dorel.com/	
@@ -342,7 +342,7 @@ Easy Motion	Frame manufacturer	10	http://www.emotionbikesusa.com/
 Ebisu	Frame manufacturer	10	http://www.jitensha.com/eng/aboutframes_e.html	
 Eddy Merckx	Frame manufacturer	10	http://www.eddymerckx.be/	
 Edinburgh Bicycle Co-operative	Frame manufacturer	10	http://www.edinburghbicycle.com/	
-EighthInch	Frame manufacturer	10	http://www.eighthinch.com	
+EighthInch	Frame manufacturer	10	http://www.eighthinch.com	https://files.bikeindex.org/uploads/Ma/1090/wwweighthinchcom.png
 Electra	Frame manufacturer	250	http://www.electrabike.com/	
 Elevn Technologies	Manufacturer	10		
 Elite SRL	Manufacturer	10		
@@ -363,10 +363,10 @@ Esbit	Manufacturer	10
 Europa	Frame manufacturer	10	http://www.europacycles.com.au/	
 Evelo	Frame manufacturer	10	http://www.evelo.com/	
 Eveready	Manufacturer	10		
-Evil	Frame manufacturer	10	http://www.evil-bikes.com	
+Evil	Frame manufacturer	10	http://www.evil-bikes.com	https://files.bikeindex.org/uploads/Ma/1048/wwwevilbikescom.png
 Excess Components	Manufacturer	10		
 Exustar	Manufacturer	10		
-FBM	Frame manufacturer	10	http://fbmbmx.com	
+FBM	Frame manufacturer	10	http://fbmbmx.com	https://files.bikeindex.org/uploads/Ma/529/fbmbmxcom.png
 FRAMED	Frame manufacturer	10	http://www.framedbikes.com/	
 FSA (Full Speed Ahead)	Manufacturer	10		
 Faggin	Frame manufacturer	10	http://www.fagginbikes.com/en	
@@ -379,7 +379,7 @@ Fast Wax	Manufacturer	10
 Fat City Cycles	Frame manufacturer	10	http:// none	
 Fatback	Frame manufacturer	10	http://fatbackbikes.com/	
 Fausto Coppi	Frame manufacturer	10		
-Federal	Frame manufacturer	10	http://www.federalbikes.com	
+Federal	Frame manufacturer	10	http://www.federalbikes.com	https://files.bikeindex.org/uploads/Ma/113/wwwfederalbikescom.png
 Felt	Frame manufacturer	500	http://www.feltbicycles.com/	
 Fetish	Frame manufacturer	10	https://www.facebook.com/FetishCycles	
 Fezzari	Frame manufacturer	10	http://www.fezzari.com/	
@@ -454,7 +454,7 @@ Giordano	Frame manufacturer	10	http://giordanobicycles.com/
 Gitane	Frame manufacturer	10	http://www.gitaneusa.com/	
 Glacier Glove	Manufacturer	10		
 Gladiator Cycle Company	Frame manufacturer	10	http://www.cyclesgladiator.com/	
-Globe	Frame manufacturer	10	http://www.specialized.com/us/en/bikes/globe	
+Globe	Frame manufacturer	100	http://www.specialized.com/us/en/bikes/globe	
 Gnome et Rhône	Frame manufacturer	10		
 GoGirl	Manufacturer	10		
 Gomier	Frame manufacturer	10		
@@ -482,7 +482,7 @@ Hallstrom	Frame manufacturer	10	http://www.hallstrom.no/
 Halo	Manufacturer	10		
 Hammer Nutrition	Manufacturer	10		
 Hampsten Cycles	Frame manufacturer	10	http://www.hampsten.com/	
-Handsome Cycles	Frame manufacturer	10	http://www.handsomecycles.com	
+Handsome Cycles	Frame manufacturer	10	http://www.handsomecycles.com	https://files.bikeindex.org/uploads/Ma/934/wwwhandsomecyclescom.png
 Handspun	Manufacturer	10		
 Hanford	Frame manufacturer	10	https://www.facebook.com/pages/Hanford-Cycles/230458813647205	
 Haro	Frame manufacturer	250	http://www.harobikes.com	
@@ -521,7 +521,7 @@ Huffy	Frame manufacturer	100	http://www.huffybikes.com
 Hufnagel	Frame manufacturer	10	http://www.hufnagelcycles.com/	
 Humangear	Manufacturer	10		
 Humber	Frame manufacturer	10	http://en.wikipedia.org/wiki/Humber_(bicycle)	
-Humble Frameworks	Frame manufacturer	10	http://www.humbleframeworks.cc	
+Humble Frameworks	Frame manufacturer	10	http://www.humbleframeworks.cc	https://files.bikeindex.org/uploads/Ma/954/wwwhumbleframeworkscc.png
 Hunter	Frame manufacturer	10	http://www.huntercycles.com/	
 Hurricane Components	Manufacturer	10		
 Hurtu	Frame manufacturer	10	http://en.wikipedia.org/wiki/Hurtu	
@@ -595,7 +595,7 @@ Kinesis	Frame manufacturer	10	http://www.kinesisbikes.co.uk/
 Kinesis Industry	Frame manufacturer	10	http://www.kinesis.com.tw/	
 Kinetic	Manufacturer	10		
 Kinetic Koffee	Manufacturer	10		
-Kink	Frame manufacturer	10	http://www.kinkbmx.com	
+Kink	Frame manufacturer	10	http://www.kinkbmx.com	https://files.bikeindex.org/uploads/Ma/358/wwwkinkbmxcom.png
 Kirk	Frame manufacturer	10	http://www.kirkframeworks.com/	
 Kish Fabrication	Frame manufacturer	10	http://www.kishbike.com/	
 Kiss My Face	Manufacturer	10		
@@ -690,7 +690,7 @@ Merlin	Frame manufacturer	10	http://www.merlinbike.com/
 Merrell	Manufacturer	10		
 MetaBikes	Frame manufacturer	10	http://meta-bikes.com/	
 Metric Hardware	Manufacturer	10		
-Metrofiets	Frame manufacturer	10	https://metrofiets.com	
+Metrofiets	Frame manufacturer	10	https://metrofiets.com	https://files.bikeindex.org/uploads/Ma/1364/metrofietscom.png
 Micajah C. Henley	Frame manufacturer	10		
 Micargi	Frame manufacturer	10	http://micargibicycles.com/	
 Miche	Manufacturer	10		
@@ -736,7 +736,7 @@ Nakamura	Frame manufacturer	10	http://www.nakamura.no/
 Naked	Frame manufacturer	10	http://timetogetnaked.com/	
 Nalgene	Manufacturer	10		
 Nantucket Bike Basket Company	Manufacturer	10		
-Nashbar	Frame manufacturer	10	http://Nashbar.com	
+Nashbar	Frame manufacturer	10	http://Nashbar.com	https://files.bikeindex.org/uploads/Ma/957/Nashbarcom.png
 Nathan	Manufacturer	10		
 National	Frame manufacturer	10	http://nationalmoto.com/	
 Native	Manufacturer	10		
@@ -802,7 +802,7 @@ Panasonic	Frame manufacturer	10
 Paper Bicycle	Frame manufacturer	10	http://www.paper-bicycle.com/	
 Park	Manufacturer	10		
 Parkpre	Frame manufacturer	10	http://www.parkpre.com/	
-Parlee	Frame manufacturer	10	http://www.parleecycles.com	
+Parlee	Frame manufacturer	10	http://www.parleecycles.com	https://files.bikeindex.org/uploads/Ma/700/wwwparleecyclescom.png
 Pashley Cycles	Frame manufacturer	10	http://www.pashley.co.uk/	
 Patria	Frame manufacturer	10	http://www.patria.net/en/bicycles/	
 Paul	Manufacturer	10	http://www.paulcomp.com/	
@@ -888,7 +888,7 @@ Rans Designs	Frame manufacturer	10	http://www.rans.com/
 Rawland Cycles	Frame manufacturer	10	https://www.rawlandcycles.com/	
 Razor	Frame manufacturer	10	http://www.razor.com/	
 ReTale	Manufacturer	10		
-Redline	Frame manufacturer	250	http://www.redlinebicycles.com	
+Redline	Frame manufacturer	250	http://www.redlinebicycles.com	https://files.bikeindex.org/uploads/Ma/955/wwwredlinebicyclescom.png
 Redlof	Frame manufacturer	10		
 Reflect Sports	Manufacturer	10		
 Regina	Frame manufacturer	10	http://www.reginabikes.it/	
@@ -931,15 +931,15 @@ Rox	Manufacturer	10
 Royal	Manufacturer	10		
 Royce Union 	Frame manufacturer	10	http://royceunionbikes.com/	
 Rudge-Whitworth	Frame manufacturer	10		
-S and M (S&M)	Frame manufacturer	10	http://www.sandmbikes.com	
+S and M (S&M)	Frame manufacturer	10	http://www.sandmbikes.com	https://files.bikeindex.org/uploads/Ma/361/wwwsandmbikescom.png
 S and S	Manufacturer	10		
 SCOTT	Frame manufacturer	500	http://www.scott-sports.com/global/en/	
 SDG	Manufacturer	10		
-SE Bikes (SE Racing)	Frame manufacturer	250	http://www.sebikes.com	
+SE Bikes (SE Racing)	Frame manufacturer	250	http://www.sebikes.com	https://files.bikeindex.org/uploads/Ma/363/wwwsebikescom.png
 SKS	Manufacturer	10		
 SLS3	Manufacturer	10		
 SR Suntour	Manufacturer	10		
-SRAM	Manufacturer	250	http://www.sram.com	
+SRAM	Manufacturer	10	http://www.sram.com	https://files.bikeindex.org/uploads/Ma/807/wwwsramcom.png
 SST	Manufacturer	10		
 START	Manufacturer	10		
 SWEAT GUTR	Manufacturer	10		
@@ -965,7 +965,7 @@ Season	Frame manufacturer	10	http://seasonbikesbmx.com/
 Seattle Sports Company	Manufacturer	10		
 Sekai	Frame manufacturer	10		
 Sekine	Frame manufacturer	10		
-Selle Anatomica	Manufacturer	10	http://selleanatomica.com	
+Selle Anatomica	Manufacturer	10	http://selleanatomica.com	https://files.bikeindex.org/uploads/Ma/1289/selleanatomicacom.png
 Selle Italia	Manufacturer	10		
 Selle Royal	Manufacturer	10		
 Selle San Marco	Manufacturer	10		
@@ -975,7 +975,7 @@ Seven Cycles	Frame manufacturer	10	http://www.sevencycles.com/
 Shadow Conspiracy	Frame manufacturer	10	http://www.theshadowconspiracy.com/	
 Shelby Cycle Company	Frame manufacturer	10		
 Sherpani	Manufacturer	10		
-Shimano	Manufacturer	10	http://bike.shimano.com	
+Shimano	Manufacturer	10	http://bike.shimano.com	https://files.bikeindex.org/uploads/Ma/366/bikeshimanocom.png
 Shinola	Frame manufacturer	10	http://www.shinola.com/	
 Shogun	Frame manufacturer	10		
 Shredder	Frame manufacturer	10	http://lilshredder.com/	
@@ -984,7 +984,7 @@ Sierra Designs	Manufacturer	10
 Sigma	Manufacturer	10		
 Silca	Manufacturer	10		
 Simple Green	Manufacturer	10		
-Simplon	Frame manufacturer	10	http://www.simplon.com	
+Simplon	Frame manufacturer	10	http://www.simplon.com	https://files.bikeindex.org/uploads/Ma/1270/wwwsimploncom.png
 Simson	Frame manufacturer	10		
 Sinclair Research	Frame manufacturer	10	http://www.sinclairzx.com/	
 Singletrack Solutions	Manufacturer	10		
@@ -1063,12 +1063,12 @@ Sugino	Manufacturer	10
 Sun	Frame manufacturer	10		
 Sun Ringle	Manufacturer	10		
 SunRace	Frame manufacturer	10	http://www.sunrace.com/	
-Sunday	Frame manufacturer	10	http://www.sundaybikes.com	
+Sunday	Frame manufacturer	10	http://www.sundaybikes.com	https://files.bikeindex.org/uploads/Ma/355/wwwsundaybikescom.png
 Sunn	Frame manufacturer	10	https://www.facebook.com/sunn.bicycle	
 Suomi	Manufacturer	10		
 Superfeet	Manufacturer	10		
 Supernova	Manufacturer	10		
-Surly	Frame manufacturer	500	http://surlybikes.com	
+Surly	Frame manufacturer	500	http://surlybikes.com	https://files.bikeindex.org/uploads/Ma/112/surlybikescom.png
 Surrey	Frame manufacturer	10	http://www.internationalsurreyco.com	
 Sutherlands	Manufacturer	10		
 Suunto	Manufacturer	10		
@@ -1107,16 +1107,16 @@ The Hive	Manufacturer	10
 Thinksport	Manufacturer	10		
 Thomson	Manufacturer	10		
 Thorn Cycles	Frame manufacturer	10		
-Thruster	Frame manufacturer	10	http://walmart.com	
+Thruster	Frame manufacturer	10	http://walmart.com	https://files.bikeindex.org/uploads/Ma/1161/walmartcom.png
 Thule	Frame manufacturer	10	http://www.thule.com	
 Ti Cycles	Frame manufacturer	10	http://ticycles.com/	
-Tigr	Manufacturer	10	http://tigrlock.com	
+Tigr	Manufacturer	10	http://tigrlock.com	https://files.bikeindex.org/uploads/Ma/111/tigrlockcom.png
 Timbuk2	Manufacturer	10		
 Time	Frame manufacturer	10	http://www.time-sport.com/	
 Timex	Manufacturer	10		
 Tioga	Manufacturer	10		
 Titan	Frame manufacturer	10	http://www.titanracingbikes.com/	
-Titus	Frame manufacturer	10	http://www.titusti.com	
+Titus	Frame manufacturer	10	http://www.titusti.com	https://files.bikeindex.org/uploads/Ma/1043/wwwtitusticom.png
 Toko	Manufacturer	10		
 Tommasini	Frame manufacturer	10	http://tommasinibicycle.com/	
 Tommaso	Frame manufacturer	10	http://tommasobikes.com/	
@@ -1181,7 +1181,7 @@ Velorbis	Frame manufacturer	10	http://www.velorbis.com/velorbis-collections/velo
 Velox	Manufacturer	10		
 Verde	Frame manufacturer	10	http://verdebmx.com/2013completes/	
 Versa	Manufacturer	10		
-Vilano	Frame manufacturer	10	http://www.vilanobikes.com	
+Vilano	Frame manufacturer	10	http://www.vilanobikes.com	https://files.bikeindex.org/uploads/Ma/981/wwwvilanobikescom.png
 Villy Customs	Frame manufacturer	10		
 Vincero Design	Manufacturer	10		
 Vindec High Riser	Frame manufacturer	10		
@@ -1247,7 +1247,7 @@ Yaktrax	Manufacturer	10
 Yamaguchi Bicycles	Frame manufacturer	10	http://www.yamaguchibike.com/content/Index	
 Yamaha	Frame manufacturer	10		
 Yankz	Manufacturer	10		
-Yeti	Frame manufacturer	100	http://www.yeticycles.com	
+Yeti	Frame manufacturer	100	http://www.yeticycles.com	https://files.bikeindex.org/uploads/Ma/1091/wwwyeticyclescom.png
 Yuba	Frame manufacturer	10	http://yubabikes.com/	
 Yurbuds	Manufacturer	10		
 Zensah	Manufacturer	10		
@@ -1268,7 +1268,6 @@ eZip	Frame manufacturer	10	http://www.currietech.com/
 eflow (Currietech)	Frame manufacturer	10	http://www.currietech.com/	
 elete	Manufacturer	10		
 epicRIDES	Manufacturer	10		
-name	Frame manufacturer	10	http:// website	
 nuun	Manufacturer	10		
 sixthreezero	Frame manufacturer	10	http://www.sixthreezero.com/	
 van Andel/Bakfiets	Frame manufacturer	10	http://www.bakfiets.nl/	

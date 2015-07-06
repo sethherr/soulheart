@@ -1,6 +1,6 @@
 # <img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200"> Soulheart [![Build Status](https://travis-ci.org/sethherr/soulheart.svg)](https://travis-ci.org/sethherr/soulheart) [![Code Climate](https://codeclimate.com/github/sethherr/soulheart/badges/gpa.svg)](https://codeclimate.com/github/sethherr/soulheart) [![Test Coverage](https://codeclimate.com/github/sethherr/soulheart/badges/coverage.svg)](https://codeclimate.com/github/sethherr/soulheart/coverage)
 
-Soulheart is a ready-to-use remote data source for autocomplete. The goal is to provide a solid, flexible tool that's downright simple to set up.
+Soulheart is a ready-to-use remote data source for autocomplete. The goal is to provide a solid, flexible tool that's downright easy to set up and use.
 
 - [Demos](https://sethherr.github.io/soulheart/)
 - [Usage documentation](https://sethherr.github.io/soulheart/commands/)
@@ -15,7 +15,7 @@ Soulheart is a ready-to-use remote data source for autocomplete. The goal is to 
 - **Pagination**
   <br>For infinite scrolling of results - wow!
 - **Categories**
-  <br>Match results for specified categories, or not - your choice.
+  <br>Match results for specified categories, or not. Your choice.
 - **Prioritization**
   <br>Return results sorted by priority (not just alphabetically).
 - **Arbitrary return objects**
@@ -33,7 +33,7 @@ See the [Soulheart demos page](https://sethherr.github.io/soulheart/) for a step
 
 #### With Heroku [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-You can instantly deploy Soulheart to Heroku for free - just click the button - which deploys this repository using `rackup` to start the server. Because of this, there's a `config.ru` and a `Gemfile.lock`&mdash;to make it (and any forks) runnable on Heroku. These files aren't in the Gem.
+You can instantly deploy Soulheart to Heroku for free.
 
 To update your Heroku deploy of Soulheart, use the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command) and redeploy the app: 
   
@@ -48,10 +48,12 @@ Soulheart is also a gem. Add it to your gemfile:
 
 And then put this in your routes.rb -
 
-    require 'sidekiq/web'
+    require 'soulheart/server'
     mount Soulheart::Server => "/soulhearts"
 
 You can then access the server when your rails app is running. You can run the [Soulheart commands](https://sethherr.github.io/soulheart/commands/) from that directory.
+
+*note: On Heroku Soulheart uses `rackup` to start the server. Because of this, there's a `config.ru` and a `Gemfile.lock`&mdash;to make it (and any forks) directly deployable. These files aren't in the Gem.*
 
 ## Testing
 
@@ -64,7 +66,7 @@ Run `bundle exec guard` to watch for changes and rerun the tests when files are 
 
 Soulheart is a Redis backed Sinatra server. I test with the latest MRI (2.2, 2.1, 2.0) and JRuby versions (1.7). Other versions/VMs are untested but might work fine.
 
-It requires Redis 3.0
+It requires Redis >= 3.0
 
 ## Additional info
 
