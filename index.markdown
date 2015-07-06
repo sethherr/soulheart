@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div class="page-header"><h1><img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200" />
+<div class="page-header"><h1><img src="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/logo.png" alt="Soulheart" width="200" />
 Hello, this is soulheart.
 <small>Easy remote data source for autocomplete</small>
 </h1></div>
@@ -29,7 +29,7 @@ Deploy to Heroku by clicking <a href="https://dashboard.heroku.com/new?template=
 </li>
 
 <li>Run this command in the command prompt <em>replace "sh-example-simple" with the name of your app on Heroku</em>:
-<pre>heroku run -a sh-example-simple soulheart load <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/example_data_sources/manufacturers_simple.tsv">https://raw.githubusercontent.com/sethherr/soulheart/master/example_data_sources/manufacturers_simple.tsv</a></pre>
+<pre>heroku run -a sh-example-simple soulheart load <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/manufacturers_simple.tsv">https://raw.githubusercontent.com/sethherr/soulheart/master/examples/manufacturers_simple.tsv</a></pre>
 </li>
 
 <li>Add <a href="https://select2.github.io/">Select2</a>
@@ -103,8 +103,8 @@ Some manufacturers are more popular than others - and since we expect people to 
 <select class="form-control" id="sh-example-priority-select"></select>
 </div></div>
 </div>
-
-Items with equal scores are ordered alphanumerically. So in the manufacturers example above, manufacturers are grouped in broad levels of popularity - 10, 100, 250 & 500 - higher numbers show up first. This example uses [manufacturers.tsv](https://github.com/sethherr/soulheart/tree/master/example_data_sources/manufacturers.tsv)
+<div class="special-pad"></div>
+Items with equal scores are ordered alphanumerically. So in the manufacturers example above, manufacturers are grouped in broad levels of popularity - 10, 100, 250 & 500 - higher numbers show up first. This example uses [manufacturers.tsv](https://github.com/sethherr/soulheart/tree/master/examples/manufacturers.tsv)
 
 Set a `priority` to organize the way items are ordered.
 
