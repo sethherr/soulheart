@@ -1,10 +1,10 @@
-# <img src="https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png" alt="Soulheart" width="200"> Soulheart [![Build Status](https://travis-ci.org/sethherr/soulheart.svg)](https://travis-ci.org/sethherr/soulheart) [![Code Climate](https://codeclimate.com/github/sethherr/soulheart/badges/gpa.svg)](https://codeclimate.com/github/sethherr/soulheart) [![Test Coverage](https://codeclimate.com/github/sethherr/soulheart/badges/coverage.svg)](https://codeclimate.com/github/sethherr/soulheart/coverage)
+# <img src="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/logo.png" alt="Soulheart" width="200"> Soulheart [![Build Status](https://travis-ci.org/sethherr/soulheart.svg)](https://travis-ci.org/sethherr/soulheart) [![Code Climate](https://codeclimate.com/github/sethherr/soulheart/badges/gpa.svg)](https://codeclimate.com/github/sethherr/soulheart) [![Test Coverage](https://codeclimate.com/github/sethherr/soulheart/badges/coverage.svg)](https://codeclimate.com/github/sethherr/soulheart/coverage)
 
 Soulheart is a ready-to-use remote data source for autocomplete. The goal is to provide a solid, flexible tool that's downright easy to set up and use.
 
 - [Demos](https://sethherr.github.io/soulheart/)
 - [Usage documentation](https://sethherr.github.io/soulheart/commands/)
-- [Example data sources](https://github.com/sethherr/soulheart/tree/master/example_data_sources)
+- [Example data sources](https://github.com/sethherr/soulheart/tree/master/examples)
 - [Getting started](#getting-started)
 - [Deployment](#deployment)
 - [Testing](#testing)
@@ -21,8 +21,11 @@ Soulheart is a ready-to-use remote data source for autocomplete. The goal is to 
 - **Arbitrary return objects**
   <br>Get whatever you want back. IDs, URLs, image links, even pre-formatted HTML :boom:
 - **Load remote data**
-  <br>Loading data via a [gist](https://github.com/sethherr/soulheart/blob/master/example_data_sources/manufacturers.tsv) - or any url.
+  <br>Loading data via a [gist](https://github.com/sethherr/soulheart/blob/master/examples/manufacturers.tsv) - or any url.
 - **Runs Standalone or inside a rails app**
+
+[![Autocomplete in action](https://github.com/sethherr/soulheart/raw/master/examples/screenshot.png)](https://sethherr.github.io/soulheart/)
+
 
 ## Getting started
 
@@ -70,4 +73,4 @@ It requires Redis >= 3.0
 
 ## Additional info
 
-This started as a fork of [Soulmate](https://github.com/seatgeek/soulmate). It's MIT licensed.
+This started as a fork of [Soulmate](https://github.com/seatgeek/soulmate), to bring it up to date and make it slicker. It's MIT licensed.
