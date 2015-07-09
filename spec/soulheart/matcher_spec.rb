@@ -23,7 +23,36 @@ describe Soulheart::Matcher do
       expect(cleaned.opts['categories']).to eq([])
     end
 
-    it 'Obeys stop words'
+    it "Obeys default stop words" do 
+      loader = Soulheart::Loader.new
+      expect(Soulheart.stop_words).to eq(['vs', 'at', 'the'])
+
+      prefixes1 = ['k', 'kn', 'kni', 'knic', 'knick', 'knicks']
+      expect(loader.prefixes_for_phrase('the knicks')).to eq(prefixes1)
+
+      prefixes2 = ['t', 'te', 'tes', 'test', 'testi', 'testin', 'th', 'thi', 'this']
+      expect(loader.prefixes_for_phrase("testin' this")).to eq(prefixes2)
+
+      prefixes3 = ['t', 'te', 'tes', 'test']
+      expect(loader.prefixes_for_phrase('test test')).to eq(prefixes3)
+
+      prefixes4 = ['s', 'so', 'sou', 'soul', 'soulm', 'soulma', 'soulmat', 'soulmate']
+      expect(loader.prefixes_for_phrase('SoUlmATE')).to eq(prefixes4)
+
+      prefixes5 = ['测', '测试', '测试中', '测试中文', 't', 'te', 'tes', 'test']
+      expect(loader.prefixes_for_phrase('测试中文 test')).to eq(prefixes5)
+
+      prefixes6 = ['t', 'te', 'tet', 'teth', 'tethe', 'tether']
+      expect(loader.prefixes_for_phrase('tether')).to eq(prefixes6)
+    end
+
+    it "Obeys passed stop words" do 
+      loader = Soulheart::Loader.new
+      Soulheart.stop_words = 'with'
+
+      prefixes1 = ['l', 'lo', 'loc', 'lock', 't', 'th', 'the', 'i', 'in', 'ink', 'p', 'pe', 'pen']
+      expect(loader.prefixes_for_phrase('lock with the ink pen')).to eq(prefixes1)
+    end
   end
 
   describe :category_id_from_opts do

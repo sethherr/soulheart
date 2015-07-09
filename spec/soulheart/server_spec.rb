@@ -21,9 +21,9 @@ describe Soulheart::Server do
     end
   end
 
-  describe :status do
+  describe :version do
     it 'Has cors headers and is valid JSON' do
-      get '/status'
+      get '/version'
       expect(last_response.headers['Access-Control-Allow-Origin']).to eq('*')
       expect(last_response.headers['Access-Control-Request-Method']).to eq('*')
       expect(last_response.headers['Content-Type']).to match('json')

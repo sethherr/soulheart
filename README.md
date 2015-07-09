@@ -15,13 +15,13 @@ Soulheart is a ready-to-use remote data source for autocomplete. The goal is to 
 - **Pagination**
   <br>For infinite scrolling of results - wow!
 - **Categories**
-  <br>Match results for specified categories, or not. Your choice.
+  <br>Match results for specified categories, or not. Your choice
 - **Prioritization**
-  <br>Return results sorted by priority (not just alphabetically).
+  <br>Return results sorted by priority (not just alphabetically)
 - **Arbitrary return objects**
-  <br>Get whatever you want back. IDs, URLs, image links, even pre-formatted HTML :boom:
-- **Load remote data**
-  <br>Loading data via a [gist](https://github.com/sethherr/soulheart/blob/master/examples/manufacturers.tsv) - or any url.
+  <br>Get whatever you want back. IDs, URLs, image links, HTML, :boom:
+- **Loads data**
+  <br>Accepts local or remote data - e.g. you can use a [gist](https://github.com/sethherr/soulheart/blob/master/examples/manufacturers.tsv)
 - **Runs Standalone or inside a rails app**
 
 [![Autocomplete in action](https://github.com/sethherr/soulheart/raw/master/examples/screenshot.png)](https://sethherr.github.io/soulheart/)
@@ -29,7 +29,7 @@ Soulheart is a ready-to-use remote data source for autocomplete. The goal is to 
 
 ## Getting started
 
-See the [Soulheart demos page](https://sethherr.github.io/soulheart/) for a step-by-step explanation of creating an instance and setting up a select box that uses it as a remote data source.
+See the [Soulheart demo page](https://sethherr.github.io/soulheart/) for a step-by-step explanation of creating an instance and setting up a select box that uses it as a remote data source.
 
 
 ## Deployment

@@ -18,8 +18,8 @@ module Soulheart
       MultiJson.encode(matches:  matches)
     end
 
-    get '/status' do
-      MultiJson.encode(soulheart: Soulheart::VERSION, status: 'ok')
+    get '/version' do
+      MultiJson.encode(soulheart: Soulheart::VERSION)
     end
 
     not_found do
