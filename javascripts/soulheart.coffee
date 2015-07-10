@@ -39,7 +39,8 @@ $(document).ready ->
 
   $('#sh-example-priority-select').select2
     allowClear: true
-    placeholder: "Choose a manufacturer"
+    placeholder: "Choose manufacturers"
+    multiple: true
     ajax:
       url: 'https://sh-example-priority.herokuapp.com'
       dataType: 'json'
@@ -49,9 +50,8 @@ $(document).ready ->
         page: params.page
         per_page: 10
       processResults: (data, page) ->
-        # Select2 requires an id, so we need to map the results and add an ID
-        # You could instead include an id in the tsv you add to soulheart ;)
-        results: data.matches.map (item) -> {id: item.text, text: item.text}
+        # Since sh-example-priority has ids, we don't need to map the response
+        results: data.matches
         pagination:
           # If there are 10 matches, there's probably at least another page
           more: data.matches.length == 10

@@ -21,42 +21,43 @@ Deploy to Heroku with the click of a button. Upload a tsv with a `text` column. 
 
 <ol class="step-by-step-basic">
 <li>
-Deploy to Heroku by clicking <a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fsethherr%2Fsoulheart"><img src="https://www.herokucdn.com/deploy/button.png" alt="deploy" /></a>
+<p>Deploy to Heroku by clicking the button<a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fsethherr%2Fsoulheart"><img src="https://www.herokucdn.com/deploy/button.png" alt="deploy"/></a>
+<br><em>This requires a verified Heroku account&mdash;you will have to add a payment method to Heroku even though you won't be charged</em>
+</p>
 </li>
 
 <li>
 <a href="https://devcenter.heroku.com/articles/heroku-command">Install the Heroku CLI</a> and open up a terminal window.
 </li>
 
-<li>Run this command in the command prompt <em>replace "sh-example-simple" with the name of your app on Heroku</em>:
-<pre>heroku run -a sh-example-simple soulheart load <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/manufacturers_simple.tsv">https://raw.githubusercontent.com/sethherr/soulheart/master/examples/manufacturers_simple.tsv</a></pre>
+<li><p>Run this command in the terminal window:</p>
+<pre class="with-highlight">heroku run -a sh-example-simple soulheart load <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/manufacturers_simple.tsv">https://raw.githubusercontent.com/sethherr/soulheart/master/examples/manufacturers_simple.tsv</a></pre>
+<div class="highlight code-highlight">Replace <code>sh-example-simple</code> with the name of your app on Heroku</div>
 </li>
 
-<li>Add <a href="https://select2.github.io/">Select2</a>
-
+<li>
+<p>Add <a href="https://select2.github.io/">Select2</a> by loading the source from a CDN:</p>
 <pre>
 &lt;link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /&gt;
 &lt;script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"&gt;&lt;/script&gt;
 </pre>
 
-and a select box to your html page:
+<p>... and a select box to your html page:</p>
 <pre>
 &lt;select id="basic-example-select"&gt;&lt;/select&gt;
 </pre>
 
 </li>
 
-<li>Use this javascript to hook up the select box with select2:
-
-<em>Once again, replace "sh-example-simple" with the name of your app on Heroku</em>:
-
+<li>
+<p>Use this javascript to hook up the select box with select2:</p>
 <pre>
 $('#sh-example-simple-select').select2({
   allowClear: true,
   placeholder: "Choose a manufacturer",
   ajax: {
-    url: 'http://sh-example-simple.herokuapp.com',
-    dataType: 'json',
+    url: "http://sh-example-simple.herokuapp.com",
+    dataType: "json",
     delay: 250,
     data: function(params) {
       return {
@@ -85,8 +86,9 @@ $('#sh-example-simple-select').select2({
     cache: true
   }
 });
-    </pre>
-  </li>
+</pre>
+<div class="highlight code-highlight">Replace <code>sh-example-simple</code> in <code>http://sh-example-simple.herokuapp.com</code> with the name of your app on Heroku</div>
+</li>
 </ol>
 
 
@@ -109,16 +111,16 @@ Items with equal scores are ordered alphanumerically. So in the manufacturers ex
 Set a `priority` to organize the way items are ordered.
 
 <div class="page-header">
-<h2 id="using-categories">Categories</h2>
+<h2 id="using-categories">Categories <small><a href="https://sh-example-priority.herokuapp.com/categories">/categories</a> now works!  </small></h2>
 </div>
 
 Search for items in only one category by adding a `categories` parameter:
 
 <pre>
-<a href="http://sh-example-simple.herokuapp.com?categories=manufacturer">http://sh-example-simple.herokuapp.com?categories=manufacturer</a>
+<a href="https://sh-example-simple.herokuapp.com/?categories=manufacturer">http://sh-example-simple.herokuapp.com?categories=manufacturer</a>
 </pre>
 
-<p>Search for items in any of the included categories by seperating the categories with commas:</p>
+<p>Search for items in any of the included categories by separating the categories with commas:</p>
 
 <pre>
 <a href="http://sh-example-simple.herokuapp.com/?categories=manufacturer,frame%20manufacturer">http://sh-example-simple.herokuapp.com/?categories=manufacturer,frame%20manufacturer</a>

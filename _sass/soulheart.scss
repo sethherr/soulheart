@@ -1,9 +1,21 @@
 .step-by-step-basic {
   li {
-    padding-bottom: 15px;
+    padding-bottom: 20px;
   }
 }
 
 .form-group label small {
   font-weight: normal;
+}
+
+.highlight {
+  padding: 9px 14px;
+  margin-top: -16px;
+  margin-bottom: 14px;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  border-radius: 0 0 4px 4px;
+  &.code-highlight {
+    background-color: #fff;
+  }
 }
