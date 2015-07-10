@@ -10,6 +10,10 @@ for url in urls
 
 
 $(document).ready ->
+  # Add headroom to header
+  headroom  = new Headroom(document.querySelector("#header"))
+  headroom.init()
+
   $('.scroll-to-ref').click (e) ->
     event.preventDefault()
     target = $(event.target).attr('href')

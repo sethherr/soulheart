@@ -1,3 +1,18 @@
+#header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: $gray-lighter;
+  padding: 0;
+  @include transition(transform 200ms linear);
+  &.headroom--pinned { @include translate(0, 0%); }
+  &.headroom--unpinned { @include translate(0, -100%); }
+  border-bottom: 1px solid rgba(black, .2);
+}
+
+body { padding-top: 30px; }
+
 .step-by-step-basic {
   li {
     padding-bottom: 20px;
