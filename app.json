@@ -10,6 +10,6 @@
     "heart"
   ],
   "addons": [
-    "heroku-redis:test"
+    "heroku-redis:hobby-dev"
   ]
 }
