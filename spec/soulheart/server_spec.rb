@@ -21,13 +21,26 @@ describe Soulheart::Server do
     end
   end
 
-  describe :version do
+  describe :categories do
+    it 'Renders the categories' do
+      Soulheart::Loader.new.reset_categories(%w(sweet test cool))
+      get '/categories'
+      expect(last_response.headers['Content-Type']).to match('json')
+      expect(last_response.headers['Access-Control-Allow-Origin']).to eq('*')
+      expect(last_response.headers['Access-Control-Request-Method']).to eq('*')
+      expect(last_response.headers['Content-Type']).to match('json')
+      expect(JSON.parse(last_response.body)['categories']).to eq(['cool', 'sweet', 'test'])
+    end
+  end
+
+  describe :info do
     it 'Has cors headers and is valid JSON' do
-      get '/version'
+      get '/info'
       expect(last_response.headers['Access-Control-Allow-Origin']).to eq('*')
       expect(last_response.headers['Access-Control-Request-Method']).to eq('*')
       expect(last_response.headers['Content-Type']).to match('json')
       expect(JSON.parse(last_response.body)['soulheart']).to match(/\d/)
+      expect(JSON.parse(last_response.body)['time']).to_not be_nil
     end
   end
 end

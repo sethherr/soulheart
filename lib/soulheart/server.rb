@@ -18,8 +18,15 @@ module Soulheart
       MultiJson.encode(matches:  matches)
     end
 
-    get '/version' do
-      MultiJson.encode(soulheart: Soulheart::VERSION)
+    get '/categories' do
+      MultiJson.encode(categories: Base.new.sorted_category_array)
+    end
+
+    get '/info' do
+      MultiJson.encode({
+        soulheart: Soulheart::VERSION,
+        time: Time.now.utc.strftime('%H:%M:%S UTC')
+      })
     end
 
     not_found do
