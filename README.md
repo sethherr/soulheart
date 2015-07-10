@@ -36,7 +36,7 @@ See the [Soulheart demo page](https://sethherr.github.io/soulheart/) for a step-
 
 #### With Heroku [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-You can instantly deploy Soulheart to Heroku for free.
+**You can instantly deploy Soulheart to Heroku for free!** This requires a verified Heroku account&mdash;you will have to add a payment method to Heroku but you won't be charged.
 
 To update your Heroku deploy of Soulheart, use the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command) and redeploy the app: 
   
@@ -45,11 +45,11 @@ To update your Heroku deploy of Soulheart, use the [Heroku CLI](https://devcente
 
 #### In a Rails app
 
-Soulheart is also a gem. Add it to your gemfile:
+Soulheart is a gem. Add it to your gemfile:
 
     gem 'soulheart'
 
-And then put this in your routes.rb -
+And then put this in your routes.rb
 
     require 'soulheart/server'
     mount Soulheart::Server => "/soulhearts"
@@ -60,17 +60,19 @@ You can then access the server when your rails app is running. You can run the [
 
 ## Testing
 
-Tested with rspec, check out test information at [Code Climate](https://codeclimate.com/github/sethherr/soulheart).
+Tested with rspec. Check out test information at [Code Climate](https://codeclimate.com/github/sethherr/soulheart).
 
-Run `bundle exec guard` to watch for changes and rerun the tests when files are saved.
+You can run `bundle exec guard` to watch for changes and rerun the tests when files are saved.
 
 
 ## Requirements
 
-Soulheart is a Redis backed Sinatra server. I test with the latest MRI (2.2, 2.1, 2.0) and JRuby versions (1.7). Other versions/VMs are untested but might work fine.
+Soulheart is a Redis backed Sinatra server. It's tested with the latest MRI (2.2, 2.1, 2.0) and JRuby versions (1.7). Other versions/VMs are untested but might work fine.
 
 It requires Redis >= 3.0
 
 ## Additional info
 
-This started as a fork of [Soulmate](https://github.com/seatgeek/soulmate), to bring it up to date and make it slicker. It's MIT licensed.
+This is an extended fork of [Soulmate](https://github.com/seatgeek/soulmate), to bring it up to date, make it slicker, and make it deployable to Heroku.
+
+It's MIT licensed.
