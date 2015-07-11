@@ -13,7 +13,7 @@ Deploy to Heroku with the click of a button. Upload a tsv with a `text` column. 
 
 <div class="panel panel-default" id="sh-example-simple-select-panel"><div class="panel-body"><div class="form-group">
 <label>Bicycle Manufacturers <small>from <a href="https://bikeindex.org/manufacturers">Bike Index</a></small></label>
-<select class="form-control" id="sh-example-simple-select"></select>
+<select class="form-control" id="sh-example-simple-select" style="width: 100%;"></select>
 </div></div>
 </div>
 
@@ -102,7 +102,7 @@ Some manufacturers are more popular than others - and since we expect people to 
 
 <div class="panel panel-default" id="sh-example-priority-select-panel"><div class="panel-body"><div class="form-group">
 <label>Bicycle Manufacturers with priority <small>data from <a href="https://bikeindex.org/manufacturers">Bike Index</a></small></label>
-<select class="form-control" id="sh-example-priority-select"></select>
+<select class="form-control" id="sh-example-priority-select" style="width: 100%;"></select>
 </div></div>
 </div>
 <div class="special-pad"></div>
