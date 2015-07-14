@@ -1,162 +1,162 @@
-{"name":"Black","category":"Colors"}
-{"name":"Blue","category":"Colors"}
-{"name":"Brown","category":"Colors"}
-{"name":"Green","category":"Colors"}
-{"name":"Orange","category":"Colors"}
-{"name":"Pink","category":"Colors"}
-{"name":"Purple","category":"Colors"}
-{"name":"Red","category":"Colors"}
-{"name":"Silver or Gray","category":"Colors"}
-{"name":"Stickers tape or other cover-up","category":"Colors"}
-{"name":"Teal","category":"Colors"}
-{"name":"White","category":"Colors"}
-{"name":"Yellow or Gold","category":"Colors"}
-{"name":"other","category":"Component Types"}
-{"name":"water bottle cage","category":"Component Types"}
-{"name":"stem","category":"Component Types"}
-{"name":"fairing","category":"Component Types"}
-{"name":"lights","category":"Component Types"}
-{"name":"basket","category":"Component Types"}
-{"name":"chain tensioners","category":"Component Types"}
-{"name":"derailleur","category":"Component Types"}
-{"name":"unknown","category":"Component Types"}
-{"name":"training wheels","category":"Component Types"}
-{"name":"bottom bracket","category":"Component Types"}
-{"name":"brake","category":"Component Types"}
-{"name":"hub guard","category":"Component Types"}
-{"name":"handlebar","category":"Component Types"}
-{"name":"wheel","category":"Component Types"}
-{"name":"saddle","category":"Component Types"}
-{"name":"generator/dynamo","category":"Component Types"}
-{"name":"bashguard/chain guide","category":"Component Types"}
-{"name":"bell/noisemaker","category":"Component Types"}
-{"name":"chainrings","category":"Component Types"}
-{"name":"cog/cassette/freewheel","category":"Component Types"}
-{"name":"rim","category":"Component Types"}
-{"name":"axle nuts","category":"Component Types"}
-{"name":"hub","category":"Component Types"}
-{"name":"spokes","category":"Component Types"}
-{"name":"tube","category":"Component Types"}
-{"name":"tire","category":"Component Types"}
-{"name":"brake lever","category":"Component Types"}
-{"name":"shift and brake lever","category":"Component Types"}
-{"name":"brake rotor","category":"Component Types"}
-{"name":"brake pad","category":"Component Types"}
-{"name":"shifter","category":"Component Types"}
-{"name":"fork","category":"Component Types"}
-{"name":"rear suspension","category":"Component Types"}
-{"name":"headset","category":"Component Types"}
-{"name":"brake cable","category":"Component Types"}
-{"name":"shift cable","category":"Component Types"}
-{"name":"chain","category":"Component Types"}
-{"name":"crankset","category":"Component Types"}
-{"name":"pedals","category":"Component Types"}
-{"name":"computer","category":"Component Types"}
-{"name":"pegs","category":"Component Types"}
-{"name":"toe clips","category":"Component Types"}
-{"name":"grips/tape","category":"Component Types"}
-{"name":"seatpost clamp","category":"Component Types"}
-{"name":"detangler","category":"Component Types"}
-{"name":"kickstand","category":"Component Types"}
-{"name":"rack","category":"Component Types"}
-{"name":"seatpost","category":"Component Types"}
-{"name":"fender","category":"Component Types"}
-{"name":"aero bars/extensions/bar ends","category":"Component Types"}
-{"name":"Bike","category":"Cycle Types"}
-{"name":"Tandem","category":"Cycle Types"}
-{"name":"Unicycle","category":"Cycle Types"}
-{"name":"Tricycle","category":"Cycle Types"}
-{"name":"Recumbent","category":"Cycle Types"}
-{"name":"Tall Bike","category":"Cycle Types"}
-{"name":"Penny Farthing","category":"Cycle Types"}
-{"name":"Wheelchair","category":"Cycle Types"}
-{"name":"Stroller","category":"Cycle Types"}
-{"name":"Cargo Bike (front storage)","category":"Cycle Types"}
-{"name":"Cargo Bike (rear storage)","category":"Cycle Types"}
-{"name":"Cargo Tricycle (front storage)","category":"Cycle Types"}
-{"name":"Cargo Tricycle (rear storage)","category":"Cycle Types"}
-{"name":"Bike Trailer","category":"Cycle Types"}
-{"name":"Trail behind (half bike)","category":"Cycle Types"}
-{"name":"Pedi Cab (rickshaw)","category":"Cycle Types"}
-{"name":"Wood or organic material","category":"Frame Materials"}
-{"name":"Titanium","category":"Frame Materials"}
-{"name":"Carbon or composite","category":"Frame Materials"}
-{"name":"Aluminum","category":"Frame Materials"}
-{"name":"Steel","category":"Frame Materials"}
-{"name":"1","category":"Front Gear Types"}
-{"name":"2","category":"Front Gear Types"}
-{"name":"3","category":"Front Gear Types"}
-{"name":"2 internal","category":"Front Gear Types"}
-{"name":"3 internal","category":"Front Gear Types"}
-{"name":"Drop","category":"Handlebar Types"}
-{"name":"Forward facing","category":"Handlebar Types"}
-{"name":"Rear facing","category":"Handlebar Types"}
-{"name":"Not handlebars","category":"Handlebar Types"}
-{"name":"BMX style","category":"Handlebar Types"}
-{"name":"Flat or riser","category":"Handlebar Types"}
-{"name":"Foot pedal","category":"Propulsion Types"}
-{"name":"Hand pedal","category":"Propulsion Types"}
-{"name":"Sail","category":"Propulsion Types"}
-{"name":"Insufflation","category":"Propulsion Types"}
-{"name":"Electric Assist","category":"Propulsion Types"}
-{"name":"Electric throttle","category":"Propulsion Types"}
-{"name":"Gas","category":"Propulsion Types"}
-{"name":"Other style","category":"Propulsion Types"}
-{"name":"1","category":"Rear Gear Types"}
-{"name":"2","category":"Rear Gear Types"}
-{"name":"3","category":"Rear Gear Types"}
-{"name":"4","category":"Rear Gear Types"}
-{"name":"5","category":"Rear Gear Types"}
-{"name":"6","category":"Rear Gear Types"}
-{"name":"7","category":"Rear Gear Types"}
-{"name":"8","category":"Rear Gear Types"}
-{"name":"9","category":"Rear Gear Types"}
-{"name":"10","category":"Rear Gear Types"}
-{"name":"11","category":"Rear Gear Types"}
-{"name":"12","category":"Rear Gear Types"}
-{"name":"Fixed","category":"Rear Gear Types"}
-{"name":"1 internal","category":"Rear Gear Types"}
-{"name":"2 internal","category":"Rear Gear Types"}
-{"name":"3 internal","category":"Rear Gear Types"}
-{"name":"4 internal","category":"Rear Gear Types"}
-{"name":"5 internal","category":"Rear Gear Types"}
-{"name":"6 internal","category":"Rear Gear Types"}
-{"name":"7 internal","category":"Rear Gear Types"}
-{"name":"8 internal","category":"Rear Gear Types"}
-{"name":"9 internal","category":"Rear Gear Types"}
-{"name":"10 internal","category":"Rear Gear Types"}
-{"name":"11 internal","category":"Rear Gear Types"}
-{"name":"12 internal","category":"Rear Gear Types"}
-{"name":"Continuously variable","category":"Rear Gear Types"}
-{"name":"8 x 1 1/4","category":"Wheel Sizes"}
-{"name":"10 x 2","category":"Wheel Sizes"}
-{"name":"12in","category":"Wheel Sizes"}
-{"name":"16in","category":"Wheel Sizes"}
-{"name":"16 x 1 3/4","category":"Wheel Sizes"}
-{"name":"16 x 1 3/8","category":"Wheel Sizes"}
-{"name":"16 x 1 3/8","category":"Wheel Sizes"}
-{"name":"400 A","category":"Wheel Sizes"}
-{"name":"16 x 1 3/8","category":"Wheel Sizes"}
-{"name":"18in","category":"Wheel Sizes"}
-{"name":"17 x 1 1/4","category":"Wheel Sizes"}
-{"name":"450 A","category":"Wheel Sizes"}
-{"name":"20in","category":"Wheel Sizes"}
-{"name":"20 x 1 3/4","category":"Wheel Sizes"}
-{"name":"500 A","category":"Wheel Sizes"}
-{"name":"20 x 1 1/8; x 1 1/4; x 1 3/8","category":"Wheel Sizes"}
-{"name":"22 x 1.75; x 2.125","category":"Wheel Sizes"}
-{"name":"550 A","category":"Wheel Sizes"}
-{"name":"24in","category":"Wheel Sizes"}
-{"name":"24 x 1","category":"Wheel Sizes"}
-{"name":"24 x 1 1/8, 24 x 1 3/8 (E.5), 600 A","category":"Wheel Sizes"}
-{"name":"24 x 1 1/4, 24 x 1 3/8 (S-5)","category":"Wheel Sizes"}
-{"name":"26in","category":"Wheel Sizes"}
-{"name":"650 C","category":"Wheel Sizes"}
-{"name":"650 B","category":"Wheel Sizes"}
-{"name":"700 D","category":"Wheel Sizes"}
-{"name":"26 x 1 3/8","category":"Wheel Sizes"}
-{"name":"26 x 1 3/8","category":"Wheel Sizes"}
-{"name":"26 x 1.25, x 1.375","category":"Wheel Sizes"}
-{"name":"700 C","category":"Wheel Sizes"}
-{"name":"27in","category":"Wheel Sizes"}
-{"name":"28 x 1 1/2, 700 B","category":"Wheel Sizes"}
+{"text":"Black","category":"Colors"}
+{"text":"Blue","category":"Colors"}
+{"text":"Brown","category":"Colors"}
+{"text":"Green","category":"Colors"}
+{"text":"Orange","category":"Colors"}
+{"text":"Pink","category":"Colors"}
+{"text":"Purple","category":"Colors"}
+{"text":"Red","category":"Colors"}
+{"text":"Silver or Gray","category":"Colors"}
+{"text":"Stickers tape or other cover-up","category":"Colors"}
+{"text":"Teal","category":"Colors"}
+{"text":"White","category":"Colors"}
+{"text":"Yellow or Gold","category":"Colors"}
+{"text":"other","category":"Component Types"}
+{"text":"water bottle cage","category":"Component Types"}
+{"text":"stem","category":"Component Types"}
+{"text":"fairing","category":"Component Types"}
+{"text":"lights","category":"Component Types"}
+{"text":"basket","category":"Component Types"}
+{"text":"chain tensioners","category":"Component Types"}
+{"text":"derailleur","category":"Component Types"}
+{"text":"unknown","category":"Component Types"}
+{"text":"training wheels","category":"Component Types"}
+{"text":"bottom bracket","category":"Component Types"}
+{"text":"brake","category":"Component Types"}
+{"text":"hub guard","category":"Component Types"}
+{"text":"handlebar","category":"Component Types"}
+{"text":"wheel","category":"Component Types"}
+{"text":"saddle","category":"Component Types"}
+{"text":"generator/dynamo","category":"Component Types"}
+{"text":"bashguard/chain guide","category":"Component Types"}
+{"text":"bell/noisemaker","category":"Component Types"}
+{"text":"chainrings","category":"Component Types"}
+{"text":"cog/cassette/freewheel","category":"Component Types"}
+{"text":"rim","category":"Component Types"}
+{"text":"axle nuts","category":"Component Types"}
+{"text":"hub","category":"Component Types"}
+{"text":"spokes","category":"Component Types"}
+{"text":"tube","category":"Component Types"}
+{"text":"tire","category":"Component Types"}
+{"text":"brake lever","category":"Component Types"}
+{"text":"shift and brake lever","category":"Component Types"}
+{"text":"brake rotor","category":"Component Types"}
+{"text":"brake pad","category":"Component Types"}
+{"text":"shifter","category":"Component Types"}
+{"text":"fork","category":"Component Types"}
+{"text":"rear suspension","category":"Component Types"}
+{"text":"headset","category":"Component Types"}
+{"text":"brake cable","category":"Component Types"}
+{"text":"shift cable","category":"Component Types"}
+{"text":"chain","category":"Component Types"}
+{"text":"crankset","category":"Component Types"}
+{"text":"pedals","category":"Component Types"}
+{"text":"computer","category":"Component Types"}
+{"text":"pegs","category":"Component Types"}
+{"text":"toe clips","category":"Component Types"}
+{"text":"grips/tape","category":"Component Types"}
+{"text":"seatpost clamp","category":"Component Types"}
+{"text":"detangler","category":"Component Types"}
+{"text":"kickstand","category":"Component Types"}
+{"text":"rack","category":"Component Types"}
+{"text":"seatpost","category":"Component Types"}
+{"text":"fender","category":"Component Types"}
+{"text":"aero bars/extensions/bar ends","category":"Component Types"}
+{"text":"Bike","category":"Cycle Types"}
+{"text":"Tandem","category":"Cycle Types"}
+{"text":"Unicycle","category":"Cycle Types"}
+{"text":"Tricycle","category":"Cycle Types"}
+{"text":"Recumbent","category":"Cycle Types"}
+{"text":"Tall Bike","category":"Cycle Types"}
+{"text":"Penny Farthing","category":"Cycle Types"}
+{"text":"Wheelchair","category":"Cycle Types"}
+{"text":"Stroller","category":"Cycle Types"}
+{"text":"Cargo Bike (front storage)","category":"Cycle Types"}
+{"text":"Cargo Bike (rear storage)","category":"Cycle Types"}
+{"text":"Cargo Tricycle (front storage)","category":"Cycle Types"}
+{"text":"Cargo Tricycle (rear storage)","category":"Cycle Types"}
+{"text":"Bike Trailer","category":"Cycle Types"}
+{"text":"Trail behind (half bike)","category":"Cycle Types"}
+{"text":"Pedi Cab (rickshaw)","category":"Cycle Types"}
+{"text":"Wood or organic material","category":"Frame Materials"}
+{"text":"Titanium","category":"Frame Materials"}
+{"text":"Carbon or composite","category":"Frame Materials"}
+{"text":"Aluminum","category":"Frame Materials"}
+{"text":"Steel","category":"Frame Materials"}
+{"text":"1","category":"Front Gear Types"}
+{"text":"2","category":"Front Gear Types"}
+{"text":"3","category":"Front Gear Types"}
+{"text":"2 internal","category":"Front Gear Types"}
+{"text":"3 internal","category":"Front Gear Types"}
+{"text":"Drop","category":"Handlebar Types"}
+{"text":"Forward facing","category":"Handlebar Types"}
+{"text":"Rear facing","category":"Handlebar Types"}
+{"text":"Not handlebars","category":"Handlebar Types"}
+{"text":"BMX style","category":"Handlebar Types"}
+{"text":"Flat or riser","category":"Handlebar Types"}
+{"text":"Foot pedal","category":"Propulsion Types"}
+{"text":"Hand pedal","category":"Propulsion Types"}
+{"text":"Sail","category":"Propulsion Types"}
+{"text":"Insufflation","category":"Propulsion Types"}
+{"text":"Electric Assist","category":"Propulsion Types"}
+{"text":"Electric throttle","category":"Propulsion Types"}
+{"text":"Gas","category":"Propulsion Types"}
+{"text":"Other style","category":"Propulsion Types"}
+{"text":"1","category":"Rear Gear Types"}
+{"text":"2","category":"Rear Gear Types"}
+{"text":"3","category":"Rear Gear Types"}
+{"text":"4","category":"Rear Gear Types"}
+{"text":"5","category":"Rear Gear Types"}
+{"text":"6","category":"Rear Gear Types"}
+{"text":"7","category":"Rear Gear Types"}
+{"text":"8","category":"Rear Gear Types"}
+{"text":"9","category":"Rear Gear Types"}
+{"text":"10","category":"Rear Gear Types"}
+{"text":"11","category":"Rear Gear Types"}
+{"text":"12","category":"Rear Gear Types"}
+{"text":"Fixed","category":"Rear Gear Types"}
+{"text":"1 internal","category":"Rear Gear Types"}
+{"text":"2 internal","category":"Rear Gear Types"}
+{"text":"3 internal","category":"Rear Gear Types"}
+{"text":"4 internal","category":"Rear Gear Types"}
+{"text":"5 internal","category":"Rear Gear Types"}
+{"text":"6 internal","category":"Rear Gear Types"}
+{"text":"7 internal","category":"Rear Gear Types"}
+{"text":"8 internal","category":"Rear Gear Types"}
+{"text":"9 internal","category":"Rear Gear Types"}
+{"text":"10 internal","category":"Rear Gear Types"}
+{"text":"11 internal","category":"Rear Gear Types"}
+{"text":"12 internal","category":"Rear Gear Types"}
+{"text":"Continuously variable","category":"Rear Gear Types"}
+{"text":"8 x 1 1/4","category":"Wheel Sizes"}
+{"text":"10 x 2","category":"Wheel Sizes"}
+{"text":"12in","category":"Wheel Sizes"}
+{"text":"16in","category":"Wheel Sizes"}
+{"text":"16 x 1 3/4","category":"Wheel Sizes"}
+{"text":"16 x 1 3/8","category":"Wheel Sizes"}
+{"text":"16 x 1 3/8","category":"Wheel Sizes"}
+{"text":"400 A","category":"Wheel Sizes"}
+{"text":"16 x 1 3/8","category":"Wheel Sizes"}
+{"text":"18in","category":"Wheel Sizes"}
+{"text":"17 x 1 1/4","category":"Wheel Sizes"}
+{"text":"450 A","category":"Wheel Sizes"}
+{"text":"20in","category":"Wheel Sizes"}
+{"text":"20 x 1 3/4","category":"Wheel Sizes"}
+{"text":"500 A","category":"Wheel Sizes"}
+{"text":"20 x 1 1/8; x 1 1/4; x 1 3/8","category":"Wheel Sizes"}
+{"text":"22 x 1.75; x 2.125","category":"Wheel Sizes"}
+{"text":"550 A","category":"Wheel Sizes"}
+{"text":"24in","category":"Wheel Sizes"}
+{"text":"24 x 1","category":"Wheel Sizes"}
+{"text":"24 x 1 1/8, 24 x 1 3/8 (E.5), 600 A","category":"Wheel Sizes"}
+{"text":"24 x 1 1/4, 24 x 1 3/8 (S-5)","category":"Wheel Sizes"}
+{"text":"26in","category":"Wheel Sizes"}
+{"text":"650 C","category":"Wheel Sizes"}
+{"text":"650 B","category":"Wheel Sizes"}
+{"text":"700 D","category":"Wheel Sizes"}
+{"text":"26 x 1 3/8","category":"Wheel Sizes"}
+{"text":"26 x 1 3/8","category":"Wheel Sizes"}
+{"text":"26 x 1.25, x 1.375","category":"Wheel Sizes"}
+{"text":"700 C","category":"Wheel Sizes"}
+{"text":"27in","category":"Wheel Sizes"}
+{"text":"28 x 1 1/2, 700 B","category":"Wheel Sizes"}
