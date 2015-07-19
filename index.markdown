@@ -116,11 +116,28 @@ Set a `priority` to organize the way items are ordered.
 
 Search for items in only one category by adding a `categories` parameter:
 
+
+
+<div class="panel panel-default" id="sh-example-categories-select-panel"><div class="panel-body">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Categories</label>
+<select class="form-control" id="sh-example-categories-select-category"></select>
+</div></div>
+<div class="col-sm-8">
+<div class="form-group">
+<label id="sh-example-categories-select-label"></label>
+<select class="form-control" id="sh-example-categories-select-item"></select>
+</div></div>
+</div>
+</div>
+
 <pre>
 <a href="https://sh-example-simple.herokuapp.com/?categories=manufacturer">http://sh-example-simple.herokuapp.com?categories=manufacturer</a>
 </pre>
 
 <p>Search for items in any of the included categories by separating the categories with commas:</p>
+
 
 <pre>
 <a href="http://sh-example-simple.herokuapp.com/?categories=manufacturer,frame%20manufacturer">http://sh-example-simple.herokuapp.com/?categories=manufacturer,frame%20manufacturer</a>
@@ -132,7 +149,7 @@ Search for items in only one category by adding a `categories` parameter:
   <h2 id="using-data">Arbitrary return data</h2>
 </div>
 
-Any column that isn't `categroy`, `text` or `priority` will be returned as well.
+Any column that isn't `category`, `text` or `priority` will be returned as well.
 
 I'd like this to be an example of emoticons & emojis
 
