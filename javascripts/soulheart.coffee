@@ -1,11 +1,15 @@
 ---
 ---
 
+urls = 
+  categories_url: "https://sh-example-categories.herokuapp.com"
+  basic_url: "https://sh-example-simple.herokuapp.com"
+  priority_url: "https://sh-example-priority.herokuapp.com"
+
 # Ping the heroku apps this page uses to get them out of hibernation
-urls = ['sh-example-simple', 'sh-example-priority']
-for url in urls
+for url in (Object.keys(urls).map (u) -> urls[u])
   request = new XMLHttpRequest
-  request.open 'GET', "https://#{url}.herokuapp.com", true
+  request.open 'GET', url, true
   request.send()
 
 
@@ -25,7 +29,7 @@ $(document).ready ->
     allowClear: true
     placeholder: "Choose a manufacturer"
     ajax:
-      url: 'https://sh-example-simple.herokuapp.com'
+      url: urls['basic_url']
       dataType: 'json'
       delay: 250
       data: (params) ->
@@ -46,7 +50,7 @@ $(document).ready ->
     placeholder: "Choose manufacturers"
     multiple: true
     ajax:
-      url: 'https://sh-example-priority.herokuapp.com'
+      url: urls['priority_url']
       dataType: 'json'
       delay: 250
       data: (params) ->
@@ -61,14 +65,13 @@ $(document).ready ->
           more: data.matches.length == 10
       cache: true
 
-  categories_base_url = "http://localhost:9292"
 
   $('#sh-example-categories-select-category').select2
     allowClear: true
     placeholder: "Choose a category"
     multiple: true
     ajax:
-      url: "#{categories_base_url}/categories"
+      url: "#{urls['categories_url']}/categories"
       dataType: 'json'
       delay: 250
       data: (params) ->
@@ -96,35 +99,39 @@ $(document).ready ->
     else
       query = selection.join(",")
       query = query.replace(/\s/g, "%20")
-      query = "#{categories_base_url}/?categories=#{query}" 
+      query = "#{urls['categories_url']}/?categories=#{query}" 
     return query
 
   setLabelText = (selection) ->
     if selection is null
-      label = "Choose a category"
+      label = "Choose items from any category"
     else
       label = selection.join(" & ")
       label = label.replace /\w*/g, (txt) ->
         txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-      label = label + " <small>from <a href='https://bikeindex.org/documentation/api_v2#!/selections'>Bike Index</a></small>"
+      label = label + " <small>from <a href='https://bikeindex.org/documentation/api_v2#!/selections' tabindex=-1>Bike Index</a></small>"
     $("#sh-example-categories-select-label").html label
 
   setItemsSelect = (categories_url) ->
     $('#sh-example-categories-select-item').select2
       allowClear: true
-      placeholder: "Choose an item"
+      multiple: true
+      placeholder: "Choose items"
       ajax:
-        url: categories_url
+        url: urls['categories_url']
         dataType: 'json'
         delay: 250
         data: (params) ->
           q: params.term
           page: params.page
-          per_page: 100
+          per_page: 10
         processResults: (data, page) ->
           # Select2 requires an id, so we need to map the results and add an ID
           # You could instead include an id in the tsv you add to soulheart ;)
           results: data.matches.map (item) -> {id: item.text, text: item.text}
+          pagination:
+            # If there are 10 matches, there's probably at least another page
+            more: data.matches.length == 10
         cache: true
 
   setItemsSelect()

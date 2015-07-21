@@ -21,7 +21,7 @@ Deploy to Heroku with the click of a button. Upload a tsv with a `text` column. 
 
 <ol class="step-by-step-basic">
 <li>
-<p>Deploy to Heroku by clicking the button<a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fsethherr%2Fsoulheart"><img src="https://www.herokucdn.com/deploy/button.png" alt="deploy"/></a>
+<p>Deploy to Heroku by clicking the button <a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fsethherr%2Fsoulheart"><img src="https://www.herokucdn.com/deploy/button.png" alt="deploy"/></a>
 <br><em>This requires a verified Heroku account&mdash;you will have to add a payment method to Heroku even though you won't be charged</em>
 </p>
 </li>
@@ -111,7 +111,7 @@ Items with equal scores are ordered alphanumerically. So in the manufacturers ex
 Set a `priority` to organize the way items are ordered.
 
 <div class="page-header">
-<h2 id="using-categories">Categories <small><a href="https://sh-example-priority.herokuapp.com/categories">/categories</a> now works!  </small></h2>
+<h2 id="using-categories">Categories</h2>
 </div>
 
 Search for items in only one category by adding a `categories` parameter:
@@ -121,7 +121,7 @@ Search for items in only one category by adding a `categories` parameter:
 <div class="panel panel-default" id="sh-example-categories-select-panel"><div class="panel-body">
 <div class="col-sm-4">
 <div class="form-group">
-<label>Categories</label>
+<label>Choose Categories</label>
 <select class="form-control" id="sh-example-categories-select-category"></select>
 </div></div>
 <div class="col-sm-8">
