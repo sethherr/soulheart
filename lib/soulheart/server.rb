@@ -23,9 +23,11 @@ module Soulheart
     end
 
     get '/info' do
+      info = Soulheart::Base.new.redis.info
       MultiJson.encode({
-        soulheart: Soulheart::VERSION,
-        time: Time.now.utc.strftime('%H:%M:%S UTC')
+        soulheart_version: Soulheart::VERSION,
+        current_time: Time.now.utc.strftime('%H:%M:%S UTC'),
+        redis_used_memory: info['used_memory_human'],
       })
     end
 

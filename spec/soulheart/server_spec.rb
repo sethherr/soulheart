@@ -39,8 +39,9 @@ describe Soulheart::Server do
       expect(last_response.headers['Access-Control-Allow-Origin']).to eq('*')
       expect(last_response.headers['Access-Control-Request-Method']).to eq('*')
       expect(last_response.headers['Content-Type']).to match('json')
-      expect(JSON.parse(last_response.body)['soulheart']).to match(/\d/)
-      expect(JSON.parse(last_response.body)['time']).to_not be_nil
+      expect(JSON.parse(last_response.body)['soulheart_version']).to match(/\d/)
+      expect(JSON.parse(last_response.body)['current_time']).to_not be_nil
+      expect(JSON.parse(last_response.body)['redis_used_memory']).to_not be_nil
     end
   end
 end

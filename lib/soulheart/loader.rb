@@ -58,13 +58,19 @@ module Soulheart
 
     def load(items)
       # Replace with item return so we know we have category_id
-      items.each { |item| item.replace(add_item(item)) }
+      i = 0
+      items.each do |item|
+        item.replace(add_item(item))
+        i += 1
+      end
       set_category_combos_array.each do |category_combo|
         items.each do |item|
           next unless category_combo.match(item['category']) || category_combo == 'all'
           add_item(item, category_id(category_combo), true) # send it base
+          i += 1
         end
       end
+      puts "Total items (including combinatored categories):    #{i}"
     end
 
     def clean_hash(item)

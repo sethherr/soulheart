@@ -39,7 +39,7 @@ parser = OptionParser.new do |opts|
   opts.separator ''
   opts.separator 'Commands:'
   opts.separator '  load   FILE  Loads data from a FILE - can be a local file or a url. Accepted formats are .json, .tsv and .csv'
-  opts.separator "  reset  FILE  Removes all existing data, then runs load on the FILE."
+  opts.separator "  reset        Removes all existing data"
   opts.separator ''
 end
 
@@ -102,7 +102,7 @@ when 'load'
   load ARGV[1]
 when 'reset'
   clear
-  load ARGV[1]
+  load ARGV[1] if ARGV[1]
 else
   puts parser.help
 end
