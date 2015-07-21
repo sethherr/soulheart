@@ -83,11 +83,6 @@
 {"text":"Carbon or composite","category":"Frame Materials"}
 {"text":"Aluminum","category":"Frame Materials"}
 {"text":"Steel","category":"Frame Materials"}
-{"text":"1","category":"Front Gear Types"}
-{"text":"2","category":"Front Gear Types"}
-{"text":"3","category":"Front Gear Types"}
-{"text":"2 internal","category":"Front Gear Types"}
-{"text":"3 internal","category":"Front Gear Types"}
 {"text":"Drop","category":"Handlebar Types"}
 {"text":"Forward facing","category":"Handlebar Types"}
 {"text":"Rear facing","category":"Handlebar Types"}
@@ -102,32 +97,6 @@
 {"text":"Electric throttle","category":"Propulsion Types"}
 {"text":"Gas","category":"Propulsion Types"}
 {"text":"Other style","category":"Propulsion Types"}
-{"text":"1","category":"Rear Gear Types"}
-{"text":"2","category":"Rear Gear Types"}
-{"text":"3","category":"Rear Gear Types"}
-{"text":"4","category":"Rear Gear Types"}
-{"text":"5","category":"Rear Gear Types"}
-{"text":"6","category":"Rear Gear Types"}
-{"text":"7","category":"Rear Gear Types"}
-{"text":"8","category":"Rear Gear Types"}
-{"text":"9","category":"Rear Gear Types"}
-{"text":"10","category":"Rear Gear Types"}
-{"text":"11","category":"Rear Gear Types"}
-{"text":"12","category":"Rear Gear Types"}
-{"text":"Fixed","category":"Rear Gear Types"}
-{"text":"1 internal","category":"Rear Gear Types"}
-{"text":"2 internal","category":"Rear Gear Types"}
-{"text":"3 internal","category":"Rear Gear Types"}
-{"text":"4 internal","category":"Rear Gear Types"}
-{"text":"5 internal","category":"Rear Gear Types"}
-{"text":"6 internal","category":"Rear Gear Types"}
-{"text":"7 internal","category":"Rear Gear Types"}
-{"text":"8 internal","category":"Rear Gear Types"}
-{"text":"9 internal","category":"Rear Gear Types"}
-{"text":"10 internal","category":"Rear Gear Types"}
-{"text":"11 internal","category":"Rear Gear Types"}
-{"text":"12 internal","category":"Rear Gear Types"}
-{"text":"Continuously variable","category":"Rear Gear Types"}
 {"text":"8 x 1 1/4","category":"Wheel Sizes"}
 {"text":"10 x 2","category":"Wheel Sizes"}
 {"text":"12in","category":"Wheel Sizes"}
