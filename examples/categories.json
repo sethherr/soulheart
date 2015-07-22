@@ -13,7 +13,7 @@
 {"text":"Yellow or Gold","category":"Colors"}
 {"text":"other","category":"Component Types"}
 {"text":"water bottle cage","category":"Component Types"}
-{"text":"stem","category":"Component Types"}
+{"text":"stem","category":"Component Types", "aliases": ["Goose neck", "handlebar clamp"]}
 {"text":"fairing","category":"Component Types"}
 {"text":"lights","category":"Component Types"}
 {"text":"basket","category":"Component Types"}

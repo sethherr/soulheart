@@ -74,6 +74,7 @@ module Soulheart
     end
 
     def clean_hash(item)
+      item['aliases'] = item['aliases'].split(',').map(&:strip) if item['aliases'] && !item['aliases'].kind_of?(Array)
       fail ArgumentError, 'Items must have text' unless item['text']
       default_items_hash(item.delete('text'), item.delete('category'))
         .tap { |i| i['data'].merge!(item.delete('data')) if item['data'] }

@@ -16,6 +16,7 @@ describe Soulheart::Loader do
         'text' => 'Cool ',
         'priority' => '50',
         'category' => 'Gooble',
+        'aliases' => 'deck, fly',
         'data' => {
           'id' => 199,
           'category' => 'Stuff'
@@ -24,6 +25,7 @@ describe Soulheart::Loader do
       result = Soulheart::Loader.new.clean_hash(item)
       expect(result['term']).to eq('cool')
       expect(result['priority']).to eq(50)
+      expect(result['aliases']).to eq(['deck', 'fly'])
       expect(result['data']['text']).to eq('Cool ')
       expect(result['data']['id']).to eq(199)
       expect(result['category']).to eq('gooble')
