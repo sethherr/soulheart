@@ -128,3 +128,35 @@ Here is the above example as a json stream:
 </div>
 
 You can also include aliases in the data you load. Soulheart will match across those aliases.
+
+For example, some people incorrectly refer to bicycle *stems* as "Goose neck" or "handlebar clamp". In [the categories demo](https://sethherr.github.io/soulheart#sh-example-categories-select-panel) if you enter "goose neck" or "handlebar clam" you will see "stem" as an option.
+
+Aliases are an array, so when loading an `.json`, make them an array:
+
+    {"text":"stem","category":"Component Types", "aliases": ["Goose neck", "handlebar clamp"]}
+
+If you're loading data with a `.tsv`, separate them with commas:
+  
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>text</th>
+      <th>category</th>
+      <th>aliases</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>stem</td>
+      <td>Component Types</td>
+      <td>Goose neck, handlebar clamp</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="alert alert-info">
+You can view the "stem" item loaded into the example in <a href="https://github.com/sethherr/soulheart/blob/master/examples/categories.json#L16">categories.json</a>
+</div>
+
+    
