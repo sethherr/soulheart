@@ -95,7 +95,7 @@ $(document).ready ->
 
   toQueryString = (selection) ->
     if selection is null
-      query is null
+      query = urls['categories_url']
     else
       query = selection.join(",")
       query = query.replace(/\s/g, "%20")
@@ -118,7 +118,7 @@ $(document).ready ->
       multiple: true
       placeholder: "Choose items"
       ajax:
-        url: urls['categories_url']
+        url: categories_url
         dataType: 'json'
         delay: 250
         data: (params) ->
@@ -134,6 +134,6 @@ $(document).ready ->
             more: data.matches.length == 10
         cache: true
 
-  setItemsSelect()
+  setItemsSelect(urls['categories_url'])
   setLabelText(null)
  
