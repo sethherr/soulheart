@@ -1,5 +1,10 @@
 module Soulheart
   class Loader < Base
+    def initialize(defaults={})
+      @no_all           = defaults[:no_all]
+      @no_combinatorial = defaults[:no_combinatorial]
+    end
+
     def default_items_hash(text, category)
       category ||= 'default'
       {
@@ -14,9 +19,19 @@ module Soulheart
       }
     end
 
+    def add_to_categories_array(category)
+      if @no_combinatorial 
+        return if redis.smembers(hidden_categories_id).include?(category)
+        redis.sadd hidden_categories_id, category
+      elsif !redis.smembers(categories_id).include?(category)
+        redis.sadd categories_id, category
+      end
+    end
+
     def delete_categories
       redis.expire category_combos_id, 0
       redis.expire categories_id, 0
+      redis.expire hidden_categories_id, 0
     end
 
     def reset_categories(categories)
@@ -65,12 +80,20 @@ module Soulheart
       end
       set_category_combos_array.each do |category_combo|
         items.each do |item|
-          next unless category_combo.match(item['category']) || category_combo == 'all'
+          if category_combo == item['category']
+            next
+          elsif category_combo == 'all'
+            next if @no_all
+          elsif !category_combo.match(item['category']) 
+            next
+          elsif @no_combinatorial
+            next
+          end
           add_item(item, category_id(category_combo), true) # send it base
           i += 1
         end
       end
-      puts "Total items (including combinatored categories):    #{i}"
+      puts "Total items (including combinatorial categories):    #{i}"
     end
 
     def clean_hash(item)
@@ -87,19 +110,16 @@ module Soulheart
       item.keys.select{ |k| !%w(category priority term aliases data).include?(k) }.each do |key|
         item['data'].merge!({"#{key}" => item.delete(key)})
       end
-      unless redis.smembers(categories_id).include?(item['category'])
-        redis.sadd categories_id, item['category']
-      end  
+      add_to_categories_array(item['category'])
       item
     end
 
     def add_item(item, category_base_id=nil, cleaned=false)
       item = clean(item) unless cleaned
       category_base_id ||= category_id(item['category'])
-
       priority = (-item['priority'])
       redis.pipelined do
-        redis.zadd(no_query_id(category_base_id), priority, item['term']) # Add to master set for queryless searches
+        redis.zadd(no_query_id(category_base_id), priority, item['term'])  # Add to master set for queryless searches
         # store the raw data in a separate key to reduce memory usage, if it's cleaned it's done
         redis.hset(results_hashes_id, item['term'], MultiJson.encode(item['data'])) unless cleaned
         phrase = ([item['term']] + (item['aliases'] || [])).join(' ')

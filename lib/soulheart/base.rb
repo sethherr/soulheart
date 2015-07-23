@@ -20,6 +20,10 @@ module Soulheart
       redis.smembers(categories_id).map { |c| normalize(c) }.uniq.sort
     end
 
+    def hidden_category_array
+      redis.smembers(hidden_categories_id).map { |c| normalize(c) }.uniq.sort
+    end
+
     def combinatored_category_array
       1.upto(sorted_category_array.size).
         flat_map { |n| sorted_category_array.combination(n).
@@ -29,7 +33,7 @@ module Soulheart
     def set_category_combos_array
       redis.expire category_combos_id, 0
       array = combinatored_category_array
-      array.last.replace('all')
+      array.any? ? array.last.replace('all') : array << 'all'
       redis.sadd category_combos_id, array
       array
     end
@@ -44,6 +48,10 @@ module Soulheart
 
     def categories_id
       "#{base_id}categories:"
+    end
+
+    def hidden_categories_id
+      "#{categories_id}hidden:"
     end
 
     def category_id(name = 'all')

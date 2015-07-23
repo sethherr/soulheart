@@ -32,14 +32,24 @@ parser = OptionParser.new do |opts|
     exit
   end
 
-  opts.on('-b', '--batch-size', 'Number of lines to read at a time') do |size|
-    BATCH_SIZE = size
+  opts.on('-A', '--no-all', 'on load: Do not add items into the "all" category (on load)') do |size|
+    NO_ALL = true
+  end
+
+  opts.on('-C', '--no-combinatorial', 'Do not create combined categories, do not add items to combined categories (on load)') do |size|
+    NO_COMBINATORIAL = true
+  end
+
+  opts.on('-R', '--remove-results', 'Remove results data - breaks the cache, fully clears all loaded data. (on clear)') do |size|
+    REMOVE_RESULTS = true
   end
 
   opts.separator ''
   opts.separator 'Commands:'
   opts.separator '  load   FILE  Loads data from a FILE - can be a local file or a url. Accepted formats are .json, .tsv and .csv'
   opts.separator "  reset        Removes all existing data (optionally pass a file to run load after reset)"
+  opts.separator ''
+  opts.separator 'Additional info: https://sethherr.github.io/soulheart/commands/'
   opts.separator ''
 end
 
@@ -58,7 +68,7 @@ def load(file)
 
   start_time = Time.now.to_i
   count = 0
-  loader = Soulheart::Loader.new
+  loader = Soulheart::Loader.new({no_all: NO_ALL, no_combinatorial: NO_COMBINATORIAL})
   lines = []
   begin
     if file.match(/(c|t)sv\z/i)
@@ -87,21 +97,23 @@ def load(file)
     f.close
   end
   loader.load(lines)
-  puts "Loaded a total of #{count} items in #{Time.now.to_i - start_time} second(s)"
+  puts "Total time to load:                                  #{Time.now.to_i - start_time} second(s)"
 end
 
-def clear
-  Soulheart::Loader.new.clear
+def clear(remove_results)
+  Soulheart::Loader.new.clear(remove_results)
 end
 
 parser.parse!
-BATCH_SIZE ||= 1000
 
 case ARGV[0]
 when 'load'
+  BATCH_SIZE ||= 1000
+  NO_ALL ||= false
+  NO_COMBINED_CATEGORIES ||= false
   load ARGV[1]
 when 'reset'
-  clear
+  clear(REMOVE_RESULTS)
   load ARGV[1] if ARGV[1]
 else
   puts parser.help

@@ -22,6 +22,22 @@ describe Soulheart do
     end
   end
 
+  it 'gets the sorted_category_array without hidden_categories' do 
+    base = Soulheart::Base.new
+    base.redis.expire base.categories_id, 0
+    base.redis.sadd base.categories_id, ['George', 'category one', 'other thing ']
+    base.redis.sadd base.hidden_categories_id, ['scotch', 'foobar']
+    expect(base.sorted_category_array).to eq(['category one', 'george', 'other thing'])
+  end
+
+  it 'gets the hidden_category_array' do 
+    base = Soulheart::Base.new
+    base.redis.expire base.hidden_categories_id, 0
+    base.redis.sadd base.categories_id, ['George', 'category one', 'other thing ']
+    base.redis.sadd base.hidden_categories_id, ['scotch', 'foobar']
+    expect(base.hidden_category_array).to eq(['foobar', 'scotch'])
+  end
+
   it 'Combinates all the things' do
     base = Soulheart::Base.new
     base.redis.expire base.categories_id, 0
