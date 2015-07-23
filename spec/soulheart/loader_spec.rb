@@ -11,13 +11,14 @@ describe Soulheart::Loader do
       expect(result['data']['text']).to eq('  FooBar')
     end
 
-    it "doesn't overwrite the submitted params" do
+    it "doesn't overwrite the submitted params (including the data-text)" do
       item = {
         'text' => 'Cool ',
         'priority' => '50',
         'category' => 'Gooble',
         'aliases' => 'deck, fly',
         'data' => {
+          'text' => ' Cspan',
           'id' => 199,
           'category' => 'Stuff'
         }
@@ -26,8 +27,8 @@ describe Soulheart::Loader do
       expect(result['term']).to eq('cool')
       expect(result['priority']).to eq(50)
       expect(result['aliases']).to eq(['deck', 'fly'])
-      expect(result['data']['text']).to eq('Cool ')
       expect(result['data']['id']).to eq(199)
+      expect(result['data']['text']).to eq(' Cspan')
       expect(result['category']).to eq('gooble')
       expect(result['data']['category']).to eq('Stuff')
     end

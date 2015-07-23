@@ -84,9 +84,9 @@ module Soulheart
             next
           elsif category_combo == 'all'
             next if @no_all
-          elsif !category_combo.match(item['category']) 
-            next
           elsif @no_combinatorial
+            next
+          elsif !category_combo.match(item['category']) 
             next
           end
           add_item(item, category_id(category_combo), true) # send it base
