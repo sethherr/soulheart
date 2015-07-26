@@ -17,6 +17,9 @@ Deploy to Heroku with the click of a button. Upload a tsv with a `text` column. 
 </div></div>
 </div>
 
+<pre id="simple-data" class="example-data-block"></pre>
+
+
 <p>Here is how to deploy the above example, step by step:</p>
 
 <ol class="step-by-step-basic">
@@ -105,18 +108,23 @@ Some manufacturers are more popular than others - and since we expect people to 
 <select class="form-control" id="sh-example-priority-select" style="width: 100%;"></select>
 </div></div>
 </div>
+
+<pre id="priority-data" class="example-data-block"></pre>
+
 <div class="special-pad"></div>
 Items with equal scores are ordered alphanumerically. So in the manufacturers example above, manufacturers are grouped in broad levels of popularity - 10, 100, 250 & 500 - higher numbers show up first. This example uses [manufacturers.tsv](https://github.com/sethherr/soulheart/tree/master/examples/manufacturers.tsv)
 
 Set a `priority` to organize the way items are ordered.
 
+
+
+
+
 <div class="page-header">
 <h2 id="using-categories">Categories</h2>
 </div>
 
-Search for items in only one category by adding a `categories` parameter:
-
-
+Search for items in only one category by adding a `category` parameter:
 
 <div class="panel panel-default" id="sh-example-categories-select-panel"><div class="panel-body">
 <div class="col-sm-4">
@@ -132,18 +140,17 @@ Search for items in only one category by adding a `categories` parameter:
 </div>
 </div>
 
+<pre id="categories-data" class="example-data-block"></pre>
+
+<p>This example uses <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/categories.json">categories.json</a>.</p> 
+
+Access an array of all available categories by appending `/categories` to the data source (Heroku app)'s url. In this example, the "Choose Categories" select box pulls its options from:
+<pre><a href="https://sh-example-categories.herokuapp.com/categories">https://sh-example-categories.herokuapp.com/categories</a></pre>
+
+<p>By default, the "Choose Items" select box above shows items from all categories. To limit the options to the selected category, generate a query string using the category value(s) and add it to the data source url. Search for items in multiple categories by separating them with commas:</p>
 <pre>
-<a href="https://sh-example-simple.herokuapp.com/?categories=manufacturer">http://sh-example-simple.herokuapp.com?categories=manufacturer</a>
+<a href="https://sh-example-categories.herokuapp.com?categories=colors,component%20types">https://sh-example-categories.herokuapp.com?categories=colors,component%20types</a>
 </pre>
-
-<p>Search for items in any of the included categories by separating the categories with commas:</p>
-
-
-<pre>
-<a href="http://sh-example-simple.herokuapp.com/?categories=manufacturer,frame%20manufacturer">http://sh-example-simple.herokuapp.com/?categories=manufacturer,frame%20manufacturer</a>
-</pre>
-
-
 
 <div class="page-header">
   <h2 id="using-data">Arbitrary return data</h2>
@@ -151,7 +158,13 @@ Search for items in only one category by adding a `categories` parameter:
 
 Any column that isn't `category`, `text` or `priority` will be returned as well.
 
-I'd like this to be an example of emoticons & emojis
+<div class="panel panel-default" id="sh-example-arbitrary-select-panel"><div class="panel-body"><div class="form-group">
+<label>Emoticons</label>
+<select class="form-control" id="sh-example-arbitrary-select" 
+style="width: 100%;"></select>
+</div></div>
+</div>
 
+<pre id="arbitrary-data" class="example-data-block"></pre>
 
-
+You can use the [Select2 templating options](https://select2.github.io/examples.html#templating) to control which parameters are displayed before and after selection.

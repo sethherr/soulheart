@@ -7,3 +7,29 @@
   "bootstrap",
   "soulheart"
 ;
+
+body {
+  padding-bottom: 200px;
+}
+
+.example-data-block {
+  max-height: 400px;
+}
+
+.img-emoji, .img-donger {
+  height: 20pt;
+  line-height: 20pt;
+}
+
+.opt-emoji {
+  padding-right: 6pt;
+}
+
+.emoji-type {
+  font-size: 80%;
+  font-style: italic;
+  // margin-left: 14pt;
+  display: inline-block;
+  float: right;
+  line-height: 20pt;
+}
