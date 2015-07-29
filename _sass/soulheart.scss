@@ -19,8 +19,12 @@ body { padding-top: 30px; }
   }
 }
 
-.form-group label small {
-  font-weight: normal;
+.form-group {
+  position: relative;
+  label small {
+    font-weight: normal;
+  }
+  .form-control { width: 100%; }
 }
 
 .highlight {
@@ -33,4 +37,12 @@ body { padding-top: 30px; }
   &.code-highlight {
     background-color: #fff;
   }
+}
+
+
+// Just directly overridding because lame
+body pre.prettyprint {
+  padding: 9.5px;
+  border-color: #ccc;
+  a { text-decoration: underline; } // and underline links so they stand out 
 }

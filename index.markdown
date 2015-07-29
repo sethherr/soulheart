@@ -34,7 +34,7 @@ Deploy to Heroku with the click of a button. Upload a tsv with a `text` column. 
 </li>
 
 <li><p>Run this command in the terminal window:</p>
-<pre class="with-highlight">heroku run -a sh-example-simple soulheart load <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/manufacturers_simple.tsv">https://raw.githubusercontent.com/sethherr/soulheart/master/examples/manufacturers_simple.tsv</a></pre>
+<pre class="with-highlight lang-sh">heroku run -a sh-example-simple soulheart load <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/manufacturers_simple.tsv">https://raw.githubusercontent.com/sethherr/soulheart/master/examples/manufacturers_simple.tsv</a></pre>
 <div class="highlight code-highlight">Replace <code>sh-example-simple</code> with the name of your app on Heroku</div>
 </li>
 
@@ -61,6 +61,7 @@ $('#sh-example-simple-select').select2({
   ajax: {
     url: "http://sh-example-simple.herokuapp.com",
     dataType: "json",
+    width: 'style',
     delay: 250,
     data: function(params) {
       return {
@@ -130,12 +131,12 @@ Search for items in only one category by adding a `category` parameter:
 <div class="col-sm-4">
 <div class="form-group">
 <label>Choose Categories</label>
-<select class="form-control" id="sh-example-categories-select-category"></select>
+<select class="form-control" id="sh-example-categories-select-category" style="width: 100%;"></select>
 </div></div>
 <div class="col-sm-8">
 <div class="form-group">
 <label id="sh-example-categories-select-label"></label>
-<select class="form-control" id="sh-example-categories-select-item"></select>
+<select class="form-control" id="sh-example-categories-select-item" style="width: 100%;"></select>
 </div></div>
 </div>
 </div>
@@ -160,8 +161,7 @@ Any column that isn't `category`, `text` or `priority` will be returned as well.
 
 <div class="panel panel-default" id="sh-example-arbitrary-select-panel"><div class="panel-body"><div class="form-group">
 <label>Emoticons</label>
-<select class="form-control" id="sh-example-arbitrary-select" 
-style="width: 100%;"></select>
+<select class="form-control" id="sh-example-arbitrary-select" style="width: 100%;"></select>
 </div></div>
 </div>
 

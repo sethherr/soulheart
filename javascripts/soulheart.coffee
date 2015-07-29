@@ -5,7 +5,7 @@ urls =
   categories_url: "https://sh-example-categories.herokuapp.com"
   basic_url: "https://sh-example-simple.herokuapp.com"
   priority_url: "https://sh-example-priority.herokuapp.com"
-  arbitrary_url: "https://evening-gorge-3662.herokuapp.com"
+  arbitrary_url: "https://sh-example-arbitrary.herokuapp.com"
 
 # Ping the heroku apps this page uses to get them out of hibernation
 for url in (Object.keys(urls).map (u) -> urls[u])
@@ -75,22 +75,11 @@ formatSelectedEmoji = (emoji) ->
     $emoji = $("<span class='img-donger'>#{emoji.text}</span>")
     $emoji
 
-$(document).ready ->
-  # Add headroom to header
-  headroom  = new Headroom(document.querySelector("#header"))
-  headroom.init()
 
-  $('.scroll-to-ref').click (e) ->
-    event.preventDefault()
-    target = $(event.target).attr('href')
-    $('body').animate( 
-      scrollTop: ($(target).offset().top - 20), 'fast' 
-    )
-
-  $('.example-data-block').text "This block will display values as they are returned from the server."
-
+initializeSelectBlocks = ->
   $('#sh-example-simple-select').select2
     allowClear: true
+    width: 'style'
     placeholder: "Choose a manufacturer"
     ajax:
       url: urls['basic_url']
@@ -113,6 +102,7 @@ $(document).ready ->
 
   $('#sh-example-priority-select').select2
     allowClear: true
+    width: 'style'
     placeholder: "Choose manufacturers"
     multiple: true
     ajax:
@@ -136,6 +126,7 @@ $(document).ready ->
 
   $('#sh-example-categories-select-category').select2
     allowClear: true
+    width: 'style'
     placeholder: "Choose a category"
     multiple: true
     ajax:
@@ -167,6 +158,7 @@ $(document).ready ->
   setItemsSelect = (categories_url) ->
     $('#sh-example-categories-select-item').select2
       allowClear: true
+      width: 'style'
       multiple: true
       placeholder: "Choose items"
       ajax:
@@ -193,6 +185,7 @@ $(document).ready ->
 
   $('#sh-example-arbitrary-select').select2
     allowClear: true
+    width: 'style'
     placeholder: "Choose an emoticon"
     multiple: true
     templateSelection: formatSelectedEmoji
@@ -214,3 +207,25 @@ $(document).ready ->
           # If there are 10 matches, there's probably at least another page
           more: data.matches.length == 10
       cache: true
+
+
+$(document).ready ->
+  # Add headroom to header
+  headroom  = new Headroom(document.querySelector("#header"))
+  headroom.init()
+
+  $('.scroll-to-ref').click (e) ->
+    event.preventDefault()
+    target = $(event.target).attr('href')
+    $('body').animate( 
+      scrollTop: ($(target).offset().top - 20), 'fast' 
+    )
+  
+  initializeSelectBlocks()
+
+  $('pre').addClass('prettyprint') # Add code highlighting
+
+
+  $('.example-data-block').text "This block will display values as they are returned from the server."
+
+  
