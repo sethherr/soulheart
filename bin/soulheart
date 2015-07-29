@@ -129,11 +129,13 @@ end
 def normalize(file=nil)
   if @normalize_regex
     f = open_file(file) 
-    puts f.readlines.map(&:strip).reject(&:empty?).first
+    puts "Updating normalizer: regular expression - " + f.readlines.map(&:strip).reject(&:empty?).first
     Soulheart.normalizer = f.readlines.map(&:strip).reject(&:empty?).first
   elsif @normalize_no_sym
+    puts "Updating normalizer: allow symbols"
     Soulheart.normalizer = ''
   else
+    puts "Updating normalizer: default settings"    
     Soulheart.normalizer = Soulheart.default_normalizer
   end
 end
@@ -151,6 +153,7 @@ when 'stop-words'
 when 'normalize'
   ARGV[1] ? normalize(ARGV[1]) : normalize
 when 'clear'
+  puts @remove_results ? "Clearing ALL data (-R option)" : "Clearing data"
   clear
   load ARGV[1] if ARGV[1]
 else

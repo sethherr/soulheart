@@ -142,16 +142,18 @@ describe Soulheart::Matcher do
 
     it "gets +1 and things with changed normalizer function" do 
       Soulheart.normalizer = ''
-      # require 'soulheart'
+      require 'soulheart'
       items = [
         { 'text' => '+1'},
         { 'text' => '-1'},
         { 'text' => '( ͡↑ ͜ʖ ͡↑)' },
+        { 'text' => '100' },
       ]
       loader = Soulheart::Loader.new
       loader.delete_categories
       loader.load(items)
       plus1 = Soulheart::Matcher.new('q' => '+', 'cache' => false).matches
+      expect(plus1.count).to eq(1)
       expect(plus1[0]['text']).to eq('+1')
 
       minus1 = Soulheart::Matcher.new('q' => '-', 'cache' => false).matches
