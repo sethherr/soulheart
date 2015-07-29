@@ -154,6 +154,9 @@ describe Soulheart::Matcher do
       plus1 = Soulheart::Matcher.new('q' => '+', 'cache' => false).matches
       expect(plus1[0]['text']).to eq('+1')
 
+      minus1 = Soulheart::Matcher.new('q' => '-', 'cache' => false).matches
+      expect(minus1[0]['text']).to eq('-1')
+
       donger = Soulheart::Matcher.new('q' => '(', 'cache' => false).matches
       expect(donger[0]['text']).to eq('( ͡↑ ͜ʖ ͡↑)')
 
