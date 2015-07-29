@@ -30,7 +30,7 @@ Commands <small>usage documentation</small>
     Commands:
       load        FILE   Loads data from a FILE - can be a local file or a url. Accepted formats are .json, .tsv and .csv
       stop-words  FILE   Load file containing a list of stop words to overwrite defaults - 'the', 'at' and 'vs'
-      normalize          Set the way that terms are normalized. Requires a file when using the --regex option
+      normalize          Set the way that terms are normalized. Requires a file when including the --regex option
       clear              Removes existing items and categories from the database
 
     Additional info: https://sethherr.github.io/soulheart/commands/
@@ -65,18 +65,18 @@ The default stop words are:
 Stop words are saved in redis, so they work between loads and when restarting the server. 
 
 <div class="alert alert-warning">
-<h4>After running this command you must:</h4>
-<ul><li><strong>restart the server</strong></li>
-<li><strong>reload</strong> your data!</li></ul>
+<h4>After running this command you may need to:</h4>
+<ul><li><strong>Restart the server</strong></li>
+<li><strong>Reload your data</strong> - stop words apply to both data and results, it will break things if you don't re-load the data. Re-run <code>soulheart load</code>.</li></ul>
 </div>
 
-To restart a server on Heroku, run `heroku restart -a app_name`
-
-Because this applies to both data and results, it will break things if you don't re-load the data. So run `soulheart load` with the data you had in there previously.
+<div class="alert alert-info">
+<p><strong>Heroku note</strong>: To restart a server on Heroku, run <code>heroku restart -a app_name</code></p>
+</div>
 
 ### normalize
 
-`normalize` sets the way that data is processed and matched. There are three possible options for this:
+`normalize` sets the way that data is processed and matched. There are three possible options:
 
 1. No passed options. Sets it to default - strips out symbols and extra white space.
 2. `--with-symbols` which doesn't remove symbols.
@@ -84,9 +84,12 @@ Because this applies to both data and results, it will break things if you don't
 
 
 <div class="alert alert-warning">
-<h4>After running this command you must:</h4>
-<ul><li><strong>restart the server</strong></li>
-<li><strong>reload</strong> your data!</li></ul>
+<h4>After running this command you may need to:</h4>
+<ul><li><strong>Restart the server</strong></li>
+<li><strong>Reload your data!</strong></li></ul>
 </div>
 
-Because this applies to both data and results, it will break things if you don't re-load the data. So run `soulheart load` with the data you had in there previously.
+<div class="alert alert-info">
+<p><strong>Heroku note</strong>: on Heroku, some of Soulheart's options conflict with Heroku commands. If you wrap the command in quotes it works correctly:</p>
+<p><pre>heroku run -a APP_NAME "soulheart -s normalize"</pre></p>
+</div>
