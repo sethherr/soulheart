@@ -12,10 +12,6 @@ module Soulheart
       10 * 60 # Setting to 10 minutes, but making it possible to edit down the line
     end
 
-    def base_id
-      ENV['RACK_ENV'] != 'test' ? 'soulheart:' : 'soulheart_test:'
-    end
-
     def sorted_category_array
       redis.smembers(categories_id).map { |c| normalize(c) }.uniq.sort
     end
@@ -39,7 +35,7 @@ module Soulheart
     end
 
     def category_combos_id
-      "#{base_id}category_combos:"
+      "#{Soulheart.base_id}category_combos:"
     end
 
     def category_combos
@@ -47,7 +43,7 @@ module Soulheart
     end
 
     def categories_id
-      "#{base_id}categories:"
+      "#{Soulheart.base_id}categories:"
     end
 
     def hidden_categories_id
@@ -63,11 +59,16 @@ module Soulheart
     end
 
     def results_hashes_id
-      "#{base_id}database:"
+      "#{Soulheart.base_id}database:"
     end
 
+    def normalize_type_id
+      "#{Soulheart.base_id}normalize:"
+    end
+
+
     def cache_id(type = 'all')
-      "#{base_id}cache:#{type}:"
+      "#{Soulheart.base_id}cache:#{type}:"
     end
   end
 end

@@ -11,6 +11,13 @@ require 'soulheart'
 require 'optparse'
 require 'tempfile'
 
+@batch_size = 1000
+@no_all = false
+@no_combinatorial = false
+@normalize_regex = false
+@normalize_no_sym = false
+@remove_results = false
+
 parser = OptionParser.new do |opts|
   opts.banner = 'Usage: soulheart [options] COMMAND'
 
@@ -21,54 +28,68 @@ parser = OptionParser.new do |opts|
     Soulheart.redis = host
   end
 
-  opts.on('-s', '--stop-words [FILE]', 'Path to file containing a list of stop words to overwrite defaults - "the", "at", "vs"') do |fn|
-    File.open(fn) do |file|
-      Soulheart.stop_words = file.readlines.map(&:strip).reject(&:empty?)
-    end
-  end
-
   opts.on('-h', '--help', 'Show this message') do
     puts opts
     exit
   end
 
-  opts.on('-A', '--no-all', 'on load: Do not add items into the "all" category (on load)') do |size|
-    NO_ALL = true
+  opts.separator ''
+  opts.separator '  load options:'
+
+  opts.on('-A', '--no-all', 'Do not add items into the "all" category') do |size|
+    @no_all = true
   end
 
-  opts.on('-C', '--no-combinatorial', 'Do not create combined categories, do not add items to combined categories (on load)') do |size|
-    NO_COMBINATORIAL = true
+  opts.on('-C', '--no-combinatorial', 'Do not create combined categories, do not add items to combined categories') do |size|
+    @no_combinatorial = true
   end
 
-  opts.on('-R', '--remove-results', 'Remove results data - breaks the cache, fully clears all loaded data. (on clear)') do |size|
-    REMOVE_RESULTS = true
+  opts.separator ''
+  opts.separator '  normalize options:'
+
+  opts.on('-s', '--with-symbols', 'Do not remove symbols when normalizing terms') do |size|
+    @normalize_no_sym = true
+  end
+
+  opts.on('-x', '--regex', 'Use the first line from the FILE as the regular expression for normalizing terms') do |size|
+    @normalize_regex = true
+  end
+
+  opts.separator ''
+  opts.separator '  clear options:'
+
+  opts.on('-R', '--remove-results', 'Remove results data - breaks the cache, fully clears all loaded data') do |size|
+    @remove_results = true
   end
 
   opts.separator ''
   opts.separator 'Commands:'
-  opts.separator '  load   FILE  Loads data from a FILE - can be a local file or a url. Accepted formats are .json, .tsv and .csv'
-  opts.separator "  reset        Removes all existing data (optionally pass a file to run load after reset)"
+  opts.separator '  load        FILE   Loads data from a FILE - can be a local file or a url. Accepted formats are .json, .tsv and .csv'
+  opts.separator "  stop-words  FILE   Load file containing a list of stop words to overwrite defaults - 'the', 'at' and 'vs'"
+  opts.separator "  normalize          Set the way that terms are normalized. Requires a file when including the --regex option"
+  opts.separator "  clear              Removes existing items and categories from the database"
   opts.separator ''
   opts.separator 'Additional info: https://sethherr.github.io/soulheart/commands/'
   opts.separator ''
 end
 
-
-def load(file)
+def open_file(file)
   require 'uri'
   if file =~ URI.regexp
     require 'open-uri'
-    f = open(file)
+    open(file)
   elsif File.exist?(file)
-    f = File.open(file)
+    File.open(file)
   else
-    puts "Couldn't open file: #{file}"
-    return true
+    raise StandardError, "Couldn't open file: #{file}"
   end
+end
 
+def load(file)
+  f = open_file(file)
   start_time = Time.now.to_i
   count = 0
-  loader = Soulheart::Loader.new({no_all: NO_ALL, no_combinatorial: NO_COMBINATORIAL})
+  loader = Soulheart::Loader.new({no_all: @no_all, no_combinatorial: @no_combinatorial})
   lines = []
   begin
     if file.match(/(c|t)sv\z/i)
@@ -81,10 +102,10 @@ def load(file)
       end
     elsif file.match(/json\z/i)
       puts 'Reading JSON'
-      puts "Loading items in batches of #{BATCH_SIZE} ..."
+      puts "Loading items in batches of #{@batch_size} ..."
       until f.eof?
         lines = []
-        BATCH_SIZE.times do
+        @batch_size.times do
           break if f.eof?
           lines << MultiJson.decode(f.gets)
           count += 1
@@ -100,20 +121,37 @@ def load(file)
   puts "Total time to load:                                  #{Time.now.to_i - start_time} second(s)"
 end
 
-def clear(remove_results)
-  Soulheart::Loader.new.clear(remove_results)
+def stop_words(file)
+  f = open_file(file)
+  Soulheart.stop_words = f.readlines.map(&:strip).reject(&:empty?)
+end
+
+def normalize(file=nil)
+  if @normalize_regex
+    f = open_file(file) 
+    puts f.readlines.map(&:strip).reject(&:empty?).first
+    Soulheart.normalizer = f.readlines.map(&:strip).reject(&:empty?).first
+  elsif @normalize_no_sym
+    Soulheart.normalizer = ''
+  else
+    Soulheart.normalizer = Soulheart.default_normalizer
+  end
+end
+
+def clear
+  Soulheart::Loader.new.clear(@remove_results)
 end
 
 parser.parse!
-
 case ARGV[0]
 when 'load'
-  BATCH_SIZE ||= 1000
-  NO_ALL ||= false
-  NO_COMBINED_CATEGORIES ||= false
   load ARGV[1]
-when 'reset'
-  clear(REMOVE_RESULTS)
+when 'stop-words'
+  stop_words ARGV[1]
+when 'normalize'
+  ARGV[1] ? normalize(ARGV[1]) : normalize
+when 'clear'
+  clear
   load ARGV[1] if ARGV[1]
 else
   puts parser.help

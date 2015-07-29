@@ -61,10 +61,10 @@ module Soulheart
       redis.expire(@cachekey, cache_duration) # cache_duration is set in base.rb
     end
 
-    def matching_hashes(ids)
-      return [] unless ids.size > 0
-      results = redis.hmget(results_hashes_id, *ids)
-      results = results.reject(&:nil?) # handle cached results for ids which have since been deleted
+    def matching_hashes(terms)
+      return [] unless terms.size > 0
+      results = redis.hmget(results_hashes_id, *terms)
+      results = results.reject(&:nil?) # handle cached results for terms which have since been deleted
       results.map { |r| MultiJson.decode(r) }
     end
 
@@ -74,8 +74,8 @@ module Soulheart
       limit = @opts['per_page'].to_i + offset - 1
 
       limit = 0 if limit < 0
-      ids = redis.zrange(@cachekey, offset, limit) # Using 'ids', even though keys are now terms
-      matching_hashes(ids)      
+      terms = redis.zrange(@cachekey, offset, limit)
+      matching_hashes(terms)      
     end
   end
 end

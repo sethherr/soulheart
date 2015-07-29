@@ -22,37 +22,6 @@ describe Soulheart::Matcher do
       cleaned = Soulheart::Matcher.new('categories' => 'cool, test')
       expect(cleaned.opts['categories']).to eq([])
     end
-
-    it "Obeys default stop words" do 
-      loader = Soulheart::Loader.new
-      expect(Soulheart.stop_words).to eq(['vs', 'at', 'the'])
-
-      prefixes1 = ['k', 'kn', 'kni', 'knic', 'knick', 'knicks']
-      expect(loader.prefixes_for_phrase('the knicks')).to eq(prefixes1)
-
-      prefixes2 = ['t', 'te', 'tes', 'test', 'testi', 'testin', 'th', 'thi', 'this']
-      expect(loader.prefixes_for_phrase("testin' this")).to eq(prefixes2)
-
-      prefixes3 = ['t', 'te', 'tes', 'test']
-      expect(loader.prefixes_for_phrase('test test')).to eq(prefixes3)
-
-      prefixes4 = ['s', 'so', 'sou', 'soul', 'soulm', 'soulma', 'soulmat', 'soulmate']
-      expect(loader.prefixes_for_phrase('SoUlmATE')).to eq(prefixes4)
-
-      prefixes5 = ['测', '测试', '测试中', '测试中文', 't', 'te', 'tes', 'test']
-      expect(loader.prefixes_for_phrase('测试中文 test')).to eq(prefixes5)
-
-      prefixes6 = ['t', 'te', 'tet', 'teth', 'tethe', 'tether']
-      expect(loader.prefixes_for_phrase('tether')).to eq(prefixes6)
-    end
-
-    it "Obeys passed stop words" do 
-      loader = Soulheart::Loader.new
-      Soulheart.stop_words = 'with'
-
-      prefixes1 = ['l', 'lo', 'loc', 'lock', 't', 'th', 'the', 'i', 'in', 'ink', 'p', 'pe', 'pen']
-      expect(loader.prefixes_for_phrase('lock with the ink pen')).to eq(prefixes1)
-    end
   end
 
   describe :category_id_from_opts do
@@ -169,6 +138,27 @@ describe Soulheart::Matcher do
       page3 = Soulheart::Matcher.new('per_page' => 2, 'page' => 3, 'cache' => false).matches
       expect(page3[0]['text']).to eq('Fourth item')
       expect(page3[1]['text']).to eq('Fifth item')
+    end
+
+    it "gets +1 and things with changed normalizer function" do 
+      Soulheart.normalizer = ''
+      # require 'soulheart'
+      items = [
+        { 'text' => '+1'},
+        { 'text' => '-1'},
+        { 'text' => '( ͡↑ ͜ʖ ͡↑)' },
+      ]
+      loader = Soulheart::Loader.new
+      loader.delete_categories
+      loader.load(items)
+      plus1 = Soulheart::Matcher.new('q' => '+', 'cache' => false).matches
+      expect(plus1[0]['text']).to eq('+1')
+
+      donger = Soulheart::Matcher.new('q' => '(', 'cache' => false).matches
+      expect(donger[0]['text']).to eq('( ͡↑ ͜ʖ ͡↑)')
+
+      Soulheart.normalizer = Soulheart.default_normalizer
+      require 'soulheart'
     end
   end
 end

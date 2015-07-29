@@ -6,7 +6,7 @@ describe Soulheart do
   end
 
   it 'Has a test base_id' do
-    expect(Soulheart::Base.new.base_id).to eq('soulheart_test:')
+    expect(Soulheart.base_id).to eq('soulheart_test:')
   end
 
   it 'Has a cache expiration time' do

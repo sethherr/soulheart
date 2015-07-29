@@ -28,6 +28,8 @@ module Soulheart
         soulheart_version: Soulheart::VERSION,
         current_time: Time.now.utc.strftime('%H:%M:%S UTC'),
         redis_used_memory: info['used_memory_human'],
+        stop_words: Soulheart.stop_words,
+        normalizer: Soulheart.normalizer,
       })
     end
 

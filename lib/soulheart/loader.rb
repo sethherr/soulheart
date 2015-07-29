@@ -39,9 +39,9 @@ module Soulheart
       redis.sadd categories_id, categories
     end
 
-    def delete_data(id="#{base_id}:")
+    def delete_data(id="#{Soulheart.base_id}:")
       # delete the sorted sets for this type
-      phrases = redis.smembers(base_id)
+      phrases = redis.smembers(Soulheart.base_id)
       redis.pipelined do
         phrases.each do |p|
           redis.del("#{id}#{p}")
@@ -72,10 +72,10 @@ module Soulheart
     end
 
     def load(items)
-      # Replace with item return so we know we have category_id
+      Soulheart.stop_words # Load stop words so we don't pipeline redis_stop_words accidentally
       i = 0
       items.each do |item|
-        item.replace(add_item(item))
+        item.replace(add_item(item)) # Replace with item return so we know we have category_id
         i += 1
       end
       set_category_combos_array.each do |category_combo|
@@ -114,7 +114,7 @@ module Soulheart
       item
     end
 
-    def add_item(item, category_base_id=nil, cleaned=false)
+    def add_item(item, category_base_id=nil, cleaned=false)      
       item = clean(item) unless cleaned
       category_base_id ||= category_id(item['category'])
       priority = (-item['priority'])
@@ -125,7 +125,7 @@ module Soulheart
         phrase = ([item['term']] + (item['aliases'] || [])).join(' ')
         # Store all the prefixes
         prefixes_for_phrase(phrase).each do |p|
-          redis.sadd(base_id, p) unless cleaned # remember prefix in a master set
+          redis.sadd(Soulheart.base_id, p) unless cleaned # remember prefix in a master set
           # store the normalized term in the index for each of the categories
           redis.zadd("#{category_base_id}#{p}", priority, item['term'])
         end

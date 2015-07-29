@@ -3,7 +3,7 @@ module Soulheart
   module Helpers
     def normalize(str)
       # Letter, Mark, Number, Connector_Punctuation (Chinese, Japanese, etc.)
-      str.downcase.gsub(/[^\p{Word}\ ]/i, '').strip
+      str.downcase.gsub(/#{Soulheart.normalizer}/i, '').strip
     end
 
     def prefixes_for_phrase(phrase)

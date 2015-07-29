@@ -66,6 +66,7 @@ describe Soulheart::Loader do
 
   describe :add_item do
     it 'adds an item, adds prefix scopes, adds category' do
+      Soulheart.stop_words # Meh. Unclear why it's needed, but it's needed here to not fail
       item = {
         'text' => 'Brompton Bicycle',
         'priority' => 50,
@@ -88,6 +89,7 @@ describe Soulheart::Loader do
     end
 
     it 'deals with csv format, with data- prefixed items' do
+      Soulheart.stop_words # Meh. Unclear why it's needed, but it's needed here to not fail
       item = {
         'text' => 'Brompton Bicycle',
         'priority' => 50,
