@@ -20,3 +20,6 @@ tmp/
 
 _site
 .sass-cache
+
+# Ignore benchmarking
+spec/benchmarks/*.html
