@@ -26,7 +26,9 @@ showData = (pre_id, data) ->
   $("##{pre_id}").text JSON.stringify(data, null, 2)
 
 showUrl = (pre_id, url) ->
+  console.log(url)
   url = url.replace /[^(&|?)]*=undefined/ig, ''
+  
   $("##{pre_id}-url").html "<a href='#{url}'>#{url}</a>"
 
 setLabelText = (selection) ->
