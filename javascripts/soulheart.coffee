@@ -13,27 +13,6 @@ for url in (Object.keys(urls).map (u) -> urls[u])
   request.open 'GET', url, true
   request.send()
 
-syntaxHighlight = (json) ->
-  if typeof json != 'string'
-    json = JSON.stringify(json, undefined, 2)
-  json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-  json.replace /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, (match) ->
-    cls = 'number'
-    if /^"/.test(match)
-      if /:$/.test(match)
-        cls = 'key'
-      else
-        cls = 'string'
-    else if /true|false/.test(match)
-      cls = 'boolean'
-    else if /null/.test(match)
-      cls = 'null'
-    '<span class="' + cls + '">' + match + '</span>'
-
-# showData = (pre_id) ->
-#   $target = $("$(##{pre_id})")
-#   $target.text JSON.stringify(data, null, 2)
-
 toQueryString = (selection) ->
   if selection is null
     query = urls['categories_url']
@@ -42,6 +21,13 @@ toQueryString = (selection) ->
     query = query.replace(/\s/g, "%20")
     query = "#{urls['categories_url']}/?categories=#{query}" 
   return query
+
+showData = (pre_id, data) ->
+  $("##{pre_id}").text JSON.stringify(data, null, 2)
+
+showUrl = (pre_id, url) ->
+  url = url.replace /[^(&|?)]*=undefined/ig, ''
+  $("##{pre_id}-url").html "<a href='#{url}'>#{url}</a>"
 
 setLabelText = (selection) ->
   if selection is null
@@ -110,12 +96,13 @@ initializeSelectBlocks = ->
       dataType: 'json'
       delay: 250
       data: (params) ->
-        q: params.term
-        page: params.page
-        per_page: 10
+        showUrl("priority-data", "#{url}?q=#{params.term}&page=#{params.page}&per_page=10")
+        result =
+          q: params.term
+          page: params.page
+          per_page: 10
       processResults: (data, page) ->
-        # showData("#priority-data")
-        $("#priority-data").text JSON.stringify(data, null, 2)
+        showData("priority-data", data)
         # Since sh-example-priority has ids, we don't need to map the response
         results: data.matches
         pagination:
@@ -226,6 +213,6 @@ $(document).ready ->
   $('pre').addClass('prettyprint') # Add code highlighting
 
 
-  $('.example-data-block').text "This block will display values as they are returned from the server."
+  $('.example-data-block').text "// This block will display values as they are returned from the server."
 
   

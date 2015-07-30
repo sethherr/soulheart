@@ -17,9 +17,6 @@ Deploy to Heroku with the click of a button. Upload a tsv with a `text` column. 
 </div></div>
 </div>
 
-<pre id="simple-data" class="example-data-block"></pre>
-
-
 <p>Here is how to deploy the above example, step by step:</p>
 
 <ol class="step-by-step-basic">
@@ -54,7 +51,7 @@ Deploy to Heroku with the click of a button. Upload a tsv with a `text` column. 
 
 <li>
 <p>Use this javascript to hook up the select box with select2:</p>
-<pre>
+<pre class="with-highlight">
 $('#sh-example-simple-select').select2({
   allowClear: true,
   placeholder: "Choose a manufacturer",
@@ -104,20 +101,19 @@ So, for example, let’s say you want to select bicycle manufacturers using sele
 
 Some manufacturers are more popular than others - and since we expect people to be searching for more popular ones more frequently, it's important to make them show up first &mdash; for example, if you input a "t", the first manufacturer to select should be "Trek", not "Tacx".
 
-<div class="panel panel-default" id="sh-example-priority-select-panel"><div class="panel-body"><div class="form-group">
+<div class="row padded-row">
+<div class="col-md-6"><div class="form-group" id="sh-example-priority-select-panel">
 <label>Bicycle Manufacturers with priority <small>data from <a href="https://bikeindex.org/manufacturers">Bike Index</a></small></label>
 <select class="form-control" id="sh-example-priority-select" style="width: 100%;"></select>
 </div></div>
+<div class="col-md-6"><pre id="priority-data" class="example-data-block with-highlight" style="height: 10em;"></pre>
+<div class="highlight code-highlight" id="priority-data-url"></div></div>
 </div>
-
-<pre id="priority-data" class="example-data-block"></pre>
 
 <div class="special-pad"></div>
 Items with equal scores are ordered alphanumerically. So in the manufacturers example above, manufacturers are grouped in broad levels of popularity - 10, 100, 250 & 500 - higher numbers show up first. This example uses [manufacturers.tsv](https://github.com/sethherr/soulheart/tree/master/examples/manufacturers.tsv)
 
 Set a `priority` to organize the way items are ordered.
-
-
 
 
 
