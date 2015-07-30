@@ -28,7 +28,7 @@ showData = (pre_id, data) ->
 showUrl = (pre_id, url) ->
   console.log(url)
   url = url.replace /[^(&|?)]*=undefined/ig, ''
-  
+
   $("##{pre_id}-url").html "<a href='#{url}'>#{url}</a>"
 
 setLabelText = (selection) ->
@@ -98,6 +98,7 @@ initializeSelectBlocks = ->
       dataType: 'json'
       delay: 250
       data: (params) ->
+        console.log('testing')
         showUrl("priority-data", "#{url}?q=#{params.term}&page=#{params.page}&per_page=10")
         result =
           q: params.term
