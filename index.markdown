@@ -7,8 +7,15 @@ Hello, this is soulheart.
 <small>Easy remote data source for autocomplete</small>
 </h1></div>
 
-<h3>Set up a remote data source with zero backend programming. <br></h3>
+<!-- <div id="tabs">
+  <ul class="tabs">
+    <li class="active"><a href="#select2" data-section="#select2">Select2</a></li>
+    <li><a href="#select2" data-section="#selectize">Selectize</a></li>
+  </ul>
+</div> -->
 
+<!-- <div class="tab-content" id="select2"> -->
+<h3>Set up a remote data source with zero backend programming. <br></h3>
 Deploy to Heroku with the click of a button. Upload a tsv with a `text` column. Start using it.
 
 <div class="panel panel-default" id="sh-example-simple-select-panel"><div class="panel-body"><div class="form-group">
@@ -77,7 +84,6 @@ $('#sh-example-simple-select').select2({
             text: item.text
           };
         }),
-
         pagination: {
           // If there are 10 matches, there's at least another page
           more: data.matches.length === 10
@@ -110,12 +116,47 @@ Some manufacturers are more popular than others - and since we expect people to 
 <div class="highlight code-highlight" id="priority-data-url"></div></div>
 </div>
 
+
+
+
+
 <div class="special-pad"></div>
 Items with equal scores are ordered alphanumerically. So in the manufacturers example above, manufacturers are grouped in broad levels of popularity - 10, 100, 250 & 500 - higher numbers show up first. This example uses [manufacturers.tsv](https://github.com/sethherr/soulheart/tree/master/examples/manufacturers.tsv)
 
 Set a `priority` to organize the way items are ordered.
 
+<a class="btn btn-primary code-toggle" role="button" data-toggle="collapse" href="#sh-example-priority-code" aria-expanded="false" aria-controls="collapseExample"><span class="hiding-code">Show</span><span class="showing-code">Hide</span></a>
 
+<div class="code-block collapse" id="sh-example-priority-code"><pre>
+$('#sh-example-priority-select').select2({
+  allowClear: true,
+  width: 'style',
+  placeholder: "Choose manufacturers",
+  multiple: true,
+  ajax: {
+    url: "https://sh-example-priority.herokuapp.com",
+    dataType: 'json',
+    delay: 250,
+    data: function(params) {
+      var result;
+      return result = {
+        q: params.term,
+        page: params.page,
+        per_page: 10
+      };
+    },
+    processResults: function(data, page) {
+      return {
+        results: data.matches,
+        pagination: {
+          more: data.matches.length === 10
+        }
+      };
+    },
+    cache: true
+  }
+});
+</pre></div>
 
 <div class="page-header">
 <h2 id="using-categories">Categories</h2>
@@ -137,7 +178,11 @@ Search for items in only one category by adding a `category` parameter:
 </div>
 </div>
 
-<pre id="categories-data" class="example-data-block"></pre>
+<div><pre id="categories-data" class="example-data-block with-highlight" style="height: 10em;"></pre>
+<div class="highlight code-highlight" id="categories-data-url"></div></div>
+
+
+
 
 <p>This example uses <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/categories.json">categories.json</a>.</p> 
 
@@ -148,6 +193,86 @@ Access an array of all available categories by appending `/categories` to the da
 <pre>
 <a href="https://sh-example-categories.herokuapp.com?categories=colors,component%20types">https://sh-example-categories.herokuapp.com?categories=colors,component%20types</a>
 </pre>
+
+<a class="btn btn-primary code-toggle" role="button" data-toggle="collapse" href="#sh-example-categories-code" aria-expanded="false" aria-controls="collapseExample"><span class="hiding-code">Show</span><span class="showing-code">Hide</span></a>
+
+<div class="code-block collapse" id="sh-example-categories-code"><pre>
+$('#sh-example-categories-select-category').select2({
+  allowClear: true,
+  width: 'style',
+  placeholder: "Choose a category",
+  multiple: true,
+  ajax: {
+    url: "https://sh-example-categories.herokuapp.com/categories",
+    dataType: 'json',
+    delay: 250,
+    data: function(params) {
+      return {
+        q: params.term,
+        page: params.page,
+        per_page: 10
+      };
+    },
+    processResults: function(data, page) {
+      return {
+        results: data.categories.map(function(item) {
+          return {
+            id: item,
+            text: item
+          };
+        })
+      };
+    },
+    cache: true
+  }
+});
+
+$('#sh-example-categories-select-category').on("change", function(e) {
+  if ($(this).val() === null) {
+    $('#sh-example-categories-select-item').select2('val', 'All');
+  }
+  window.categories = $(this).val();
+  window.categories_url = toQueryString(window.categories);
+  setItemsSelect(window.categories_url);
+  return setLabelText(window.categories);
+});
+
+setItemsSelect = function(categories_url) {
+  return $('#sh-example-categories-select-item').select2({
+    allowClear: true,
+    width: 'style',
+    multiple: true,
+    placeholder: "Choose items",
+    ajax: {
+      url: categories_url,
+      dataType: 'json',
+      delay: 250,
+      data: function(params) {
+        return {
+          q: params.term,
+          page: params.page,
+          per_page: 10
+        };
+      },
+      processResults: function(data, page) {
+        return {
+          results: data.matches.map(function(item) {
+            return {
+              id: item.text,
+              text: item.text
+            };
+          }),
+          pagination: {
+            more: data.matches.length === 10
+          }
+        };
+      },
+      cache: true
+    }
+  });
+};
+</pre>
+</div>
 
 <div class="page-header">
   <h2 id="using-data">Arbitrary return data</h2>
@@ -161,6 +286,74 @@ Any column that isn't `category`, `text` or `priority` will be returned as well.
 </div></div>
 </div>
 
-<pre id="arbitrary-data" class="example-data-block"></pre>
+<div><pre id="arbitrary-data" class="example-data-block with-highlight" style="height: 10em;"></pre>
+<div class="highlight code-highlight" id="arbitrary-data-url"></div></div>
 
-You can use the [Select2 templating options](https://select2.github.io/examples.html#templating) to control which parameters are displayed before and after selection.
+
+
+
+Here, the `id`, `image_url` and `source` parameters are also returned. You can use the [select2 templating options](https://select2.github.io/examples.html#templating) to control how fields are displayed before and after selection. 
+
+<a class="btn btn-primary code-toggle" role="button" data-toggle="collapse" href="#sh-example-arbitrary-code" aria-expanded="false" aria-controls="collapseExample"><span class="hiding-code">Show</span><span class="showing-code">Hide</span></a>
+
+<div class="code-block collapse" id="sh-example-arbitrary-code"><pre>
+$('#sh-example-arbitrary-select').select2({
+  allowClear: true,
+  width: 'style',
+  placeholder: "Choose an emoticon",
+  multiple: true,
+  templateSelection: formatSelectedEmoji,
+  templateResult: formatEmoji,
+  ajax: {
+    url: "https://sh-example-arbitrary.herokuapp.com",
+    dataType: 'json',
+    delay: 250,
+    data: function(params) {
+      return {
+        q: params.term,
+        page: params.page,
+        per_page: 10
+      };
+    },
+    processResults: function(data, page) {
+      return {
+        results: data.matches,
+        pagination: {
+          more: data.matches.length === 10
+        }
+      };
+    },
+    cache: true
+  }
+});
+
+formatEmoji = function(emoji) {
+  var $emoji;
+  if (!emoji.id) {
+    return emoji.text;
+  }
+  if (emoji.category === "emoticon") {
+    $emoji = $("&lt;span&gt;&lt;img src='" + emoji.image_url + "' class='img-emoji opt-emoji' /&gt;" + emoji.text + "&lt;/span&gt;&lt;span class='emoji-type'&gt;" + emoji.category + " from " + emoji.source + "&lt;/span&gt;");
+    return $emoji;
+  } else if (emoji.category === "donger") {
+    $emoji = $("&lt;span&gt;&lt;span class='img-donger opt-emoji'&gt;" + emoji.text + "&lt;/span&gt;" + emoji.id + "&lt;/span&gt;&lt;span class='emoji-type'&gt;" + emoji.category + " from " + emoji.source + "&lt;/span&gt;");
+    return $emoji;
+  }
+};
+
+formatSelectedEmoji = function(emoji) {
+  var $emoji;
+  if (!emoji.id) {
+    return emoji.text;
+  }
+  if (emoji.category === "emoticon") {
+    $emoji = $("&lt;span&gt;&lt;img src='" + emoji.image_url + "' class='img-emoji' /&gt;&lt;/span&gt;");
+    return $emoji;
+  } else if (emoji.category === "donger") {
+    $emoji = $("&lt;span class='img-donger'&gt;" + emoji.text + "&lt;/span&gt;");
+    return $emoji;
+  }
+};
+</pre>
+</div>
+<!-- </div> -->
