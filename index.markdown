@@ -2,19 +2,13 @@
 layout: default
 ---
 
+<script type="text/javascript" src="{{ "/javascripts/soulheart_select2.js" | prepend: site.baseurl }}"></script>
+
 <div class="page-header"><h1><img src="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/logo.png" alt="Soulheart" width="200" />
 Hello, this is soulheart.
 <small>Easy remote data source for autocomplete</small>
 </h1></div>
 
-<!-- <div id="tabs">
-  <ul class="tabs">
-    <li class="active"><a href="#select2" data-section="#select2">Select2</a></li>
-    <li><a href="#select2" data-section="#selectize">Selectize</a></li>
-  </ul>
-</div> -->
-
-<!-- <div class="tab-content" id="select2"> -->
 <h3>Set up a remote data source with zero backend programming. <br></h3>
 Deploy to Heroku with the click of a button. Upload a tsv with a `text` column. Start using it.
 
@@ -125,7 +119,7 @@ Items with equal scores are ordered alphanumerically. So in the manufacturers ex
 
 Set a `priority` to organize the way items are ordered.
 
-<a class="btn btn-primary code-toggle" role="button" data-toggle="collapse" href="#sh-example-priority-code" aria-expanded="false" aria-controls="collapseExample"><span class="hiding-code">Show</span><span class="showing-code">Hide</span></a>
+<a class="btn btn-primary code-toggle" role="button" data-toggle="collapse" href="#sh-example-priority-code" aria-expanded="false" aria-controls="collapseExample"><span class="hiding-code">Show code</span><span class="showing-code">Hide code</span></a>
 
 <div class="code-block collapse" id="sh-example-priority-code"><pre>
 $('#sh-example-priority-select').select2({
@@ -162,7 +156,7 @@ $('#sh-example-priority-select').select2({
 <h2 id="using-categories">Categories</h2>
 </div>
 
-Search for items in only one category by adding a `category` parameter:
+Search for items in only one category by adding a `category` parameter. 
 
 <div class="panel panel-default" id="sh-example-categories-select-panel"><div class="panel-body">
 <div class="col-sm-4">
@@ -181,20 +175,24 @@ Search for items in only one category by adding a `category` parameter:
 <div><pre id="categories-data" class="example-data-block with-highlight" style="height: 10em;"></pre>
 <div class="highlight code-highlight" id="categories-data-url"></div></div>
 
+This example uses <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/categories.json">categories.json</a>, which includes a whole host of options from the <a href="https://bikeindex.org/documentation/api_v2#!/selections/">Bike Index API</a>. Say that, instead of searching the full list, you only want to view options for handlebar types.
 
-
-
-<p>This example uses <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/categories.json">categories.json</a>.</p> 
-
-Access an array of all available categories by appending `/categories` to the data source (Heroku app)'s url. In this example, the "Choose Categories" select box pulls its options from:
+All categories are available at the Heroku app's url + `/categories`. So start by pulling options into the category select box from: 
 <pre><a href="https://sh-example-categories.herokuapp.com/categories">https://sh-example-categories.herokuapp.com/categories</a></pre>
 
-<p>By default, the "Choose Items" select box above shows items from all categories. To limit the options to the selected category, generate a query string using the category value(s) and add it to the data source url. Search for items in multiple categories by separating them with commas:</p>
+When the category changes, you want to grab the value and add it to your url as a query. This becomes the source for the items select box:
+
+<pre>
+<a href="https://sh-example-categories.herokuapp.com?categories=handlebar%20types">https://sh-example-categories.herokuapp.com?categories=handlebar%20types</a>
+</pre>
+
+
+Search for items in multiple categories by separating them with commas:
 <pre>
 <a href="https://sh-example-categories.herokuapp.com?categories=colors,component%20types">https://sh-example-categories.herokuapp.com?categories=colors,component%20types</a>
 </pre>
 
-<a class="btn btn-primary code-toggle" role="button" data-toggle="collapse" href="#sh-example-categories-code" aria-expanded="false" aria-controls="collapseExample"><span class="hiding-code">Show</span><span class="showing-code">Hide</span></a>
+<a class="btn btn-primary code-toggle" role="button" data-toggle="collapse" href="#sh-example-categories-code" aria-expanded="false" aria-controls="collapseExample"><span class="hiding-code">Show code</span><span class="showing-code">Hide code</span></a>
 
 <div class="code-block collapse" id="sh-example-categories-code"><pre>
 $('#sh-example-categories-select-category').select2({
@@ -289,12 +287,29 @@ Any column that isn't `category`, `text` or `priority` will be returned as well.
 <div><pre id="arbitrary-data" class="example-data-block with-highlight" style="height: 10em;"></pre>
 <div class="highlight code-highlight" id="arbitrary-data-url"></div></div>
 
+Here, the <a href="https://github.com/sethherr/soulheart/blob/master/examples/emoticons.json">emoticons.json</a> example file includes `id`, `image_url` and `source` fields. These values are returned and available for incorporation into the select box. 
 
+Through the magic of <a href="https://select2.github.io/examples.html#templating">select2's templating options</a>, emoticon images are displayed in the dropdown along with their `text`, `category` and `source` details:
+<pre>
+formatEmoji = function(emoji) {
+  if (emoji.category === "emoticon") {
+    $emoji = $("&lt;span&gt;&lt;img src='" + emoji.image_url + "' class='img-emoji opt-emoji' /&gt;" + emoji.text + "&lt;/span&gt;&lt;span class='emoji-type'&gt;" + emoji.category + " from " + emoji.source + "&lt;/span&gt;");
+    return $emoji;
+  }
+};
+</pre>
 
+Once an item is selected, we can opt to display only its image:
+<pre>
+formatSelectedEmoji = function(emoji) {
+  if (emoji.category === "emoticon") {
+    $emoji = $("&lt;span&gt;&lt;img src='" + emoji.image_url + "' class='img-emoji' /&gt;&lt;/span&gt;");
+    return $emoji;
+  }
+};
+</pre>
 
-Here, the `id`, `image_url` and `source` parameters are also returned. You can use the [select2 templating options](https://select2.github.io/examples.html#templating) to control how fields are displayed before and after selection. 
-
-<a class="btn btn-primary code-toggle" role="button" data-toggle="collapse" href="#sh-example-arbitrary-code" aria-expanded="false" aria-controls="collapseExample"><span class="hiding-code">Show</span><span class="showing-code">Hide</span></a>
+<a class="btn btn-primary code-toggle" role="button" data-toggle="collapse" href="#sh-example-arbitrary-code" aria-expanded="false" aria-controls="collapseExample"><span class="hiding-code">Show code</span><span class="showing-code">Hide code</span></a>
 
 <div class="code-block collapse" id="sh-example-arbitrary-code"><pre>
 $('#sh-example-arbitrary-select').select2({
@@ -356,4 +371,3 @@ formatSelectedEmoji = function(emoji) {
 };
 </pre>
 </div>
-<!-- </div> -->
