@@ -86,6 +86,9 @@ initializeSelectBlocks = ->
           callback()
           return
         success: (res) ->
+          baseurl = urls['priority_url']
+          console.log baseurl
+          showUrl("priority-data", baseurl)
           data = res.matches
           window.showData("priority-data", data)
           # console.log data

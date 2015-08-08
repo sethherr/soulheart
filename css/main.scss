@@ -13,8 +13,12 @@ body {
   padding-bottom: 200px;
 }
 
-.example-data-block {
-  max-height: 400px;
+// .example-data-block {
+//   max-height: 400px;
+// }
+
+.panel .panel-default {
+  min-height: 10em;
 }
 
 .img-emoji, .img-donger {

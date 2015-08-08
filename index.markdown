@@ -101,16 +101,16 @@ So, for example, let’s say you want to select bicycle manufacturers using sele
 
 Some manufacturers are more popular than others - and since we expect people to be searching for more popular ones more frequently, it's important to make them show up first &mdash; for example, if you input a "t", the first manufacturer to select should be "Trek", not "Tacx".
 
+
 <div class="row padded-row">
-<div class="col-md-6"><div class="form-group" id="sh-example-priority-select-panel">
+<div class="col-md-6">
+<div class="panel panel-default" id="sh-example-priority-select-panel" style="height: 12em"><div class="panel-body"><div class="form-group">
 <label>Bicycle Manufacturers with priority <small>data from <a href="https://bikeindex.org/manufacturers">Bike Index</a></small></label>
 <select class="form-control" id="sh-example-priority-select" style="width: 100%;"></select>
-</div></div>
+</div></div></div></div>
 <div class="col-md-6"><pre id="priority-data" class="example-data-block with-highlight" style="height: 10em;"></pre>
 <div class="highlight code-highlight" id="priority-data-url"></div></div>
 </div>
-
-
 
 
 
@@ -158,22 +158,21 @@ $('#sh-example-priority-select').select2({
 
 Search for items in only one category by adding a `category` parameter. 
 
+
+<div class="row padded-row"><div class="col-md-6">
 <div class="panel panel-default" id="sh-example-categories-select-panel"><div class="panel-body">
-<div class="col-sm-4">
 <div class="form-group">
 <label>Choose Categories</label>
 <select class="form-control" id="sh-example-categories-select-category" style="width: 100%;"></select>
-</div></div>
-<div class="col-sm-8">
+</div>
 <div class="form-group">
 <label id="sh-example-categories-select-label"></label>
 <select class="form-control" id="sh-example-categories-select-item" style="width: 100%;"></select>
-</div></div>
-</div>
-</div>
-
-<div><pre id="categories-data" class="example-data-block with-highlight" style="height: 10em;"></pre>
+</div></div></div></div>
+<div class="col-md-6">
+<div><pre id="categories-data" class="example-data-block with-highlight" style="height: 10.6em;"></pre>
 <div class="highlight code-highlight" id="categories-data-url"></div></div>
+</div></div>
 
 This example uses <a href="https://raw.githubusercontent.com/sethherr/soulheart/master/examples/categories.json">categories.json</a>, which includes a whole host of options from the <a href="https://bikeindex.org/documentation/api_v2#!/selections/">Bike Index API</a>. Say that, instead of searching the full list, you only want to view options for handlebar types.
 
@@ -278,14 +277,25 @@ setItemsSelect = function(categories_url) {
 
 Any column that isn't `category`, `text` or `priority` will be returned as well.
 
-<div class="panel panel-default" id="sh-example-arbitrary-select-panel"><div class="panel-body"><div class="form-group">
+<!-- <div class="panel panel-default" id="sh-example-arbitrary-select-panel"><div class="panel-body"><div class="form-group">
 <label>Emoticons</label>
 <select class="form-control" id="sh-example-arbitrary-select" style="width: 100%;"></select>
 </div></div>
 </div>
 
 <div><pre id="arbitrary-data" class="example-data-block with-highlight" style="height: 10em;"></pre>
+<div class="highlight code-highlight" id="arbitrary-data-url"></div></div> -->
+
+<div class="row padded-row"><div class="col-md-6">
+<div class="panel panel-default" id="sh-example-arbitrary-select-panel" style="height: 12em"><div class="panel-body"><div class="form-group">
+<label>Emoticons</label>
+<select  class="form-control" id="sh-example-arbitrary-select" style="width: 100%;"></select>
+</div></div>
+</div></div>
+<div class="col-md-6">
+<div><pre id="arbitrary-data" class="example-data-block with-highlight" style="height: 10em;"></pre>
 <div class="highlight code-highlight" id="arbitrary-data-url"></div></div>
+</div></div>
 
 Here, the <a href="https://github.com/sethherr/soulheart/blob/master/examples/emoticons.json">emoticons.json</a> example file includes `id`, `image_url` and `source` fields. These values are returned and available for incorporation into the select box. 
 
