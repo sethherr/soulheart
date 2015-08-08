@@ -297,7 +297,7 @@ Any column that isn't `category`, `text` or `priority` will be returned as well.
 <div class="highlight code-highlight" id="arbitrary-data-url"></div></div>
 </div></div>
 
-Here, the <a href="https://github.com/sethherr/soulheart/blob/master/examples/emoticons.json">emoticons.json</a> example file includes `id`, `image_url` and `source` fields. These values are returned and available for incorporation into the select box. 
+Here, the <a href="https://github.com/sethherr/soulheart/blob/master/examples/emoticons.tsv">emoticons.tsv</a> example file includes `id`, `image_url` and `source` fields. These values are returned and available for incorporation into the select box. 
 
 Through the magic of <a href="https://select2.github.io/examples.html#templating">select2's templating options</a>, emoticon images are displayed in the dropdown along with their `text`, `category` and `source` details:
 <pre>
@@ -318,6 +318,14 @@ formatSelectedEmoji = function(emoji) {
   }
 };
 </pre>
+
+To match the dongers and emoticons, Soulheart needs to not ignore symbols. Typically Soulheart strips out symbols to make matching easier, but you can [change the normalizing function with a command](https://sethherr.github.io/soulheart/commands#normalize)
+
+In this case, to load in the dongers and emoticons, the exact commands (after creating a Heroku instance named `sh-example-arbitrary`): 
+    
+    heroku run -a sh-example-arbitrary "soulheart -s normalize"
+    heroku run -a sh-example-arbitrary soulheart load https://raw.githubusercontent.com/sethherr/soulheart/master/examples/emoticons.tsv
+
 
 <a class="btn btn-primary code-toggle" role="button" data-toggle="collapse" href="#sh-example-arbitrary-code" aria-expanded="false" aria-controls="collapseExample"><span class="hiding-code">Show code</span><span class="showing-code">Hide code</span></a>
 
