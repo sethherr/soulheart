@@ -3,7 +3,7 @@
 Soulheart is a ready-to-use remote data source for autocomplete. The goal is to provide a solid, flexible tool that's downright easy to set up and use.
 
 - [Demos](https://sethherr.github.io/soulheart/)
-- [Usage documentation](https://sethherr.github.io/soulheart/commands/)
+- [Usage documentation (commands)](https://sethherr.github.io/soulheart/commands/)
 - [Example data sources](https://github.com/sethherr/soulheart/tree/master/examples)
 - [Getting started](#getting-started)
 - [Deployment](#deployment)
@@ -56,7 +56,7 @@ And then put this in your routes.rb
 
 You can then access the server when your rails app is running. You can run the [Soulheart commands](https://sethherr.github.io/soulheart/commands/) from that directory.
 
-*note: On Heroku Soulheart uses `rackup` to start the server. Because of this, there's a `config.ru` and a `Gemfile.lock`&mdash;to make it (and any forks) directly deployable. These files aren't in the Gem.*
+*note: On Heroku Soulheart uses `rackup` to start the server. Because of this, there's a `config.ru`, a `Gemfile.lock` and a `app.json`&mdash;to make it (and any forks of it) directly deployable. These files aren't in the Gem.*
 
 ## Testing
 
@@ -73,6 +73,6 @@ It requires Redis >= 3.0
 
 ## Additional info
 
-This is an extended fork of [Soulmate](https://github.com/seatgeek/soulmate), to bring it up to date, make it slicker, and make it deployable to Heroku.
+This initially started as a fork of [Soulmate](https://github.com/seatgeek/soulmate) to bring it up to date, make it slicker, and make it deployable to Heroku.
 
 It's MIT licensed.
