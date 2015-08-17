@@ -73,6 +73,6 @@ It requires Redis >= 3.0
 
 ## Additional info
 
-This initially started as a fork of [Soulmate](https://github.com/seatgeek/soulmate) to bring it up to date, make it slicker, and make it deployable to Heroku.
+This initially started as a fork of [Soulmate](https://github.com/seatgeek/soulmate) to support the features listed, provide demos and make it instantly deployable to Heroku.
 
 It's MIT licensed.
