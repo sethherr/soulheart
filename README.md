@@ -58,6 +58,17 @@ You can then access the server when your rails app is running. You can run the [
 
 *note: On Heroku Soulheart uses `rackup` to start the server. Because of this, there's a `config.ru`, a `Gemfile.lock` and a `app.json`&mdash;to make it (and any forks of it) directly deployable. These files aren't in the Gem.*
 
+##### Setting redis url
+
+You can also set the redis url. 
+
+```ruby
+# config/initializers/soulheart.rb
+
+Soulheart.redis = 'redis://127.0.0.1:6379/0'
+# or you can asign an existing instance of Redis, Redis::Namespace, etc.
+# Soulheart.redis = $redis
+```
 ## Testing
 
 Tested with rspec. Check out test information at [Code Climate](https://codeclimate.com/github/sethherr/soulheart).
