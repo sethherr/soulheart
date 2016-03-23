@@ -55,22 +55,19 @@ module Soulheart
       # everything will work itself out as soon as the cache expires again.
     end
 
-    def remove_results_hash(cat_ids)
-      # delete the data store
-      # We don't do this every time we clear because because it breaks the caching feature. 
-      # The option to clear this is only called in testing right now. 
-      # There should be an option to clear it other times though.
-      cat_ids.map { |cat_id| redis.expire(no_query_id(cat_id), 0) }
+    def clear_cache
+      # Remove the remove_results_hash
+      # has to be called before the cat_ids are cleared
+      category_combos.map { |cat| redis.expire(no_query_id(category_id(cat)), 0) }
       redis.expire results_hashes_id, 0
       redis.del(results_hashes_id)
     end
 
-    def clear(remove_results=false)
-      cat_ids = category_combos.map { |cat| category_id(cat) }
-      cat_ids.each {|cat_id| delete_data(cat_id) }
+    def clear(should_clear_cache = false)
+      clear_cache if should_clear_cache
+      category_combos.each {|cat| delete_data(category_id(cat)) }
       delete_categories
       delete_data
-      remove_results_hash(cat_ids) if remove_results
     end
 
     def load(items)
