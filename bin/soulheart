@@ -26,6 +26,7 @@ parser = OptionParser.new do |opts|
 
   opts.on('-r', '--redis [HOST:PORT]', 'Redis connection string') do |host|
     Soulheart.redis = host
+    exit
   end
 
   opts.on('-h', '--help', 'Show this message') do
@@ -73,81 +74,23 @@ parser = OptionParser.new do |opts|
   opts.separator ''
 end
 
-def open_file(file)
-  require 'uri'
-  if file =~ URI.regexp
-    require 'open-uri'
-    open(file)
-  elsif File.exist?(file)
-    File.open(file)
-  else
-    raise StandardError, "Couldn't open file: #{file}"
-  end
-end
-
-def load(file)
-  f = open_file(file)
-  start_time = Time.now.to_i
-  count = 0
-  loader = Soulheart::Loader.new({no_all: @no_all, no_combinatorial: @no_combinatorial})
-  lines = []
-  begin
-    if file.match(/(c|t)sv\z/i)
-      puts 'Reading a CSV'
-      require 'csv'
-      sep = file.match(/tsv\z/i) ? "\t" : ','
-      CSV.foreach(f, headers: true, col_sep: sep) do |row|
-        lines << row.to_hash
-        count += 1
-      end
-    elsif file.match(/json\z/i)
-      puts 'Reading JSON'
-      puts "Loading items in batches of #{@batch_size} ..."
-      until f.eof?
-        lines = []
-        @batch_size.times do
-          break if f.eof?
-          lines << MultiJson.decode(f.gets)
-          count += 1
-        end
-      end
-    else
-      puts 'unknown File type'
-    end
-  ensure
-    f.close
-  end
-  loader.load(lines)
-  puts "Total time to load:                                  #{Time.now.to_i - start_time} second(s)"
-end
-
-def stop_words(file)
-  f = open_file(file)
-  Soulheart.stop_words = f.readlines.map(&:strip).reject(&:empty?)
-end
-
-def normalize(file=nil)
-  if @normalize_regex
-    f = open_file(file) 
-    puts "Updating normalizer: regular expression - " + f.readlines.map(&:strip).reject(&:empty?).first
-    Soulheart.normalizer = f.readlines.map(&:strip).reject(&:empty?).first
-  elsif @normalize_no_sym
-    puts "Updating normalizer: allow symbols"
-    Soulheart.normalizer = ''
-  else
-    puts "Updating normalizer: default settings"    
-    Soulheart.normalizer = Soulheart.default_normalizer
-  end
-end
-
 def clear
   Soulheart::Loader.new.clear(@remove_results)
 end
 
+opts = {
+  batch_size: @batch_size,
+  no_all: @no_all,
+  no_combinatorial: @no_combinatorial,
+  normalize_regex: @normalize_regex,
+  normalize_no_sym: @normalize_no_sym,
+  remove_results: @remove_results,
+}
+
 parser.parse!
 case ARGV[0]
 when 'load'
-  load ARGV[1]
+  Soulheart.load_file(ARGV[1], opts)
 when 'stop-words'
   stop_words ARGV[1]
 when 'normalize'

@@ -58,9 +58,27 @@ You can then access the server when your rails app is running. You can run the [
 
 *note: On Heroku Soulheart uses `rackup` to start the server. Because of this, there's a `config.ru`, a `Gemfile.lock` and a `app.json`&mdash;to make it (and any forks of it) directly deployable. These files aren't in the Gem.*
 
-##### Setting redis url
+#### Running commands in a ruby process
 
-You can also set the redis url. 
+Soulheart provides commands to run in a ruby process (in a Rails app, for instance).
+
+The commands are: `load_file`, `load_items` (TODO: add `stop_words` and `clear` commands).
+
+To load a file, the first argument is the filename. You can optionally set parameters via a hash as the second argument.
+
+```ruby
+Soulheart.load_file("filename.csv", {batch_size: true, no_all: true, no_combinatorial: true})
+```
+
+To load items directly, pass a ruby array of the items. Optionally set parameters via a hash as the second argument.
+
+```ruby
+Soulheart.load_file([[{'text' => 'stuff'}, {'text' => 'fun'}]], {batch_size: true, no_all: true, no_combinatorial: true})
+```
+
+#### Setting redis url
+
+You can set the redis url via an initializer in rails. 
 
 ```ruby
 # config/initializers/soulheart.rb
@@ -69,6 +87,9 @@ Soulheart.redis = 'redis://127.0.0.1:6379/0'
 # or you can asign an existing instance of Redis, Redis::Namespace, etc.
 # Soulheart.redis = $redis
 ```
+
+If you're using `rackup` to launch Soulheart you can set the redis url in `config.ru`
+
 ## Testing
 
 Tested with rspec. Check out test information at [Code Climate](https://codeclimate.com/github/sethherr/soulheart).

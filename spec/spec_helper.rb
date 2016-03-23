@@ -26,7 +26,7 @@ end
 def store_terms_fixture
   items = []
   file = File.read('spec/fixtures/multiple_categories.json')
-  file.each_line { |l| items << MultiJson.decode(l) }
+  file.each_line { |l| items << MultiJson.load(l) }
   loader = Soulheart::Loader.new
   loader.clear(true)
   loader.load(items)

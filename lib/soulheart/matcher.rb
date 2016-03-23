@@ -65,7 +65,7 @@ module Soulheart
       return [] unless terms.size > 0
       results = redis.hmget(results_hashes_id, *terms)
       results = results.reject(&:nil?) # handle cached results for terms which have since been deleted
-      results.map { |r| MultiJson.decode(r) }
+      results.map { |r| MultiJson.load(r) }
     end
 
     def matches

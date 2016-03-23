@@ -54,4 +54,31 @@ describe Soulheart do
     expect(result.include?('category onegeorgeother thing')).to be_false
     expect(base.redis.smembers(base.category_combos_id) - result).to eq([])
   end
+
+  it "runs file loader with passed options" do 
+    opts = {
+      batch_size: 10,
+      no_all: true,
+      no_combinatorial: true,
+      normalize_regex: 'filename',
+      normalize_no_sym: true,
+      remove_results: true,
+      no_log: true,
+    }
+    # Not sure how to test option passing without stubbing out initialize
+    # Stubbing initialize prints a warning about how it's a bad idea tho...
+    expect_any_instance_of(Soulheart::FileHandler).to receive(:initialize).with(opts)
+    expect_any_instance_of(Soulheart::FileHandler).to receive(:load).with('cool filename.stuff')
+    Soulheart.load_file('cool filename.stuff', opts)
+  end
+
+  it "runs item loader with passed options" do 
+    items = [{'text' => 'stuff'}, {'text' => 'fun'}]
+    opts = {no_all: true, no_combinatorial: true}
+    # Not sure how to test option passing without stubbing out initialize
+    # Stubbing initialize prints a warning about how it's a bad idea tho...
+    expect_any_instance_of(Soulheart::Loader).to receive(:initialize).with(opts)
+    expect_any_instance_of(Soulheart::Loader).to receive(:load).with(items)
+    Soulheart.load_items(items, opts)
+  end
 end

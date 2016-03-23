@@ -113,7 +113,7 @@ describe Soulheart::Loader do
     it 'stores terms by priority and adds categories for each possible category combination' do
       items = []
       file = File.read('spec/fixtures/multiple_categories.json')
-      file.each_line { |l| items << MultiJson.decode(l) }
+      file.each_line { |l| items << MultiJson.load(l) }
       loader = Soulheart::Loader.new
       loader.clear(true)
       redis = loader.redis
@@ -144,7 +144,7 @@ describe Soulheart::Loader do
     it "doesn't add category if no_combinatorial" do 
       items = []
       file = File.read('spec/fixtures/multiple_categories.json')
-      file.each_line { |l| items << MultiJson.decode(l) }
+      file.each_line { |l| items << MultiJson.load(l) }
       loader = Soulheart::Loader.new(no_combinatorial: true)
       loader.clear(true)
       redis = loader.redis
@@ -165,7 +165,7 @@ describe Soulheart::Loader do
     it "doesn't add all if no_all" do 
       items = []
       file = File.read('spec/fixtures/multiple_categories.json')
-      file.each_line { |l| items << MultiJson.decode(l) }
+      file.each_line { |l| items << MultiJson.load(l) }
       loader = Soulheart::Loader.new(no_all: true)
       loader.clear(true)
       redis = loader.redis
@@ -182,7 +182,7 @@ describe Soulheart::Loader do
     it "doesn't add all or category if no_all and no_combinatorial" do 
       items = []
       file = File.read('spec/fixtures/multiple_categories.json')
-      file.each_line { |l| items << MultiJson.decode(l) }
+      file.each_line { |l| items << MultiJson.load(l) }
       loader = Soulheart::Loader.new(no_combinatorial: true, no_all: true)
       loader.clear(true)
       redis = loader.redis

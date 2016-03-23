@@ -14,5 +14,9 @@ module Soulheart
         (0..(w.length - 1)).map { |l| w[0..l] }
       end.flatten.uniq
     end
+
+    def log(str)
+      STDERR.puts str unless @no_log
+    end
   end
 end
