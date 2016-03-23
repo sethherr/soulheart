@@ -54,11 +54,9 @@ describe Soulheart::Matcher do
   describe :matches do
     it 'With no params, gets all the matches, ordered by priority and name' do
       store_terms_fixture
-      opts = { 'per_page' => 100, 'cache' => false }
+      opts = { 'cache' => false }
       matches = Soulheart::Matcher.new(opts).matches
-      expect(matches.count).to be > 10
-      expect(matches[0]['text']).to eq('Jamis')
-      expect(matches[1]['text']).to eq('Surly')
+      expect(matches.count).to be == 5
     end
 
     it 'With no query but with categories, matches categories' do
