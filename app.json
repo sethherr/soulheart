@@ -1,13 +1,14 @@
 {
   "name": "Soulheart",
-  "description": "Autocomplete engine of future past",
+  "description": "Autocomplete remote data source",
   "repository": "https://github.com/sethherr/soulheart",
-  "logo": "https://raw.githubusercontent.com/sethherr/soulheart/master/logo.png",
+  "logo": "https://raw.githubusercontent.com/sethherr/soulheart/master/examples/logo.png",
   "keywords": [
     "ruby",
     "autocomplete",
     "redis",
-    "heart"
+    "heart",
+    "typeahead"
   ],
   "addons": [
     "heroku-redis:hobby-dev"
