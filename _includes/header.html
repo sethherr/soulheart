@@ -10,19 +10,27 @@
       <span class="navbar-brand">Soulheart</span>
     </div>
       
-
     <div class="collapse navbar-collapse" id="navbar-pages">
       <ul class="nav navbar-nav">
-        <li{% if page.url == '/index.html' %} class="active"{% endif %}>
-          <a href="{{ '/' | prepend: site.baseurl }}">Demos</a>
+        <li{% if page.url == '/' %} class="active"{% endif %}>
+          <a href="{{ '/' | prepend: site.baseurl }}">Intro</a>
         </li>
-        {% for cpage in site.pages %}
-          {% if cpage.title %}
-            <li{% if page.url == cpage.url %} class="active"{% endif %}>
-              <a href="{{ cpage.url | prepend: site.baseurl }}">{{ cpage.title }}</a>
-            </li>
-          {% endif %}
-        {% endfor %}
+
+        <li{% if page.url == '/commands' %} class="active"{% endif %}>
+          <a href="{{ '/commands' | prepend: site.baseurl }}">Commands</a>
+        </li>
+
+        <li{% if page.url == '/loading_data' %} class="active"{% endif %}>
+          <a href="{{ '/loading_data' | prepend: site.baseurl }}">Loading data</a>
+        </li>
+
+        <li{% if page.url == '/examples_select2' %} class="active"{% endif %}>
+          <a href="{{ '/examples_select2' | prepend: site.baseurl }}">Select2 examples</a>
+        </li>
+
+        <li{% if page.url == '/examples_selectize' %} class="active"{% endif %}>
+          <a href="{{ '/examples_selectize' | prepend: site.baseurl }}">Selectize examples</a>
+        </li>
       </ul>
       <p class="navbar-text navbar-right">
         <a class="navbar-link" href="https://github.com/sethherr/soulheart">

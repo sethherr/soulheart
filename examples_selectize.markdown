@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Selectize Demos
-permalink: /selectize/
+title: Selectize Examples
+permalink: /examples_selectize/
+category: examples
 ---
 
 

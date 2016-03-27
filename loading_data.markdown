@@ -4,7 +4,7 @@ title: Loading data
 permalink: /loading_data/
 ---
 
-<div class="page-header">
+<div class="main-header page-header">
 <h1>Loading data</h1>
 </div>
 

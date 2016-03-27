@@ -4,7 +4,7 @@ title: Commands
 permalink: /commands/
 ---
 
-<div class="page-header"><h1>
+<div class="page-header main-header"><h1>
 Commands <small>usage documentation</small>
 </h1>
 </div>

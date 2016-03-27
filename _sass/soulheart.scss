@@ -1,4 +1,3 @@
-
 #header {
   position: fixed;
   top: 0; left: 0;
@@ -10,6 +9,18 @@
   &.headroom--pinned { @include translate(0, 0%); }
   &.headroom--unpinned { @include translate(0, -100%); }
   border-bottom: 1px solid rgba(black, .2);
+}
+
+.intro-header {
+  padding: 2em 0 3em;
+  small { display: block; padding-top: .5em; }
+}
+
+.main-header { padding-top: 30px }
+
+.section-list {
+  padding-bottom: 30px;
+  h3, h4 { margin: 0; }
 }
 
 body { padding-top: 30px; }
