@@ -2,12 +2,13 @@
 
 Soulheart is a ready-to-use remote data source for autocomplete. The goal is to provide a solid, flexible tool that's downright easy to set up and use.
 
-- [Demos](https://sethherr.github.io/soulheart/)
+- [Intro page](https://sethherr.github.io/soulheart/)
 - [Usage documentation (commands)](https://sethherr.github.io/soulheart/commands/)
 - [Example data sources](https://github.com/sethherr/soulheart/tree/master/examples)
 - [Getting started](#getting-started)
 - [Deployment](#deployment)
 - [Testing](#testing)
+- Example usage [with Selectize](https://sethherr.github.io/soulheart/examples_selectize) & [Select2](https://sethherr.github.io/soulheart/examples_select2)
 
 
 ## Features
@@ -29,7 +30,7 @@ Soulheart is a ready-to-use remote data source for autocomplete. The goal is to 
 
 ## Getting started
 
-See the [Soulheart demo page](https://sethherr.github.io/soulheart/) for a step-by-step explanation of creating an instance and setting up a select box that uses it as a remote data source.
+See the [Soulheart intro page](https://sethherr.github.io/soulheart/) for a step-by-step explanation of setting up a select box that uses Soulheart as a remote data source.
 
 
 ## Deployment
