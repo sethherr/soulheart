@@ -14,11 +14,12 @@ group :test do
 end
 
 gem 'rake'
-gem 'redis',      '>= 3.0.1'
+gem 'soulheart'
 gem 'vegas',      '>= 0.1.0'
 gem 'sinatra'
 gem 'multi_json', '>= 1.11.0'
 
 platforms :ruby do
-  gem 'hiredis', '>= 0.6.0'
+  gem 'hiredis', '~> 0.6.0'
+  gem 'redis', '>= 3.2.0', require: ['redis', 'redis/connection/hiredis']
 end

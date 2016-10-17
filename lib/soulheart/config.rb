@@ -29,7 +29,7 @@ module Soulheart
     def redis
       @redis ||= (
         url = URI(@redis_url || ENV['REDIS_URL'] || 'redis://127.0.0.1:6379/0')
-        ::Redis.new(          # 
+        ::Redis.new(
           driver: (jruby? ? :ruby : :hiredis),
           host: url.host,
           port: url.port,

@@ -4,9 +4,11 @@ rvm:
 bundler_args: "--without=guard"
 notifications:
   disabled: true
+before_install:
+  - gem install bundler
+  - gem update bundler
 script:
 - bundle exec rake spec
-# - bundle exec rubocop
 services:
   - redis
 rvm:

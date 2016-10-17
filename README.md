@@ -43,20 +43,23 @@ To update your Heroku deploy of Soulheart, use the [Heroku CLI](https://devcente
     heroku deploy -a NAME_OF_YOUR_APP_ON_HEROKU
     
 
-#### In a Rails app
+## In a Rails app
 
-Soulheart is a gem. Add it to your gemfile:
+Soulheart is a gem. It uses [hiredis](https://github.com/redis/hiredis) on Ruby MRI. Add these lines to your gemfile:
 
     gem 'soulheart'
+    gem 'hiredis', '~> 0.6.0' # Skip if using JRuby
+    gem 'redis', '>= 3.2.0', require: ['redis', 'redis/connection/hiredis'] # Skip if using JRuby
+
 
 And then put this in your routes.rb
 
     require 'soulheart/server'
-    mount Soulheart::Server => "/soulhearts"
+    mount Soulheart::Server => '/soulhearts'
 
 You can then access the server when your rails app is running. You can run the [Soulheart commands](https://sethherr.github.io/soulheart/commands/) from that directory.
 
-*note: On Heroku Soulheart uses `rackup` to start the server. Because of this, there's a `config.ru`, a `Gemfile.lock` and a `app.json`&mdash;to make it (and any forks of it) directly deployable. These files aren't in the Gem.*
+*Hote: On Heroku Soulheart uses `rackup` to start the server. Because of this, there's a `config.ru`, a `Gemfile.lock` and a `app.json`&mdash;to make it (and any forks of it) directly deployable. These files aren't in the Gem.*
 
 ##### Setting redis url
 
