@@ -14,6 +14,6 @@
     "heroku-redis:hobby-dev"
   ],
   "env": {
-    "CUSTOM_RUBY_VERSION": "2.2.2"
+    "CUSTOM_RUBY_VERSION": "2.2.5"
   }
 }
