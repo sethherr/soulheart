@@ -15,10 +15,8 @@ rvm:
   - 2.2
   - jruby
   - jruby-head
-  - rbx-2
 matrix:
   allow_failures:
-    - rvm: rbx-2
     - rvm: jruby-head
 addons:
   code_climate:
