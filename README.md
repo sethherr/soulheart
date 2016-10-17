@@ -48,14 +48,19 @@ To update your Heroku deploy of Soulheart, use the [Heroku CLI](https://devcente
 Soulheart is a gem. It uses [hiredis](https://github.com/redis/hiredis) on Ruby MRI. Add these lines to your gemfile:
 
     gem 'soulheart'
-    gem 'hiredis', '~> 0.6.0' # Skip if using JRuby
+    gem 'hiredis', '~> 0.6.0' # Skip using JRuby
     gem 'redis', '>= 3.2.0', require: ['redis', 'redis/connection/hiredis'] # Skip if using JRuby
 
 
-And then put this in your routes.rb
+And add this in your routes.rb:
 
     require 'soulheart/server'
-    mount Soulheart::Server => '/soulhearts'
+
+    Rails.application.routes.draw do
+      # .... your application routes
+
+      mount Soulheart::Server => '/soulhearts'
+    end
 
 You can then access the server when your rails app is running. You can run the [Soulheart commands](https://sethherr.github.io/soulheart/commands/) from that directory.
 
