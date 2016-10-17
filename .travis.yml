@@ -4,9 +4,11 @@ rvm:
 bundler_args: "--without=guard"
 notifications:
   disabled: true
+before_install:
+  - gem install bundler
+  - gem update bundler
 script:
 - bundle exec rake spec
-# - bundle exec rubocop
 services:
   - redis
 rvm:
@@ -15,10 +17,8 @@ rvm:
   - 2.2
   - jruby
   - jruby-head
-  - rbx-2
 matrix:
   allow_failures:
-    - rvm: rbx-2
     - rvm: jruby-head
 addons:
   code_climate:
