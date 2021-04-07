@@ -10,14 +10,12 @@ end
 
 group :test do
   gem 'rack-test'
-  gem 'codeclimate-test-reporter', require: nil
 end
 
 gem 'rake'
 gem 'soulheart'
 gem 'vegas',      '>= 0.1.0'
 gem 'sinatra'
-gem 'multi_json', '>= 1.11.0'
 
 platforms :ruby do
   gem 'hiredis'

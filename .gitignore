@@ -17,6 +17,7 @@ tmp/
 
 .rvmrc
 .ruby-*
+.tool-versions
 
 _site
 .sass-cache

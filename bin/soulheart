@@ -107,7 +107,7 @@ def load(file)
         lines = []
         @batch_size.times do
           break if f.eof?
-          lines << MultiJson.decode(f.gets)
+          lines << JSON.parse(f.gets)
           count += 1
         end
       end

@@ -120,7 +120,7 @@ module Soulheart
       redis.pipelined do
         redis.zadd(no_query_id(category_base_id), priority, item['term'])  # Add to master set for queryless searches
         # store the raw data in a separate key to reduce memory usage, if it's cleaned it's done
-        redis.hset(results_hashes_id, item['term'], MultiJson.encode(item['data'])) unless cleaned
+        redis.hset(results_hashes_id, item['term'], item['data'].to_json) unless cleaned
         phrase = ([item['term']] + (item['aliases'] || [])).join(' ')
         # Store all the prefixes
         prefixes_for_phrase(phrase).each do |p|
