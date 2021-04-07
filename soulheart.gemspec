@@ -15,6 +15,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'redis', '>= 3.0.5'
   gem.add_dependency 'vegas', '>= 0.1.0'
   gem.add_dependency 'sinatra', '>= 1.4.4'
-  gem.add_development_dependency 'rake', '~> 10.4'
+  gem.add_development_dependency 'rake', '~> 12.3'
   gem.add_development_dependency 'rspec', '>= 2.14', '< 4.0'
 end
