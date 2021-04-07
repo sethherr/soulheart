@@ -1,3 +1,4 @@
+require 'json'
 require 'soulheart/version'
 require 'soulheart/helpers'
 require 'soulheart/base'
