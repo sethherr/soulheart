@@ -15,27 +15,27 @@ module Soulheart
 
     get '/' do
       matches = Matcher.new(params).matches
-      MultiJson.encode(matches:  matches)
+      {matches:  matches}.to_json
     end
 
     get '/categories' do
-      MultiJson.encode(categories: Base.new.sorted_category_array)
+      {categories: Base.new.sorted_category_array}.to_json
     end
 
     get '/info' do
       info = Soulheart::Base.new.redis.info
-      MultiJson.encode({
+      {
         soulheart_version: Soulheart::VERSION,
         current_time: Time.now.utc.strftime('%H:%M:%S UTC'),
         redis_used_memory: info['used_memory_human'],
         stop_words: Soulheart.stop_words,
         normalizer: Soulheart.normalizer,
-      })
+      }.to_json
     end
 
     not_found do
       content_type 'application/json', charset: 'utf-8'
-      MultiJson.encode(error: 'not found')
+      {error: 'not found'}.to_json
     end
   end
 end

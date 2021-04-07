@@ -12,9 +12,8 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files README.md Rakefile LICENSE.md lib bin`.split("\n")
   gem.name          = 'soulheart'
   gem.require_paths = ['lib']
-  gem.add_dependency 'redis', '~> 3.0', '>= 3.0.5'
+  gem.add_dependency 'redis', '>= 3.0.5'
   gem.add_dependency 'vegas', '>= 0.1.0'
-  gem.add_dependency 'multi_json', '~> 1.11', '>= 1.11.2'
   gem.add_dependency 'sinatra', '>= 1.4.4'
   gem.add_development_dependency 'rake', '~> 10.4'
   gem.add_development_dependency 'rspec', '>= 2.14', '< 4.0'

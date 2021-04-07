@@ -4,11 +4,8 @@ GEM
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
-    codeclimate-test-reporter (0.4.7)
-      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     diff-lcs (1.2.5)
-    docile (1.1.5)
     ffi (1.9.10)
     ffi (1.9.10-java)
     formatador (0.2.5)
@@ -25,8 +22,7 @@ GEM
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
     hiredis (0.6.0)
-    json (1.8.3)
-    json (1.8.3-java)
+    hiredis (0.6.0-java)
     listen (3.0.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -76,11 +72,6 @@ GEM
       ruby-progressbar (~> 1.4)
     ruby-progressbar (1.7.5)
     shellany (0.0.1)
-    simplecov (0.10.0)
-      docile (~> 1.1.0)
-      json (~> 1.8)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.0)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -105,11 +96,9 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
-  codeclimate-test-reporter
   guard
   guard-rspec (~> 4.2.8)
-  hiredis (~> 0.6.0)
-  multi_json (>= 1.11.0)
+  hiredis
   rack-test
   rake
   redis (>= 3.2.0)
@@ -120,4 +109,4 @@ DEPENDENCIES
   vegas (>= 0.1.0)
 
 BUNDLED WITH
-   1.10.5
+   2.2.15

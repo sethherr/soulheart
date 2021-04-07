@@ -1,7 +1,3 @@
-if ENV['CODECLIMATE_REPO_TOKEN']
-  require 'codeclimate-test-reporter'
-  CodeClimate::TestReporter.start
-end
 require 'rack/test'
 require 'rspec'
 
@@ -26,7 +22,7 @@ end
 def store_terms_fixture
   items = []
   file = File.read('spec/fixtures/multiple_categories.json')
-  file.each_line { |l| items << MultiJson.decode(l) }
+  file.each_line { |l| items << JSON.parse(l) }
   loader = Soulheart::Loader.new
   loader.clear(true)
   loader.load(items)
