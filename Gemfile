@@ -18,6 +18,5 @@ gem 'vegas',      '>= 0.1.0'
 gem 'sinatra'
 
 platforms :ruby do
-  gem 'hiredis'
   gem 'redis', '>= 3.2.0', require: ['redis', 'redis/connection/hiredis']
 end
