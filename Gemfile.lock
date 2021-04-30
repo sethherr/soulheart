@@ -98,7 +98,6 @@ DEPENDENCIES
   bundler
   guard
   guard-rspec (~> 4.2.8)
-  hiredis
   rack-test
   rake
   redis (>= 3.2.0)
